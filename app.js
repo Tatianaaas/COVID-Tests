@@ -3,6 +3,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 const apiRouter = require('./api')
+const adminRouter = require('./routes/admin-router');
+const tecnicRouter = require('./routes/tecnic-router');
+const userRouter = require('./routes/user-router');
 
 const app = express()
 mongoose.Promise = global.Promise
@@ -30,6 +33,9 @@ mongoose
 app.use(express.json())
 
 app.use('/api', apiRouter)
+app.use('/api/admin/', adminRouter);
+app.use('/api/tecnic/', tecnicRouter)
+app.use('/api/user/', userRouter);
 
 app.listen(PORT, () => {
     console.log(`Server started on http://localhost:${PORT}`)
