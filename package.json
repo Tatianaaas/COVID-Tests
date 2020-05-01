@@ -1,0 +1,17 @@
+{
+  "name": "trabalhopaw",
+  "version": "1.0.0",
+  "description": "Trabalho prático inserido na unidade curricular de Programação em Ambiente Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jessica Coelho 8170180, Tatiana Silva 8160264",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
