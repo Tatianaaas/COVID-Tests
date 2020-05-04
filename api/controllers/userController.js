@@ -53,16 +53,15 @@ const loginUser = (req, res, next) => {
             });
         }
 
-        /*
         const token = jwt.sign({ username: fetchedUser.username, userId: fetchedUser._id },
             'segredo_para_a_criacao_dos_tokens', { expiresIn: '30m' }
         );
-        */
 
         const message = "Login successful"
 
         res.status(200).json({
             message,
+            token,
             expiresIn: 1800,
             userId: fetchedUser._id,
             name: fetchedUser.name,
