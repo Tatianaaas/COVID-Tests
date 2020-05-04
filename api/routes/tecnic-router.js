@@ -5,4 +5,4 @@ const tecnicRouter = express.Router()
 
 //Código em falta
 
-module.exports = tecnic
+module.exports = tecnicRouter

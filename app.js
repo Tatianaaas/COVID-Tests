@@ -3,9 +3,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 const apiRouter = require('./api')
-const adminRouter = require('./routes/admin-router');
-const tecnicRouter = require('./routes/tecnic-router');
-const userRouter = require('./routes/user-router');
+const adminRouter = require('./api/routes/admin-router');
+const tecnicRouter = require('./api/routes/tecnic-router');
+const userRouter = require('./api/routes/users-router');
 
 const app = express()
 mongoose.Promise = global.Promise
