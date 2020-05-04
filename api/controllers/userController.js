@@ -11,14 +11,14 @@ const createUser = (req, res, next) => {
                 name: req.body.name,
                 username: req.body.username,
                 password: hash,
-                role: "utilizador"
+                role: req.body.role
             });
 
             user
                 .save()
                 .then(result => {
                     res.status(201).json({
-                        message: 'User criado!',
+                        message: 'Utilizador criado!',
                         result: result
                     });
                 })
@@ -71,7 +71,7 @@ const loginUser = (req, res, next) => {
 
     .catch(err => {
         return res.status(401).json({
-            message: 'Auth failed'
+            message: 'Authentication failed'
         });
     });
 }
