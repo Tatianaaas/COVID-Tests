@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
 const apiRouter = require('./api')
 const adminRouter = require('./api/routes/admin-router');
@@ -32,10 +33,12 @@ mongoose
 
 app.use(express.json())
 
-app.use('/api', apiRouter)
-app.use('/api/admin/', adminRouter);
-app.use('/api/tecnic/', tecnicRouter)
-app.use('/api/user/', userRouter);
+app.use('/', apiRouter)
+    /*
+    app.use('/api/admin/', adminRouter);
+    app.use('/api/tecnic/', tecnicRouter)
+    app.use('/api/user/', userRouter);
+    */
 
 app.listen(PORT, () => {
     console.log(`Server started on http://localhost:${PORT}`)

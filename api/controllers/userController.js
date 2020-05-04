@@ -1,15 +1,17 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt');
-//const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 //Código em falta
+
 const createUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User({
-                email: req.body.email,
+                name: req.body.name,
+                username: req.body.username,
                 password: hash,
-                tipo: "utilizador"
+                role: "utilizador"
             });
 
             user
@@ -32,13 +34,14 @@ const createUser = (req, res, next) => {
 const loginUser = (req, res, next) => {
     let fetchedUser;
 
-    User.findOne({ email: req.body.email })
+    User.findOne({ username: req.body.username })
         .then(user => {
             if (!user) {
                 return res.status(401).json({
                     message: 'Auth failed'
                 });
             }
+
             fetchedUser = user;
             return bcrypt.compare(req.body.password, user.password);
         })
@@ -50,15 +53,20 @@ const loginUser = (req, res, next) => {
             });
         }
 
-        const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id },
+        /*
+        const token = jwt.sign({ username: fetchedUser.username, userId: fetchedUser._id },
             'segredo_para_a_criacao_dos_tokens', { expiresIn: '30m' }
         );
+        */
+
+        const message = "Login successful"
 
         res.status(200).json({
-            token,
+            message,
             expiresIn: 1800,
             userId: fetchedUser._id,
-            tipo: fetchedUser.tipo
+            name: fetchedUser.name,
+            role: fetchedUser.role
         });
     })
 
