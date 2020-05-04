@@ -38,7 +38,7 @@ const loginUser = (req, res, next) => {
         .then(user => {
             if (!user) {
                 return res.status(401).json({
-                    message: 'Auth failed'
+                    message: 'Authentication failed'
                 });
             }
 
