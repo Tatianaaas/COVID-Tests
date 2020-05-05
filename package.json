@@ -7,7 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "nodemon app.js"
     },
-    "author": "Jessica Coelho 8170180, Tatiana Silva 8160264",
+    "author": "Jessica Coelho 8170180, Tatiana Silva 8160264, Vania Lemos 8170310",
     "license": "ISC",
     "dependencies": {
         "bcrypt": "^4.0.1",
