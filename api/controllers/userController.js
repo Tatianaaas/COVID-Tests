@@ -13,7 +13,7 @@ const createUser = (req, res, next) => {
                 password: hash,
                 role: req.body.role
             });
-
+            
             user
                 .save()
                 .then(result => {
@@ -76,8 +76,49 @@ const loginUser = (req, res, next) => {
     });
 }
 
+const getUserById=async(req,res)=>{
+    try{
+        const user=await User
+        .findById(req.params.userId)
+        .catch((e)=>{
+            return null
+        })
+        console.log(user)
+        res.send(user)
+    }catch(e){
+        console.error(e)
+        res.status(404)
+        res.send(null)
+    }
+
+}
+
+const updateUser= async(req,res)=>{
+    const oldUser=await User.findByIdAndUpdate(
+        req.params.userId,
+        req.body
+        )
+    const newUser= await User.findById(
+        req.params.userId
+    )
+
+    res.send({
+        old: oldUser,
+        new: newUser
+    })
+}
+
+const deleteUser= async (req,res)=>{
+    const deleteUser=await User.findByIdAndDelete(req.params.userId)
+    res.send(deleteUser)
+}
+
+
 module.exports = {
     //Código em falta
     createUser,
-    loginUser
+    loginUser,
+    getUserById,
+    updateUser,
+    deleteUser
 }
