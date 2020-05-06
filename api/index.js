@@ -10,6 +10,6 @@ apiRouter.get('/', (req, res) => {
     })
 })
 
-apiRouter.use('/users', userRouter)
+apiRouter.use('/user', userRouter)
 
 module.exports = apiRouter

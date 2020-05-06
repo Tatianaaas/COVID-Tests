@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 //Código em falta
-
 const createUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -13,7 +12,7 @@ const createUser = (req, res, next) => {
                 password: hash,
                 role: req.body.role
             });
-            
+
             user
                 .save()
                 .then(result => {
@@ -76,29 +75,26 @@ const loginUser = (req, res, next) => {
     });
 }
 
-const getUserById=async(req,res)=>{
-    try{
-        const user=await User
-        .findById(req.params.userId)
-        .catch((e)=>{
-            return null
-        })
-        console.log(user)
-        res.send(user)
-    }catch(e){
+const getUserById = async(req, res) => {
+    try {
+        console.log('ID', req.params.userId)
+        const userResult = await User.findById(req.params.userId);
+        console.log(userResult)
+        res.render('users/show', { user: userResult })
+    } catch (e) {
         console.error(e)
         res.status(404)
         res.send(null)
     }
-
 }
 
-const updateUser= async(req,res)=>{
-    const oldUser=await User.findByIdAndUpdate(
+const updateUser = async(req, res) => {
+    const oldUser = await User.findByIdAndUpdate(
         req.params.userId,
         req.body
-        )
-    const newUser= await User.findById(
+    )
+
+    const newUser = await User.findById(
         req.params.userId
     )
 
@@ -108,11 +104,10 @@ const updateUser= async(req,res)=>{
     })
 }
 
-const deleteUser= async (req,res)=>{
-    const deleteUser=await User.findByIdAndDelete(req.params.userId)
+const deleteUser = async(req, res) => {
+    const deleteUser = await User.findByIdAndDelete(req.params.userId)
     res.send(deleteUser)
 }
-
 
 module.exports = {
     //Código em falta

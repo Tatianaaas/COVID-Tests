@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Detail</title>
+</head>
+
+<body>
+    <div class="container">
+        <h3><a href="/user">Users' List</a></h3>
+        <h1>User's Detail</h1>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>:</td>
+                    <td>
+                        <%= user.name %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td>:</td>
+                    <td>
+                        <%= user.username %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Role</td>
+                    <td>:</td>
+                    <td>
+                        <%= user.role %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a href="/user/update/<%= user._userId%>">EDIT</a></h3>
+        <form action="/user/delete/<%= user._userId%>" method="delete">
+            <button type="submit">DELETE</button>
+        </form>
+    </div>
+</body>
+
+</html>

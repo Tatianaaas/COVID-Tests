@@ -1,7 +1,11 @@
 require('dotenv').config()
+
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+var path = require('path')
+var cookieParser = require('cookie-parser')
+var logger = require('morgan');
 
 const apiRouter = require('./api')
 const adminRouter = require('./api/routes/admin-router');
@@ -33,13 +37,21 @@ mongoose
 
 app.use(express.json())
 
+app.set('views', path.join(__dirname, './api/views'));
+app.set('view engine', 'ejs');
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
 app.use('/', apiRouter)
-    /*
-    app.use('/api/admin/', adminRouter);
-    app.use('/api/tecnic/', tecnicRouter)
-    app.use('/api/user/', userRouter);
-    */
+app.use('/user/', userRouter);
+app.use('/admin/', adminRouter);
+app.use('/technic/', tecnicRouter)
 
 app.listen(PORT, () => {
     console.log(`Server started on http://localhost:${PORT}`)
 })
+
+module.exports = app;
