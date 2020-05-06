@@ -10,14 +10,14 @@ const createUser = (req, res, next) => {
                 name: req.body.name,
                 username: req.body.username,
                 password: hash,
-                role: req.body.role
+                role: "utente"
             });
 
             user
                 .save()
                 .then(result => {
                     res.status(201).json({
-                        message: 'Utilizador criado!',
+                        message: 'Sign up successful!',
                         result: result
                     });
                 })
@@ -104,16 +104,9 @@ const updateUser = async(req, res) => {
     })
 }
 
-const deleteUser = async(req, res) => {
-    const deleteUser = await User.findByIdAndDelete(req.params.userId)
-    res.send(deleteUser)
-}
-
 module.exports = {
-    //Código em falta
     createUser,
     loginUser,
     getUserById,
-    updateUser,
-    deleteUser
+    updateUser
 }

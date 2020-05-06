@@ -1,8 +1,11 @@
 const express = require('express')
 
 const userController = require('../controllers/userController')
-const tecnicRouter = express.Router()
+const technicRouter = express.Router()
 
-//Código em falta
+//Login
+technicRouter.post('/login', userController.loginUser);
+//Editar
+technicRouter.put("/update/:userId", userController.updateUser);
 
-module.exports = tecnicRouter
+module.exports = technicRouter

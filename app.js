@@ -3,9 +3,10 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var logger = require('morgan');
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
+const cors = require('cors')
 
 const apiRouter = require('./api')
 const adminRouter = require('./api/routes/admin-router');
