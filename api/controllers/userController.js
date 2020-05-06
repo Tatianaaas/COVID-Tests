@@ -2,7 +2,6 @@ const User = require('../models/User')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-//Código em falta
 const createUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {

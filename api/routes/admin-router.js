@@ -4,8 +4,6 @@ const userController = require('../controllers/userController')
 const adminController = require('../controllers/adminController')
 const adminRouter = express.Router()
 
-//Código em falta
-
 adminRouter.get('/', (req, res) => {
     res.send("Ok")
 })
