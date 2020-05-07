@@ -6,6 +6,7 @@ const tecnicRouter = require('./routes/tecnic-router')
 
 const apiRouter = express.Router()
 
+
 apiRouter.get('/', (req, res) => {
     res.send({
         status: 'ok'

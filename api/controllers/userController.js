@@ -22,15 +22,18 @@ const createUser = (req, res, next) => {
                     res.status(201).json({
                         message: 'Sign up successful!',
                         result: result
-                    });
+                    });  
+                     
                 })
-
-            .catch(err => {
-                res.status(500).json({
-                    error: err
+                .catch(err => {
+                    res.status(500).json({
+                        error: err
+                    });
                 });
-            });
-        });
+            });   
+            /* 
+            console.log(user)
+            res.redirect(`/${user._id}`) */
 }
 
 const loginUser = (req, res, next) => {

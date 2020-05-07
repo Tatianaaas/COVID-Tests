@@ -59,7 +59,7 @@ const createTechnics = (req, res, next) => {
                 name: req.body.name,
                 username: req.body.username,
                 password: hash,
-                role: "TECH"
+                role: "tecnico"
             });
 
             user
