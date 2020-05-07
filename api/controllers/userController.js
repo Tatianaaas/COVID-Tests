@@ -13,7 +13,7 @@ const createUser = (req, res, next) => {
                 name: req.body.name,
                 username: req.body.username,
                 password: hash,
-                role: "utente"
+                role: "UTENTE"
             });
 
             user
@@ -22,18 +22,18 @@ const createUser = (req, res, next) => {
                     res.status(201).json({
                         message: 'Sign up successful!',
                         result: result
-                    });  
-                     
+                    });
+
                 })
                 .catch(err => {
                     res.status(500).json({
                         error: err
                     });
                 });
-            });   
-            /* 
-            console.log(user)
-            res.redirect(`/${user._id}`) */
+        });
+    /* 
+    console.log(user)
+    res.redirect(`/${user._id}`) */
 }
 
 const loginUser = (req, res, next) => {
