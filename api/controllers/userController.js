@@ -2,8 +2,6 @@ const User = require('../models/User')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-//Código em falta
-
 const createUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -11,13 +9,14 @@ const createUser = (req, res, next) => {
                 name: req.body.name,
                 username: req.body.username,
                 password: hash,
-                role: req.body.role
-            });    
+                role: "utente"
+            });
+
             user
                 .save()
                 .then(result => {
                     res.status(201).json({
-                        message: 'Utilizador criado!',
+                        message: 'Sign up successful!',
                         result: result
                     });  
                      
@@ -78,29 +77,26 @@ const loginUser = (req, res, next) => {
     });
 }
 
-const getUserById=async(req,res)=>{
+const getUserById = async(req, res) => {
     try {
-		const user = await User
-			.findById(req.params.userId)
-			.catch((e) => {
-				return null
-            })
-            res.send(user)
-         //  res.render("../views/userView",{user:user})
-        } catch (e) {
-		console.error(e)
-		res.status(404)
-		res.send(null)
-	}
-
+        console.log('ID', req.params.userId)
+        const userResult = await User.findById(req.params.userId);
+        console.log(userResult)
+        res.render('users/show', { user: userResult })
+    } catch (e) {
+        console.error(e)
+        res.status(404)
+        res.send(null)
+    }
 }
 
-const updateUser= async(req,res)=>{
-    const oldUser=await User.findByIdAndUpdate(
+const updateUser = async(req, res) => {
+    const oldUser = await User.findByIdAndUpdate(
         req.params.userId,
         req.body
-        )
-    const newUser= await User.findById(
+    )
+
+    const newUser = await User.findById(
         req.params.userId
     )
 
@@ -110,27 +106,9 @@ const updateUser= async(req,res)=>{
     })
 }
 
-const deleteUser= async (req,res)=>{
-    const deleteUser=await User.findByIdAndDelete(req.params.userId)
-    res.send(deleteUser)
-}
-
-const getSign= async(req,res)=>{
-    res.render("../views/signupUser")
-} 
-
-const getLog= async(req,res)=>{
-    res.render("../views/login")
-}
- 
-
 module.exports = {
-    //Código em falta
     createUser,
     loginUser,
     getUserById,
-    updateUser,
-    getSign,
-    getLog, 
-    deleteUser
+    updateUser
 }
