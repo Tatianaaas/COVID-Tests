@@ -29,8 +29,24 @@ const createAdmin = (req, res, next) => {
         });
 }
 
-//Atualizar password do administrador, não consigo fazer
+//Atualizar password do administrador
 const updateAdminPassword = async(req, res) => {
+    if(req.body.password){
+        req.body.password= bcrypt.hashSync(req.body.password, 10)
+    }
+    const oldUser = await User.findByIdAndUpdate(
+        req.params.userId,
+        req.body
+    )
+
+    const newUser = await User.findById(
+        req.params.userId
+    )
+
+    res.send({
+        old: oldUser,
+        new: newUser
+    })
 
 }
 
