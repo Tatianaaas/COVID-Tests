@@ -2,6 +2,10 @@ const User = require('../models/User')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const {
+    JWT_SECRET = 'segredo_para_a_criacao_dos_tokens'
+} = process.env
+
 const createUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -52,7 +56,7 @@ const loginUser = (req, res, next) => {
         }
 
         const token = jwt.sign({ username: fetchedUser.username, userId: fetchedUser._id },
-            'segredo_para_a_criacao_dos_tokens', { expiresIn: '30m' }
+            JWT_SECRET, { expiresIn: '30m' }
         );
 
         const message = "Login successful"
@@ -94,7 +98,7 @@ const updateUser = async(req, res) => {
     )
 
     const newUser = await User.findById(
-        req.params.userId
+        req.params.userId,
     )
 
     res.send({

@@ -1,12 +1,11 @@
 const express = require('express')
 
+const authorize = require('../middleware/authorize')
+const session = require('../middleware/session')
+
 const userController = require('../controllers/userController')
 const adminController = require('../controllers/adminController')
 const adminRouter = express.Router()
-
-adminRouter.get('/', (req, res) => {
-    res.send("Ok")
-})
 
 //Sign up (administração)
 adminRouter.post('/signup', adminController.createAdmin);
@@ -21,6 +20,6 @@ adminRouter.get('/show/:userId', userController.getUserById);
 //Criar novos técnicos
 adminRouter.post('/signuptechnics', adminController.createTechnics);
 //Eliminar utilizadores
-adminRouter.delete("/delete/:userId", adminController.deleteUser);
+adminRouter.delete("/delete/:userId", session, authorize(['ADMIN']), adminController.deleteUser);
 
 module.exports = adminRouter

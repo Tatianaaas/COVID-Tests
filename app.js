@@ -37,6 +37,8 @@ mongoose
     .catch(console.error)
 
 app.use(express.json())
+    //app.use(express.urlencoded({ extended: true }))
+app.use(cors())
 
 app.set('views', path.join(__dirname, './api/views'));
 app.set('view engine', 'ejs');

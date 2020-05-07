@@ -9,7 +9,7 @@ const createAdmin = (req, res, next) => {
                 name: req.body.name,
                 username: req.body.username,
                 password: hash,
-                role: "administrador"
+                role: "ADMIN"
             });
 
             user
@@ -31,7 +31,22 @@ const createAdmin = (req, res, next) => {
 
 //Atualizar password do administrador, não consigo fazer
 const updateAdminPassword = async(req, res) => {
+    if (req.body.password) {
+        req.body.password = bcrypt.hashSync(req.body.password, 10)
+    }
+    const oldUser = await User.findByIdAndUpdate(
+        req.params.userId,
+        req.body
+    )
 
+    const newUser = await User.findById(
+        req.params.userId
+    )
+
+    res.send({
+        old: oldUser,
+        new: newUser
+    })
 }
 
 /*  Criar técnicos
@@ -44,7 +59,7 @@ const createTechnics = (req, res, next) => {
                 name: req.body.name,
                 username: req.body.username,
                 password: hash,
-                role: "tecnico"
+                role: "TECH"
             });
 
             user
