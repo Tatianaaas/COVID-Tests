@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken')
 const userController = require('../controllers/userController')
 const userRouter = express.Router()
 
-<<<<<<< HEAD
 /*
 function verifyJWT(req, res, next) {
     var token = req.headers['x-access-token'];
@@ -20,12 +19,9 @@ function verifyJWT(req, res, next) {
 }
 */
 
-=======
 //Código em falta 
->>>>>>> c9a43f65989f466714be55ae519460c1ef6e47a4
 //Sign up (utente)
 //userRouter.get('/signup', userController.getSign);
-userRouter.post('/signup', userController.createUser);
 userRouter.post('/signup', userController.createUser);
 
 //Login
