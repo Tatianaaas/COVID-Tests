@@ -12,23 +12,25 @@ const createUser = (req, res, next) => {
                 username: req.body.username,
                 password: hash,
                 role: req.body.role
-            });
-            
+            });    
             user
                 .save()
                 .then(result => {
                     res.status(201).json({
                         message: 'Utilizador criado!',
                         result: result
-                    });
+                    });  
+                     
                 })
-
-            .catch(err => {
-                res.status(500).json({
-                    error: err
+                .catch(err => {
+                    res.status(500).json({
+                        error: err
+                    });
                 });
-            });
-        });
+            });   
+            /* 
+            console.log(user)
+            res.redirect(`/${user._id}`) */
 }
 
 const loginUser = (req, res, next) => {
@@ -77,19 +79,19 @@ const loginUser = (req, res, next) => {
 }
 
 const getUserById=async(req,res)=>{
-    try{
-        const user=await User
-        .findById(req.params.userId)
-        .catch((e)=>{
-            return null
-        })
-        console.log(user)
-        res.send(user)
-    }catch(e){
-        console.error(e)
-        res.status(404)
-        res.send(null)
-    }
+    try {
+		const user = await User
+			.findById(req.params.userId)
+			.catch((e) => {
+				return null
+            })
+            res.send(user)
+         //  res.render("../views/userView",{user:user})
+        } catch (e) {
+		console.error(e)
+		res.status(404)
+		res.send(null)
+	}
 
 }
 
@@ -113,6 +115,14 @@ const deleteUser= async (req,res)=>{
     res.send(deleteUser)
 }
 
+const getSign= async(req,res)=>{
+    res.render("../views/signupUser")
+} 
+
+const getLog= async(req,res)=>{
+    res.render("../views/login")
+}
+ 
 
 module.exports = {
     //Código em falta
@@ -120,5 +130,7 @@ module.exports = {
     loginUser,
     getUserById,
     updateUser,
+    getSign,
+    getLog, 
     deleteUser
 }

@@ -3,16 +3,11 @@ const express = require('express')
 const userController = require('../controllers/userController')
 const userRouter = express.Router()
 
-//Código em falta
-/*
-userRouter.get('/', (req, res, next) => {
-    res.send({
-        status: 'ok'
-    })
-})*/
+//Código em falta 
+//userRouter.get('/signup', userController.getSign);
 
 userRouter.post('/signup', userController.createUser);
-
+//userRouter.get('/login',userController.getLog)
 userRouter.post('/login', userController.loginUser);
 
 //vou colocar aqui as rotas que sao responsaveis pelo criar, editar, atualizar e remover utlizidador

@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+var path = require('path');
 
 const apiRouter = require('./api')
 const adminRouter = require('./api/routes/admin-router');
@@ -23,6 +24,7 @@ mongoose
         `mongodb://${ MONGO_DB_HOST }:${ MONGO_BD_PORT }/${ MONGO_DB_NAME }`, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            useCreateIndex: true,
             useFindAndModify: false
         }
     )
@@ -33,7 +35,10 @@ mongoose
 
 app.use(express.json())
 
+app.set('view engine', 'ejs');
+app.set('views', './api/views');
 app.use('/', apiRouter)
+//app.use(express.urlencoded({extended:true})
     /*
     app.use('/api/admin/', adminRouter);
     app.use('/api/tecnic/', tecnicRouter)
