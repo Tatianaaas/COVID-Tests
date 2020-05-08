@@ -80,6 +80,7 @@ const createTechnics = (req, res, next) => {
 }
 
 const deleteUser = async(req, res) => {
+    
     const deleteUser = await User.findByIdAndDelete(req.params.userId)
     res.send(deleteUser)
 }

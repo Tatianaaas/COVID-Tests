@@ -20,6 +20,6 @@ adminRouter.get('/show/:userId', userController.getUserById);
 //Criar novos técnicos
 adminRouter.post('/signuptechnics', adminController.createTechnics);
 //Eliminar utilizadores
-adminRouter.delete("/delete/:userId", authorize(['ADMIN']), adminController.deleteUser);
+adminRouter.delete("/delete/:userId", session, adminController.deleteUser);
 
 module.exports = adminRouter
