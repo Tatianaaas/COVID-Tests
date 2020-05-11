@@ -56,6 +56,7 @@ const getinfetados=async(req,res)=>{
     const quantity= await Test.countDocuments({infetado:true})
   //  res.send(quantity)
   res.send(testsList)
+
 }
 
 const getOrderById = async(req, res) => {
@@ -106,23 +107,7 @@ const updateFirstResult= async(req,res)=>{
         new: newTest
     })
 
- /*    const testResult = new Test({
-        primeiroResultado: req.body.primeiroResultado,
-        dataSegundoTeste: req.body.dataSegundoTeste,
-        infetado: true
-      });
-      Test.updateOne({ _id: req.params.id }, testResult)
-        .then(result => {
-          if (result.n > 0) {
-            res.status(200).json({ message: "Update Resultado com sucesso" });
-          } else {
-            res.status(401).json({ message: "Nao autorizado!" });
-          }
-        }).catch(error => {
-          res.status(500).json({
-            message: 'Update de resultado falhou!'
-          });
-        }); */
+
 
 }
 
@@ -141,26 +126,7 @@ const scheduleFirstTest = async(req, res) => {
         old: oldTest,
         new: newTest
     })
-/* 
-    const testDate = new Test({
-        nomeUtente: req.body.nomeUtente,
-        sns24: req.body.sns24,
-        grupoRisco: req.body.grupoRisco,
-        trabalhoLocalRisco:req.body.trabalhoLocalRisco,
-        dataPrimeiroTeste: req.body.dataPrimeiroTeste
-      });
-      Test.update({ _id: req.params.id }, testDate)
-        .then(result => {
-          if (result.n > 0) {
-            res.status(200).json({ message: "Marcação primeiro teste com sucesso" });
-          } else {
-            res.status(401).json({ message: "Nao autorizado!" });
-          }
-        }).catch(error => {
-          res.status(500).json({
-            message: 'Marcação primeiro teste falhou!'
-          });
-        }); */
+
 
 }
 
@@ -180,25 +146,7 @@ const scheduleSecondTest = async(req, res) => {
         new: newTest
     })
 
-   /*  const testDate = new Test({
-        nomeUtente: req.body.nomeUtente,
-        sns24: req.body.sns24,
-        grupoRisco: req.body.grupoRisco,
-        trabalhoLocalRisco:req.body.trabalhoLocalRisco,
-        dataSegundoTeste: req.body.dataSegundoTeste
-      });
-      Test.update({ _id: req.params.id }, testDate)
-        .then(result => {
-          if (result.n > 0) {
-            res.status(200).json({ message: "Marcação segundo teste com sucesso" });
-          } else {
-            res.status(401).json({ message: "Nao autorizado!" });
-          }
-        }).catch(error => {
-          res.status(500).json({
-            message: 'Marcação segundo teste falhou!'
-          });
-        }); */
+ 
 
 }
 
