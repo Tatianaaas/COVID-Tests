@@ -1,5 +1,4 @@
 const express = require('express')
-const jwt = require('jsonwebtoken')
 const testController = require('../controllers/testController')
 const userController = require('../controllers/userController')
 const userRouter = express.Router()
@@ -18,6 +17,6 @@ userRouter.get("/show/:userId", userController.getUserById);
 userRouter.put("/update/:userId", userController.updateUser);
 
 //Efeuar pedido de teste
-userRouter.post("/ordertest",testController.createOrder);
+userRouter.post("/ordertest", testController.createOrder);
 
 module.exports = userRouter
