@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
         const token = req.headers.authorization.split(" ")[1];
         const decodedToken = jwt.verify(token, 'segredo_para_a_criacao_dos_tokens');
 
-        req.userData = { userId: decodedToken.userId };
+        req.userData = { username: decodedToken.username, userId: decodedToken.userId };
         next();
     } catch (error) {
         res.status(401).json({ message: "Autenticação falhou!!!" });
