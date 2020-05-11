@@ -13,6 +13,8 @@ technicRouter.put("/results/firstTest/:userId", testController.updateFirstResult
 
 //IMPORTANTE NAO ESQUECER 
 //Fica a faltar o update dos resultados do segundo teste , aqui e nos controllers
+//Registo resultado do segundo teste
+technicRouter.put("/results/secondTest/:userId", testController.updateSecondResult);
 
 //Agendar primeiro teste
 technicRouter.put("/scheduleTest/first/:userId", testController.scheduleFirstTest);

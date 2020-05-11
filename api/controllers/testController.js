@@ -2,6 +2,7 @@ const Test = require('../models/Test')
 
 const createOrder = (req, res, next) => {
     let p = false;
+
     if (req.body.trabalhoLocalRisco == true) {
         p = true;
     }
@@ -87,7 +88,7 @@ const getResultById = async(req, res) => {
 
 const updateFirstResult = async(req, res) => {
     const oldTest = await Test.findByIdAndUpdate(
-        req.params.userId, { primeiroResultado: req.body.primeiroResultado, infetado: true }
+        req.params.userId, { primeiroResultado: req.body.primeiroResultado, infetado: false }
     )
 
     const newTest = await Test.findById(
@@ -98,27 +99,31 @@ const updateFirstResult = async(req, res) => {
         old: oldTest,
         new: newTest
     })
-
-    /*    const testResult = new Test({
-           primeiroResultado: req.body.primeiroResultado,
-           dataSegundoTeste: req.body.dataSegundoTeste,
-           infetado: true
-         });
-         Test.updateOne({ _id: req.params.id }, testResult)
-           .then(result => {
-             if (result.n > 0) {
-               res.status(200).json({ message: "Update Resultado com sucesso" });
-             } else {
-               res.status(401).json({ message: "Nao autorizado!" });
-             }
-           }).catch(error => {
-             res.status(500).json({
-               message: 'Update de resultado falhou!'
-             });
-           }); */
-
 }
 
+const updateSecondResult = async(req, res) => {
+    let result = false;
+    let primeiro = Test.findById(req.params.primeiroResultado)
+
+    if (req.body.segundoResultado == false && primeiro == false) {
+        result = false;
+    } else {
+        result = true;
+    }
+
+    const oldTest = await Test.findByIdAndUpdate(
+        req.params.userId, { segundoResultado: req.body.segundoResultado, infetado: result }
+    )
+
+    const newTest = await Test.findById(
+        req.params.userId,
+    )
+
+    res.send({
+        old: oldTest,
+        new: newTest
+    })
+}
 
 const scheduleFirstTest = async(req, res) => {
     const oldTest = await Test.findByIdAndUpdate(
@@ -133,28 +138,6 @@ const scheduleFirstTest = async(req, res) => {
         old: oldTest,
         new: newTest
     })
-
-    /* 
-        const testDate = new Test({
-            nomeUtente: req.body.nomeUtente,
-            sns24: req.body.sns24,
-            grupoRisco: req.body.grupoRisco,
-            trabalhoLocalRisco:req.body.trabalhoLocalRisco,
-            dataPrimeiroTeste: req.body.dataPrimeiroTeste
-          });
-          Test.update({ _id: req.params.id }, testDate)
-            .then(result => {
-              if (result.n > 0) {
-                res.status(200).json({ message: "Marcação primeiro teste com sucesso" });
-              } else {
-                res.status(401).json({ message: "Nao autorizado!" });
-              }
-            }).catch(error => {
-              res.status(500).json({
-                message: 'Marcação primeiro teste falhou!'
-              });
-            }); */
-
 }
 
 const scheduleSecondTest = async(req, res) => {
@@ -170,27 +153,6 @@ const scheduleSecondTest = async(req, res) => {
         old: oldTest,
         new: newTest
     })
-
-    /*  const testDate = new Test({
-         nomeUtente: req.body.nomeUtente,
-         sns24: req.body.sns24,
-         grupoRisco: req.body.grupoRisco,
-         trabalhoLocalRisco:req.body.trabalhoLocalRisco,
-         dataSegundoTeste: req.body.dataSegundoTeste
-       });
-       Test.update({ _id: req.params.id }, testDate)
-         .then(result => {
-           if (result.n > 0) {
-             res.status(200).json({ message: "Marcação segundo teste com sucesso" });
-           } else {
-             res.status(401).json({ message: "Nao autorizado!" });
-           }
-         }).catch(error => {
-           res.status(500).json({
-             message: 'Marcação segundo teste falhou!'
-           });
-         }); 
-         */
 }
 
 module.exports = {
@@ -203,5 +165,6 @@ module.exports = {
     getinfetados,
     scheduleFirstTest,
     scheduleSecondTest,
-    updateFirstResult
+    updateFirstResult,
+    updateSecondResult
 }
