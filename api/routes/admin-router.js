@@ -3,7 +3,7 @@ const express = require('express')
 const authorize = require('../middleware/authorize')
 const session = require('../middleware/session')
 
-const testController= require("../controllers/testController")
+const testController = require("../controllers/testController")
 const userController = require('../controllers/userController')
 const adminController = require('../controllers/adminController')
 const adminRouter = express.Router()
@@ -21,12 +21,12 @@ adminRouter.get('/show/:userId', userController.getUserById);
 //Criar novos técnicos
 adminRouter.post('/signuptechnics', adminController.createTechnics);
 //Eliminar utilizadores
-adminRouter.delete("/delete/:userId", session, adminController.deleteUser);
+adminRouter.delete("/delete/:userId", /*session,*/ adminController.deleteUser);
 //Obter numero de testes por dia , por pessoa e infetados
-adminRouter.post("/tests/day",testController.getTestsByDay);
-adminRouter.get("/tests/:username",testController.getTestsByPerson);
+adminRouter.post("/tests/day", testController.getTestsByDay);
+adminRouter.get("/tests/:username", testController.getTestsByPerson);
 adminRouter.post("/tests/infected", testController.getinfetados);
 //Obter todos os testes realizados
-adminRouter.get("/tests",testController.getOrders);
+adminRouter.get("/tests", testController.getOrders);
 
 module.exports = adminRouter
