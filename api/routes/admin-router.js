@@ -21,7 +21,7 @@ adminRouter.get('/show/:userId', userController.getUserById);
 //Criar novos técnicos
 adminRouter.post('/signuptechnics', adminController.createTechnics);
 //Eliminar utilizadores
-adminRouter.delete("/delete/:userId", /*session,*/ adminController.deleteUser);
+adminRouter.delete("/delete/:userId", authorize, adminController.deleteUser);
 //Obter numero de testes por dia , por pessoa e infetados
 adminRouter.post("/tests/day", testController.getTestsByDay);
 adminRouter.get("/tests/:username", testController.getTestsByPerson);

@@ -88,7 +88,7 @@ const getResultById = async(req, res) => {
 
 const updateFirstResult = async(req, res) => {
     const oldTest = await Test.findByIdAndUpdate(
-        req.params.userId, { primeiroResultado: req.body.primeiroResultado, infetado: false }
+        req.params.userId, { primeiroResultado: req.body.primeiroResultado, infetado: true }
     )
 
     const newTest = await Test.findById(
@@ -103,13 +103,11 @@ const updateFirstResult = async(req, res) => {
 
 const updateSecondResult = async(req, res) => {
     let result = false;
-    let primeiro = Test.findById(req.params.primeiroResultado)
+    const primeiro = await Test.findById(req.params.userId)
 
-    if (req.body.segundoResultado == false && primeiro == false) {
-        result = false;
-    } else {
+    if (req.body.segundoResultado == true || primeiro.primeiroResultado == true) {
         result = true;
-    }
+    } 
 
     const oldTest = await Test.findByIdAndUpdate(
         req.params.userId, { segundoResultado: req.body.segundoResultado, infetado: result }
