@@ -16,31 +16,31 @@ adminRouter.post('/signup', adminController.createAdmin);
 adminRouter.post('/login', userController.loginUser);
 
 //Editar utilizador
-adminRouter.put("/update/:userId", session, authorize(['ADMIN']), userController.updateUser);
+adminRouter.put("/update/:userId", session, authorize, userController.updateUser);
 
 //Editar password do administrador
-adminRouter.put('/updatepass/:userId', session, authorize(['ADMIN']), adminController.updateAdminPassword);
+adminRouter.put('/updatepass/:userId', session, authorize, adminController.updateAdminPassword);
 
 //Ver um determinado utilizador pelo ID
 adminRouter.get('/show/:userId', userController.getUserById);
 
 //Criar novos técnicos
-adminRouter.post('/signuptechnics', session, authorize(['ADMIN']), adminController.createTechnics);
+adminRouter.post('/signuptechnics', session, authorize, adminController.createTechnics);
 
 //Eliminar utilizadores
-adminRouter.delete("/delete/:userId", session, authorize(['ADMIN']), adminController.deleteUser);
+adminRouter.delete("/delete/:userId", session, authorize, adminController.deleteUser);
 
 //Logout
-adminRouter.post("/logout", session, authorize(['ADMIN']), userController.logout)
+adminRouter.post("/logout", session, authorize, userController.logout)
 
 //Obter numero de testes por dia , por pessoa e infetados
-adminRouter.post("/tests/day", session, authorize(['ADMIN']), testController.getTestsByDay);
+adminRouter.post("/tests/day", session, authorize, testController.getTestsByDay);
 
 //Obter numero de testes por pessoa
-adminRouter.get("/tests/:username", testController.getTestsByPerson);
+adminRouter.get("/tests/:username", session, authorize,testController.getTestsByPerson);
 
 //Obter numero total de infetados
-adminRouter.post("/tests/infected", session, authorize(['ADMIN']), testController.getinfetados);
+adminRouter.post("/tests/infected", session, authorize, testController.getinfetados);
 
 //Obter todos os testes realizados
 adminRouter.get("/tests", testController.getOrders);

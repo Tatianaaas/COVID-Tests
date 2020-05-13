@@ -20,12 +20,12 @@ userRouter.post('/login', userController.loginUser);
 userRouter.get("/show/:userId", userController.getUserById);
 
 //Editar utilizador
-userRouter.put("/update/:userId", session, authorize(['UTENTE']), userController.updateUser);
+userRouter.put("/update/:userId", session, authorize, userController.updateUser);
 
 //Logout
-userRouter.post("/logout", session, authorize(['UTENTE']), userController.logout)
+userRouter.post("/logout", session, authorize, userController.logout)
 
 //Efeuar pedido de teste
-userRouter.post("/ordertest", session, authorize(['UTENTE']), testController.createOrder);
+userRouter.post("/ordertest", session, authorize, testController.createOrder);
 
 module.exports = userRouter

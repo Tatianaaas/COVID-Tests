@@ -55,22 +55,36 @@ const getTestsByDay = async(req, res) => {
 
 const getTestsByPerson = async(req, res) => {
 
-    Test.count({ nomeUtente: req.params.username }, function(err, result) {
+    let total=0 ;
+   Test.countDocuments({ nomeUtente:req.params.username ,realizadoPrimeiroTeste:true}, function(err, result) {
+    if (err) {
+        res.send(err)
+    } else {
+      total+=result
+    }
+    })
+
+    Test.countDocuments({nomeUtente: req.params.username, realizadoSegundoTest:true}, function(err, result) {
         if (err) {
             res.send(err)
         } else {
-            res.json(result)
+          total+=result
+          
+            res.json(total)
         }
     })
+
     
 }
 
 const getinfetados = (req, res) => {
-    Test.count({ infetado: true }, function(err, result) {
+    let total=0;
+    Test.countDocuments({ infetado: true }, function(err, result) {
         if (err) {
             res.send(err)
         } else {
-            res.json(result)
+            total+=result
+            res.json(total)
         }
     })
 }
@@ -108,7 +122,7 @@ const updateFirstResult = async(req, res) => {
     const data = moment(user.dataPrimeiroTeste);
     const dataSegundoTeste= data.add(48,'hours')
     const oldTest = await Test.findByIdAndUpdate(
-        req.params.userId, { primeiroResultado: req.body.primeiroResultado, dataSegundoTeste: dataSegundoTeste, infetado: true }
+        req.params.userId, { primeiroResultado: req.body.primeiroResultado, dataSegundoTeste: dataSegundoTeste, infetado: true , realizadoPrimeiroTeste:true}
     )
 
     const newTest = await Test.findById(
@@ -130,7 +144,7 @@ const updateSecondResult = async(req, res) => {
     } 
 
     const oldTest = await Test.findByIdAndUpdate(
-        req.params.userId, { segundoResultado: req.body.segundoResultado, infetado: result }
+        req.params.userId, { segundoResultado: req.body.segundoResultado, infetado: result, realizadoSegundoTest:true }
     )
 
     const newTest = await Test.findById(
