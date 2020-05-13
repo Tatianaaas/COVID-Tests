@@ -1,18 +1,14 @@
 const Test = require('../models/Test')
+var moment = require('moment');
 
 const createOrder = (req, res, next) => {
-    let p = false;
-
-    if (req.body.trabalhoLocalRisco == true) {
-        p = true;
-    }
 
     const test = new Test({
         nomeUtente: req.body.nomeUtente,
         sns24: req.body.sns24,
         grupoRisco: req.body.grupoRisco,
         trabalhoLocalRisco: req.body.trabalhoLocalRisco,
-        prioridade: p,
+        prioridade: req.body.trabalhoLocalRisco
     });
 
     test.save().then(testeCriado => {
@@ -37,15 +33,36 @@ const getOrders = async(req, res) => {
 }
 
 const getTestsByDay = async(req, res) => {
-    //a data so lista se corresponder aos dois parametros em simultaneo , falta arranjar forma de filtrar num caso ou noutro
-    const tests = await Test.find({ dataPrimeiroTeste: req.body.dataPrimeiroTeste, dataSegundoTeste: req.body.dataSegundoTeste });
+    let total=0 ;
+   Test.countDocuments({ dataPrimeiroTeste: req.body.data}, function(err, result) {
+    if (err) {
+        res.send(err)
+    } else {
+      total+=result
+    }
+    })
 
-    res.send(tests)
+    Test.countDocuments({dataSegundoTeste: req.body.data }, function(err, result) {
+        if (err) {
+            res.send(err)
+        } else {
+          total+=result
+          res.json(total)
+        }
+    })
+
 }
 
 const getTestsByPerson = async(req, res) => {
-    const tests = await Test.find({ nomeUtente: req.params.username });
-    res.send(tests)
+
+    Test.count({ nomeUtente: req.params.username }, function(err, result) {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json(result)
+        }
+    })
+    
 }
 
 const getinfetados = (req, res) => {
@@ -87,8 +104,11 @@ const getResultById = async(req, res) => {
 }
 
 const updateFirstResult = async(req, res) => {
+    const user= await Test.findById(req.params.userId)
+    const data = moment(user.dataPrimeiroTeste);
+    const dataSegundoTeste= data.add(48,'hours')
     const oldTest = await Test.findByIdAndUpdate(
-        req.params.userId, { primeiroResultado: req.body.primeiroResultado, infetado: true }
+        req.params.userId, { primeiroResultado: req.body.primeiroResultado, dataSegundoTeste: dataSegundoTeste, infetado: true }
     )
 
     const newTest = await Test.findById(
@@ -138,20 +158,6 @@ const scheduleFirstTest = async(req, res) => {
     })
 }
 
-const scheduleSecondTest = async(req, res) => {
-    const oldTest = await Test.findByIdAndUpdate(
-        req.params.userId, { dataSegundoTeste: req.body.dataSegundoTeste }
-    )
-
-    const newTest = await Test.findById(
-        req.params.userId,
-    )
-
-    res.send({
-        old: oldTest,
-        new: newTest
-    })
-}
 
 module.exports = {
     createOrder,
@@ -162,7 +168,6 @@ module.exports = {
     getTestsByPerson,
     getinfetados,
     scheduleFirstTest,
-    scheduleSecondTest,
     updateFirstResult,
     updateSecondResult
 }

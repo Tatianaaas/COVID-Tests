@@ -16,7 +16,5 @@ technicRouter.put("/results/secondTest/:userId", testController.updateSecondResu
 
 //Agendar primeiro teste
 technicRouter.put("/scheduleTest/first/:userId", testController.scheduleFirstTest);
-//Agendar segundo teste 
-technicRouter.put("/scheduleTest/second/:userId", testController.scheduleSecondTest);
 
 module.exports = technicRouter
