@@ -67,7 +67,7 @@ const loginUser = (req, res, next) => {
         res.status(200).json({
             message,
             token,
-            expiresIn: 1800,
+            expiresIn: 180000,
             userId: fetchedUser._id,
             name: fetchedUser.name,
             role: fetchedUser.role
@@ -110,9 +110,17 @@ const updateUser = async(req, res) => {
     })
 }
 
+const logout = (req, res) => {
+    let token = req.headers.authorization.split(" ")[1];
+    token = null
+
+    res.send("Logout successful")
+}
+
 module.exports = {
     createUser,
     loginUser,
     getUserById,
-    updateUser
+    updateUser,
+    logout
 }

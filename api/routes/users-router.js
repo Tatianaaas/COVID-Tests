@@ -1,6 +1,11 @@
 const express = require('express')
+
+const authorize = require('../middleware/authorize')
+const session = require('../middleware/session')
+
 const testController = require('../controllers/testController')
 const userController = require('../controllers/userController')
+
 const userRouter = express.Router()
 
 //Sign up (utente)
@@ -14,9 +19,12 @@ userRouter.post('/login', userController.loginUser);
 //Ver um determinado utilizador pelo ID
 userRouter.get("/show/:userId", userController.getUserById);
 //Editar utilizador
-userRouter.put("/update/:userId", userController.updateUser);
+userRouter.put("/update/:userId", session, userController.updateUser);
+
+//Logout
+userRouter.post("/logout", session, userController.logout)
 
 //Efeuar pedido de teste
-userRouter.post("/ordertest", testController.createOrder);
+userRouter.post("/ordertest", session, testController.createOrder);
 
 module.exports = userRouter
