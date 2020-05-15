@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-        <style>
-            div{
-                width: 300px;
-                padding: 100px;
-                margin: 100px;
-                background-color:aliceblue;
-            }
-            p{
-                color: blue;
-                text-align: center;
-            }
 
-        </style>
-       
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>COVID-19: Login</title>
+</head>
+
 <body>
-    <p> Login</p>
+    <header>
+        <h1>Gestão de Testes para a COVID-19</h1>
+    </header>
+
+    <div class="navbar">
+        <a href="#">Página Inicial</a>
+        <a href="#">Quem somos?</a>
+        <a href="#">Notícias</a>
+        <a href="#">COVID-19</a>
+        <a href="#">Destaques</a>
+    </div>
+
+    <h2>Login</h2>
+
     <div>
         <form>
-        Username:<br>
-        <input type= "text" name="username" >
-        <br>
-        Password: <br>
-        <input type ="text" name="password" >
-        <br><br>
-        <input type="submit" value="Login">
-    </form>
+            Username:
+            <input type="text" name="username">
+            <br><br> Password:
+            <input type="text" name="password">
+            <br><br>
+            <input type="submit" value="Login" id="button">
+            <br><br>
+        </form>
     </div>
-    
+
+    <footer>
+        &copy; 2020 Gestão de Testes para a COVID-19
+    </footer>
 </body>
+
 </html>
