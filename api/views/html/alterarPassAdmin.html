@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-        <style>
-            div{
-                align-items:center;
-                width: 200px;
-                padding: 100px;
-                margin: 50px;
-                background-color:aliceblue;
-                
-            }
-            b{
-                color: blue;
-                text-align: center;
-                padding: 100px;
-            }
 
-        </style>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>COVID-19: alterar palavra-passe do administrador</title>
+</head>
+
 <body>
-    <b>Editar Password</b>
-    <div>
-        
-    <form>
-        Password Atual:<br>
-        <input type="text" name="passAtual">
-        <br><br>
-        Nova Password: <br>
-        <input type="text" name="novaPass">
-        <br><br>
-        Confirmar Passwor:<br>
-        <input type="text" name="confimPass">
-        <br><br><br>
+    <header>
+        <h1>Gestão de Testes para a COVID-19</h1>
 
-        <input type="submit" value="Alterar">
-    </form>
+        <nav>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <div class="navbar">
+        <a href="#">Página Inicial</a>
+        <a href="#">Quem somos?</a>
+        <a href="#">Notícias</a>
+        <a href="#">COVID-19</a>
+        <a href="#">Destaques</a>
     </div>
+
+    <h2>Editar Palavra-passe</h2>
+
+    <div>
+        <form>
+            Password Atual:
+            <input type="text" name="passAtual">
+            <br><br>
+            <input type="submit" value="Alterar" id="button">
+            <br><br>
+        </form>
+    </div>
+
+    <footer>
+        &copy; 2020 Gestão de Testes para a COVID-19
+    </footer>
 
 </body>

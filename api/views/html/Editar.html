@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-        <style>
-            div{
-                align-items:center;
-                width: 100px;
-                padding: 100px;
-                margin: 50px;
-                background-color:aliceblue;
-                
-            }
-            b{
-                color: blue;
-                text-align: center;
-                padding: 100px;
-            }
 
-        </style>
-       
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>COVID-19: Editar</title>
+</head>
+
 <body>
-    <b> Editar Dados</b>
+    <header>
+        <h1>Gestão de Testes para a COVID-19</h1>
+
+        <nav>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <div class="navbar">
+        <a href="#">Página Inicial</a>
+        <a href="#">Quem somos?</a>
+        <a href="#">Notícias</a>
+        <a href="#">COVID-19</a>
+        <a href="#">Destaques</a>
+    </div>
+
+    <h2>Editar dados</h2>
+
     <div>
         <form>
-            Nome:<br>
+            Nome:
             <input type="text" name="Nome">
-            <br><br>
-            Username:<br>
-            <input type= "text" name="username" >
-            <br><br>
-            Password: <br>
-            <input type ="text" name="password" >
-            <br><br>
-            Roles:
+            <br><br> Username:
+            <input type="text" name="username">
+            <br><br> Password:
+            <input type="text" name="password">
+            <br><br> Roles:
             <select name="roles">
                 <option value="Técnico" selected>Tecnico</option>
                 <option value="Administrador" selected>Administrador</option>
                 <option value="Utente" selected>Utente</option>
             </select>
-            <br><br><br>
-            <input type="submit" value="Alterar">
-    </form>
+            <br><br>
+            <input type="submit" value="Alterar" id="button">
+            <br><br>
+        </form>
     </div>
-    
+
+    <footer>
+        &copy; 2020 Gestão de Testes para a COVID-19
+    </footer>
 </body>
+
 </html>

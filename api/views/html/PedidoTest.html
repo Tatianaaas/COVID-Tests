@@ -1,55 +1,50 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-        <style>
-            div{
-                align-items:center;
-                width: 200px;
-                padding: 100px;
-                margin: 50px;
-                background-color:aliceblue;
-                
-            }
-            b{
-                color: blue;
-                text-align: center;
-                padding: 100px;
-            }
 
-        </style>
-       
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>COVID-19: Pedido de teste</title>
+</head>
+
 <body>
-    <b>Preencha o formulário</b>
+    <header>
+        <h1>Gestão de Testes para a COVID-19</h1>
+
+        <nav>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <div class="navbar">
+        <a href="#">Página Inicial</a>
+        <a href="#">Quem somos?</a>
+        <a href="#">Notícias</a>
+        <a href="#">COVID-19</a>
+        <a href="#">Destaques</a>
+    </div>
+
+    <h2>Pedido de realização do teste de despistagem do COVID-19</h2>
     <div>
         <form>
-          Nome Utente:<br>
-          <input type="text" name="nomUtente">
-          <br><br>
-          SNS24:<br>
-          <input type="radio" name="SNS24" value="sim" checked>Sim 
-          <input type="radio" name="SNS24" value="nao" checked>Nao
-          <br><br>
-          Grupo de Risco:<br>
-          <input type="radio" name="SNS24" value="sim" checked>Sim 
-          <input type="radio" name="SNS24" value="nao" checked>Nao
-          <br><br>
-          Trabalho de Risco:<br>
-          <input type="radio" name="SNS24" value="sim" checked>Sim 
-          <input type="radio" name="SNS24" value="nao" checked>Nao
-          <br><br>
-          Prioridade:<br>
-          <input type="radio" name="SNS24" value="sim" checked>Sim 
-          <input type="radio" name="SNS24" value="nao" checked>Nao
-          <br><br><br>
-          Informação adicional: <br>
-          <input type="text" name="informações">
-          <br><br><br>
-         
-          <input type="submit" value="Enviar">
+            SNS24:
+            <input type="radio" name="SNS24" value="sim">Sim
+            <input type="radio" name="SNS24" value="nao">Nao
+            <br><br> Grupo de Risco:
+            <input type="radio" name="SNS24" value="sim">Sim
+            <input type="radio" name="SNS24" value="nao">Nao
+            <br><br> Trabalho de Risco:
+            <input type="radio" name="SNS24" value="sim">Sim
+            <input type="radio" name="SNS24" value="nao">Nao
+            <br><br>
 
+            <input type="submit" value="Enviar" id="button">
+            <br><br>
         </form>
     </div>
 
+    <footer>
+        &copy; 2020 Gestão de Testes para a COVID-19
+    </footer>
 </body>

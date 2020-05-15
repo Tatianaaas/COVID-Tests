@@ -5,12 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title>COVID-19: Login</title>
+    <title>COVID-19: Agendar teste</title>
 </head>
 
 <body>
     <header>
         <h1>Gestão de Testes para a COVID-19</h1>
+
+        <nav>
+            <a href="#">Logout</a>
+        </nav>
     </header>
 
     <div class="navbar">
@@ -21,19 +25,14 @@
         <a href="#">Destaques</a>
     </div>
 
-    <h2>Login</h2>
+    <h2>Agendar teste</h2>
 
-    <div>
-        <form>
-            Username:
-            <input type="text" name="username">
-            <br><br> Password:
-            <input type="text" name="password">
-            <br><br>
-            <input type="submit" value="Login" id="button">
-            <br><br>
-        </form>
-    </div>
+    <form>
+        <label for="firstTest">Selecione data do primeiro teste: </label>
+        <input type="date" id="firstTest" name="firstTest">
+        <input type="submit" value="Submeter" id="button">
+        <br><br>
+    </form>
 
     <footer>
         &copy; 2020 Gestão de Testes para a COVID-19
