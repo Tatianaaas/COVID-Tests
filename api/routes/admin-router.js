@@ -9,12 +9,6 @@ const adminController = require('../controllers/adminController')
 
 const adminRouter = express.Router()
 
-//Sign up (administração)
-adminRouter.post('/signup', adminController.createAdmin);
-
-//Login
-adminRouter.post('/login', userController.loginUser);
-
 //Editar utilizador
 adminRouter.put("/update/:userId", session, authorize, userController.updateUser);
 

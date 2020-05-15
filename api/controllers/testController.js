@@ -1,6 +1,7 @@
 const Test = require('../models/Test')
 var moment = require('moment');
-
+const PDFKit = require('pdfkit');
+const fs = require('fs');
 const createOrder = async (req, res, next) => {
 
     let localDate;
@@ -98,7 +99,6 @@ const getOrderById = async(req, res) => {
         const orderResult = await Test.findById(req.params.userId);
         console.log(orderResult)
         res.send(orderResult)
-            //res.render('users/show', { test: testResult })
     } catch (e) {
         console.error(e)
         res.status(404)
@@ -112,7 +112,6 @@ const getResultById = async(req, res) => {
         const testResult = await Test.findById(req.params.userId);
         console.log(testResult.resultado)
         res.send(testResult.resultado)
-            //res.render('users/show', { test: testResult })
     } catch (e) {
         console.error(e)
         res.status(404)
@@ -141,24 +140,64 @@ const updateFirstResult = async(req, res) => {
 const updateSecondResult = async(req, res) => {
     let result = false;
     const primeiro = await Test.findById(req.params.userId)
+    const pdf = new PDFKit();
+    let firstTest, secondTest, covid;
 
-    if (req.body.segundoResultado == "true" || primeiro.primeiroResultado == "true") {
-        result = true;
-    } 
+    if(primeiro.primeiroResultado==true || primeiro.primeiroResultado==false){
+            
+        if (req.body.segundoResultado == true|| primeiro.primeiroResultado == true) {
+            result = true;
+        } 
 
-    const oldTest = await Test.findByIdAndUpdate(
-        req.params.userId, { segundoResultado: req.body.segundoResultado, infetado: result, realizadoSegundoTest:true }
-    )
+        const oldTest = await Test.findByIdAndUpdate(
+            req.params.userId, { segundoResultado: req.body.segundoResultado, infetado: result, realizadoSegundoTest:true }
+        )
 
-    const newTest = await Test.findById(
-        req.params.userId,
-    )
+        const newTest = await Test.findById(
+            req.params.userId,
+        )
 
-    res.send({
-        old: oldTest,
-        new: newTest
-    })
+            if(newTest.primeiroResultado==true){
+                firstTest="Positivo";
+            }else{
+                firstTest="Negativo";
+            }
+            if(newTest.segundoResultado==true){
+                secondTest="Positivo";
+            }else{
+                secondTest="Negativo"
+            }
+            if(newTest.infetado==true){
+                covid="Sim";
+            }else{
+                covid="Não"
+            }
+
+            pdf.fontSize(20);
+            pdf.image('./api/images/índice.png', 60, 20, {width: 100});
+            pdf.text('Resultados Clínicos',{align:'center', });
+            pdf.text("    ");
+            pdf.text("  ");
+            pdf.text("  ");
+            pdf.text(`ID Nº ${newTest._id}`);
+            pdf.text("   ");
+            pdf.text(`-Nome: ${newTest.nomeUtente}`);
+            pdf.text(`-Resultado primeiro teste: ${firstTest}`);
+            pdf.text(`-Resultado segundo teste: ${secondTest}`);
+            pdf.text(`-Infetado: ${covid}`);
+            pdf.pipe(fs.createWriteStream(`./api/docs/${newTest._id}.pdf`));
+            pdf.end();
+    
+        res.send({
+            old: oldTest,
+            new: newTest
+        })
+    }else{
+        res.status(404)
+        res.json("Ainda nao se encontra registado o resultado do primeiro teste")
+    }
 }
+
 
 const scheduleFirstTest = async(req, res) => {
     const oldTest = await Test.findByIdAndUpdate(

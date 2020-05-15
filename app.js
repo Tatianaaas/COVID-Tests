@@ -7,7 +7,8 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
-const moment = require('moment')
+const swaggerUi=require('swagger-ui-express');
+const swaggerDocument=require('./swagger.json')
 
 const apiRouter = require('./api')
 const adminRouter = require('./api/routes/admin-router');
@@ -49,7 +50,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/', apiRouter)
 app.use('/user/', userRouter);
 app.use('/admin/', adminRouter);

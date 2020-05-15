@@ -2,14 +2,10 @@ const express = require('express')
 
 const authorize = require('../middleware/authorizeTech')
 const session = require('../middleware/session')
-
-const testController = require("../controllers/testController")
 const userController = require('../controllers/userController')
+const testController = require("../controllers/testController")
 
 const technicRouter = express.Router()
-
-//Login
-technicRouter.post('/login', userController.loginUser);
 
 //Editar
 technicRouter.put("/update/:userId", session, authorize, userController.updateUser);

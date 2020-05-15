@@ -14,32 +14,35 @@ const createUser = (req, res, next) => {
                 name: req.body.name,
                 username: req.body.username,
                 password: hash,
-                role: "UTENTE"
+                role: req.body.role
             });
             
             user
                 .save()
                 .then(result => {
                     console.log(user._id, user.name)
-                                
-                    const test = new Test({
-                        _id:user._id,
-                        nomeUtente: user.name
-                    });
-                
-                    test.save().then(testeCriado => {
-                        res.status(201).json({
-                            message: 'User adicionado com sucesso',
-                            test: {
-                                ...testeCriado,
-                                id: testeCriado._id
-                            }
+                    if(user.role=="UTENTE") {           
+                        const test = new Test({
+                            _id:user._id,
+                            nomeUtente: user.name
                         });
-                    }).catch(error => {
-                        res.status(500).json({
-                            message: 'Pedido de teste falhou!!'
-                        });
-                    });
+                        test.save().then(testeCriado => {
+                            res.status(201).json({
+                                message: 'User adicionado com sucesso',
+                                test: {
+                                    ...testeCriado,
+                                    id: testeCriado._id
+                                }
+                            });
+                        }).catch(error => {
+                            res.status(500).json({
+                                message: 'Pedido de teste falhou!!'
+                            });
+                        });                    
+                    }else{
+                        res.send(user)
+                    }
+
                 })
                 .catch(err => {
                     res.status(500).json({
@@ -47,9 +50,6 @@ const createUser = (req, res, next) => {
                     });
                 });
         });
-    /* 
-    console.log(user)
-    res.redirect(`/${user._id}`) */
 }
 
 const loginUser = (req, res, next) => {
@@ -101,8 +101,7 @@ const getUserById = async(req, res) => {
     try {
         console.log('ID', req.params.userId)
         const userResult = await User.findById(req.params.userId);
-        console.log(userResult)
-        res.render('users/show', { user: userResult })
+        res.send(userResult)      
     } catch (e) {
         console.error(e)
         res.status(404)
@@ -111,19 +110,29 @@ const getUserById = async(req, res) => {
 }
 
 const updateUser = async(req, res) => {
-    const oldUser = await User.findByIdAndUpdate(
-        req.params.userId,
-        req.body
-    )
+    const user= await User.findById(req.params.userId);
 
-    const newUser = await User.findById(
-        req.params.userId,
-    )
+    if (req.body.password) {
+        req.body.password = bcrypt.hashSync(req.body.password, 10)
+    } 
 
-    res.send({
-        old: oldUser,
-        new: newUser
-    })
+    if(user.role=="UTENTE" || user.role=="TECH"){
+        const oldUser = await User.findByIdAndUpdate(
+            req.params.userId,
+            {name:req.body.name,username:req.body.username, password:req.body.password}
+        )
+
+        const newUser = await User.findById(
+            req.params.userId,
+        )
+
+        res.send({
+            old: oldUser,
+            new: newUser
+        })
+    }else{
+        res.send("Não tem permissão para alterar os dados desse utilizador")
+    }
 }
 
 const logout = (req, res) => {

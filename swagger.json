@@ -1,0 +1,146 @@
+{
+    "swagger":"2.0",
+    "info":{
+        "version":"1.0.0",
+        "title":"COVID API",
+        "description":"REST API COVID"
+    },
+    "host":"localhost:3000",
+    "basePath": "/",
+    "tags":[
+        {
+            "name": "",
+            "description": ""
+        }
+    ],
+    "schemes":[
+        "http"
+    ],
+    "consumers":[
+        "application/json"
+    ],
+    "produces":[
+        "application.json"
+    ],
+    "paths":{
+        "/signup":{
+            "post":{
+                "tags":[
+                    "Autentication"
+                ],
+                "description": "Creat new user in system",
+                "parameters":[
+                    {
+                        "name": "utilizador",
+                        "in": "body",
+                        "description": "User that we want to create",
+                        "schema":{
+                            "$ref": "#"
+                        }
+                    }
+                ],
+                "produces":[
+                    "application.json"
+                ],
+                "responses":{
+                    "201":{
+                        "description":"User adicionado com sucesso",
+                        "schema":{
+                            "$ref": "#/definitions/Autentication"
+                        }
+                    }
+                }
+            }
+        },
+            "/login":{
+                "tags":[
+                    "Autentication"
+                ],
+                "description": "Log the user in the system",
+                "parameters":[
+                    {
+                        "name": "utilizador",
+                        "in": "body",
+                        "description": "User that we want to login",
+                        "schema":{
+                            "$ref": "#"
+                        }
+                    }
+                ],
+                "produces":[
+                    "application.json"
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Login successful",
+                        "schema":{
+                            "$ref": "#/definitions/Autentication"
+                        }
+                    },
+                    "401":{
+                        "description":"Auth failed",
+                        "schema":{
+                            "$ref": "#/definitions/Autentication"
+                        }
+                    }
+                    
+                }
+            },
+                "/show/(userId)":{
+                    "parameters":[
+                        {
+                            "name": "userId",
+                            "in": "path",
+                            "required": true,
+                            "description": "Id of user that we want to find",
+                            "type":"string"
+                        }
+                    ],
+                    "get":{
+                        "tags":[
+                            "Users"
+                        ],
+                        "summary": "Get user with given Id",
+                        "responses":{
+                            "404":"User not found",
+                            "schema":{
+                                "$ref":"#/definitions/User"
+                            }
+                        }
+                    }
+                },
+                
+                "/update/(userId)":{
+                    "parameters":[
+                        {
+                            "name": "userId",
+                            "in": "path",
+                            "required": true,
+                            "description": "Id of user that we want to find",
+                            "type":"string"
+                        }
+                    ],
+                    "put":{
+                       "summary":"Update user with given Id",
+                       "tags":[
+                           "Users"
+                        ],
+                        "parameters":[
+                            {
+                                "name":"user",
+                                "in":"body",
+                                "description":"User with new values of properties",
+                                "schema":{
+                                    "$ref":"#/definitions/User"
+                                }
+                            }
+                        ],
+                        "responses":{
+                            "":{
+                                "description":""
+                            }
+                        }
+                    }
+                }
+}
+}
