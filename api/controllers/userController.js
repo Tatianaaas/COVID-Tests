@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Test = require('../models/Test')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -15,15 +16,30 @@ const createUser = (req, res, next) => {
                 password: hash,
                 role: "UTENTE"
             });
-
+            
             user
                 .save()
                 .then(result => {
-                    res.status(201).json({
-                        message: 'Sign up successful!',
-                        result: result
+                    console.log(user._id, user.name)
+                                
+                    const test = new Test({
+                        _id:user._id,
+                        nomeUtente: user.name
                     });
-
+                
+                    test.save().then(testeCriado => {
+                        res.status(201).json({
+                            message: 'User adicionado com sucesso',
+                            test: {
+                                ...testeCriado,
+                                id: testeCriado._id
+                            }
+                        });
+                    }).catch(error => {
+                        res.status(500).json({
+                            message: 'Pedido de teste falhou!!'
+                        });
+                    });
                 })
                 .catch(err => {
                     res.status(500).json({

@@ -1,29 +1,32 @@
 const Test = require('../models/Test')
 var moment = require('moment');
 
-const createOrder = (req, res, next) => {
+const createOrder = async (req, res, next) => {
 
-    const test = new Test({
-        nomeUtente: req.body.nomeUtente,
-        sns24: req.body.sns24,
-        grupoRisco: req.body.grupoRisco,
-        trabalhoLocalRisco: req.body.trabalhoLocalRisco,
-        prioridade: req.body.trabalhoLocalRisco
-    });
+    let localDate;
+    let dataPrimeiroTeste;
+    console.log(req.body.trabalhoLocalRisco)
+    if(req.body.trabalhoLocalRisco=="true"){        
+        localDate = moment();
+        dataPrimeiroTeste= localDate.add(24,'hours')
+    }
+    const oldTest = await Test.findByIdAndUpdate(
+        req.params.userId, {
+             sns24:req.body.sns24,
+              grupoRisco:req.body.grupoRisco,
+             trabalhoLocalRisco:req.body.trabalhoLocalRisco,
+             prioridade:req.body.trabalhoLocalRisco,
+            dataPrimeiroTeste: dataPrimeiroTeste}
+    )
 
-    test.save().then(testeCriado => {
-        res.status(201).json({
-            message: 'Pedido de teste adicionado com sucesso',
-            test: {
-                ...testeCriado,
-                id: testeCriado._id
-            }
-        });
-    }).catch(error => {
-        res.status(500).json({
-            message: 'Pedido de teste falhou!!'
-        });
-    });
+    const newTest = await Test.findById(
+        req.params.userId,
+    )
+
+    res.send({
+        old: oldTest,
+        new: newTest
+    })
 }
 
 const getOrders = async(req, res) => {
@@ -139,7 +142,7 @@ const updateSecondResult = async(req, res) => {
     let result = false;
     const primeiro = await Test.findById(req.params.userId)
 
-    if (req.body.segundoResultado == true || primeiro.primeiroResultado == true) {
+    if (req.body.segundoResultado == "true" || primeiro.primeiroResultado == "true") {
         result = true;
     } 
 

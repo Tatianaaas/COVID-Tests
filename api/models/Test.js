@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 
 const testSchema = new mongoose.Schema({
     nomeUtente: { type: String, required: true },
-    sns24: { type: Boolean, required: true },
-    grupoRisco: { type: Boolean, required: true },
-    trabalhoLocalRisco: {type:Boolean, required:true},
+    sns24: { type: Boolean},
+    grupoRisco: { type: Boolean },
+    trabalhoLocalRisco: {type:Boolean},
     prioridade: {type:Boolean},
     dataPrimeiroTeste: { type: Date},
     realizadoPrimeiroTeste: { type: Boolean },

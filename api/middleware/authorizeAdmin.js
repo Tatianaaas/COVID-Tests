@@ -7,8 +7,8 @@ const authorize = async(req, res, next) => {
     const data = jwt.verify(token, 'segredo_para_a_criacao_dos_tokens')
     try {
         const user = await User.find({ _id: data.userId, role: 'ADMIN' })
-
-        if (!user) {
+        console.log(user)
+        if (user==[]) {
             throw new Error()
         } 
         req.user = user
