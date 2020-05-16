@@ -9,8 +9,8 @@
     "basePath": "/",
     "tags":[
         {
-            "name": "",
-            "description": ""
+            "name": "Home",
+            "description": "API"
         }
     ],
     "schemes":[
@@ -64,7 +64,7 @@
                         "in": "body",
                         "description": "User that we want to login",
                         "schema":{
-                            "$ref": "#"
+                            "$ref": "#/definitions/Autentication"
                         }
                     }
                 ],
@@ -209,9 +209,73 @@
                              }
                          ]
                      }
+                 },
+                 "/technic/update/{userId}":{
+                     "parameters":[
+                         {
+                             "name":"userId",
+                             "in":"path",
+                             "required":true,
+                             "description":"Id of user that we want to find and update",
+                             "type":"string"
+                         },
+                         {
+                             "name":"token",
+                             "in":"header",
+                             "required":true,
+                             "description":"Access token",
+                             "type":"string"
+                         }
+                     ],
+                     "put":{
+                         "security":{
+                             "barearAuth":[]
+                         },
+                         "summary":"Update user with given Id",
+                         "tags":[
+                             "Technics"
+                         ],
+                         "parameters":[
+                             {
+                                 "name":"userId",
+                                 "in":"body",
+                                 "description":"User with new values of properties",
+                                 "schema":{
+                                     "$ref":"#/definitions/User"
+                                 }
+                             }
+                         ],
+                         "responses":{
+                             "200":{
+                                 "description":"User updated",
+                                 "schema":{
+                                     "$ref":"#/definitions/User"
+                                 }
+                             },
+                             "401":{
+                                 "description":"Autentication failed",
+                                 "schema":{
+                                     "$ref":"#/components/responses/UnauthorizedError"
+                                 }
+                             }
+
+                         }
+                     }
                  }
             },
-
+            "components":{
+            "securitySchemes":{
+              "bearerAuth":{
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat":"JWT"
+              }
+            },"responses":{
+                "UnauthorizedError":{
+                    "description":"Access token is missing or invalid"
+                }
+            }
+        },
         "definitions":{
             "User":{
                 "required":[
