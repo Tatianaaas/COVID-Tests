@@ -35,7 +35,7 @@
                         "in": "body",
                         "description": "User that we want to create",
                         "schema":{
-                            "$ref": "#"
+                            "$ref": "#/definitions/Autentication"
                         }
                     }
                 ],
@@ -53,6 +53,7 @@
             }
         },
             "/login":{
+                "post":{
                 "tags":[
                     "Autentication"
                 ],
@@ -81,12 +82,13 @@
                         "description":"Auth failed",
                         "schema":{
                             "$ref": "#/definitions/Autentication"
+                            }
                         }
-                    }
                     
+                    }
                 }
             },
-                "/show/(userId)":{
+                "/user/show/{userId}":{
                     "parameters":[
                         {
                             "name": "userId",
@@ -102,15 +104,23 @@
                         ],
                         "summary": "Get user with given Id",
                         "responses":{
-                            "404":"User not found",
+                            "200":{
+                                "description":"User is found",
+                                "schema":{
+                                    "$ref":"#/definitions/User"
+                                }
+                            },
+                            "404":{
+                                "description":"User not found",
                             "schema":{
                                 "$ref":"#/definitions/User"
                             }
                         }
+                        }
                     }
                 },
                 
-                "/update/(userId)":{
+                "/user/update/{userId}":{
                     "parameters":[
                         {
                             "name": "userId",
@@ -145,7 +155,7 @@
                         }
                     }
                 },
-                "/logout":{
+                "/user/logout":{
                     "post":{
                         "tags":[
                             "Users"
@@ -163,79 +173,115 @@
                     "produces":[
                         "application.json"
                     ],
-                    "responses"
+                    "responses":{
+                        "200":{
+                            "description":"auth and token deleted",
+                            "schema":{
+                                "$ref":"#/definitions/User"
+                                    }
+                                }
+                         }
+                     }
+                 },
+                 "/user/ordertest/{userId}":{
+                     "parameters":[
+                         {
+                             "name":"userId",
+                             "in":"path",
+                             "required":true,
+                             "description":"Id of user that we want to find",
+                            "type":"string"
+                         }
+                     ],
+                     "put":{
+                         "summary":"Update the order of the test with given Id",
+                         "tags":[
+                             "Users"
+                         ],
+                         "parameters":[
+                             {
+                                 "name":"orderTest",
+                                 "in":"body",
+                                 "description":"Order test with new values of properties",
+                                 "schema":{
+                                     "$ref":"#/definitions/Test"
+                                 }
+                             }
+                         ]
+                     }
+                 }
+            },
+
+        "definitions":{
+            "User":{
+                "required":[
+                    "name",
+                    "username",
+                    "password",
+                    "role"
+                ],
+                "properties":{
+                    "name":{
+                        "type":"string",
+                        "uniqueItems": true
+                    },
+                    "username":{
+                        "type":"Number",
+                        "uniqueItems": true
+                    },
+                    "password":{
+                        "type":"string",
+                        "uniqueItems": true
+                    },
+                    "role":{
+                        "type":"string",
+                        "uniqueItems": true
                     }
                 }
-},
-"definitions":{
-    "User":{
-        "required":[
-            "name",
-            "username",
-            "password",
-            "role"
-        ],
-        "properties":{
-            "name":{
-                "type":"string",
-                "uniqueItems": true
             },
-            "username":{
-                "type":"Number",
-                "uniqueItems": true
-            },
-            "password":{
-                "type":"string",
-                "uniqueItems": true
-            },
-             "role":{
-                "type":"string",
-                "uniqueItems": true
+            "Tests":{
+                "required":[
+                    "nomeUtente"
+                ],
+                "properties":{
+                    "nomeUtente":{
+                        "type":"string"
+                    },
+                    "sns24":{
+                        "type":"boolean"
+                    },
+                    "grupoRisco":{
+                        "type":"boolean"
+                    },
+                    "trabalhoLocalRisco":{
+                        "type":"boolean"
+                    },
+                    "prioridade": {
+                        "type":"Boolean"
+                    },
+                    "dataPrimeiroTeste": {
+                        "type": "Date"
+                        },
+                    "realizadoPrimeiroTeste": {
+                        "type": "Boolean"
+                        },
+                    "primeiroResultado": {
+                        "type": "Boolean"
+                        },
+                    "dataSegundoTeste": {
+                        "type": "Date"
+                        },
+                    "realizadoSegundoTeste": {
+                        "type": "Boolean" 
+                        },
+                    "segundoResultado": { 
+                        "type": "Boolean" 
+                    },
+                    "infetado": {
+                        "type": "Boolean"
+                        }
+                }
             }
         }
-    },
-    "Tests":{
-        "required":[
-            "nomeUtente"
-        ],
-        "properties":{
-            "nomeUtente":{
-                "type":"string"
-            },
-            "sns24":{
-                "type":"boolean"
-            },
-            "grupoRisco":{
-                "type":"boolean"
-            },
-            "trabalhoLocalRisco":{
-                "type":"boolean"
-            },
-            "prioridade": {
-                "type":"Boolean"
-            },
-            "dataPrimeiroTeste": {
-                 "type": "Date"
-                },
-            "realizadoPrimeiroTeste": {
-                 "type": "Boolean"
-                 },
-            "primeiroResultado": {
-                 "type": "Boolean"
-                 },
-            "dataSegundoTeste": {
-                 "type": "Date"
-                },
-            "realizadoSegundoTeste": {
-                 "type": "Boolean" 
-                },
-            "segundoResultado": { 
-                "type": "Boolean" 
-            },
-            "infetado": {
-                 "type": "Boolean"
-                 }
-        }
-    }
-}
+       
 }
