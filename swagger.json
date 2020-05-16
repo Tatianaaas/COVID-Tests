@@ -89,6 +89,9 @@
                 }
             },
                 "/user/show/{userId}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
                     "parameters":[
                         {
                             "name": "userId",
@@ -96,6 +99,11 @@
                             "required": true,
                             "description": "Id of user that we want to find",
                             "type":"string"
+                        },
+                        {
+                            "name": "authorization",
+                            "in":"header",
+                            "description":"Token generated after login"
                         }
                     ],
                     "get":{
@@ -121,6 +129,9 @@
                 },
                 
                 "/user/update/{userId}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
                     "parameters":[
                         {
                             "name": "userId",
@@ -128,6 +139,11 @@
                             "required": true,
                             "description": "Id of user that we want to find",
                             "type":"string"
+                        },
+                        {
+                            "name": "authorization",
+                            "in":"header",
+                            "description":"Token generated after login"
                         }
                     ],
                     "put":{
@@ -156,18 +172,19 @@
                     }
                 },
                 "/user/logout":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
                     "post":{
                         "tags":[
                             "Users"
                         ],
                         "description":"Logout user",
-                        "parameters":[{
+                        "parameters":[
+                            {
                             "name": "authorization",
                             "in":"header",
-                            "description":"Token generated after login",
-                            "schema":{
-                                "$ref":"#/definitions/User"
-                            }
+                            "description":"Token generated after login"
                         }
                     ],
                     "produces":[
@@ -184,6 +201,9 @@
                      }
                  },
                  "/user/ordertest/{userId}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
                      "parameters":[
                          {
                              "name":"userId",
@@ -191,7 +211,12 @@
                              "required":true,
                              "description":"Id of user that we want to find",
                             "type":"string"
-                         }
+                         },
+                         {
+                            "name": "authorization",
+                            "in":"header",
+                            "description":"Token generated after login"
+                        }
                      ],
                      "put":{
                          "summary":"Update the order of the test with given Id",
@@ -211,6 +236,9 @@
                      }
                  },
                  "/technic/update/{userId}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
                      "parameters":[
                          {
                              "name":"userId",
@@ -224,7 +252,10 @@
                              "in":"header",
                              "required":true,
                              "description":"Access token",
-                             "type":"string"
+                             "type":"string",
+                             "schema":{
+                                "$ref":"#/components/securitySchemes"
+                            }
                          }
                      ],
                      "put":{
@@ -258,91 +289,713 @@
 
                          }
                      }
-                 }
+                 },
+                 "/technic/logout":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                     "post":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
+                         "tags":[
+                             "Technics"
+                         ],
+                         "description":"Logout User",
+                         "parameters":[
+                             {
+                                 "name":"token",
+                                 "in":"header",
+                                 "description":"Token generated after login",
+                                 "schema":{
+                                    "$ref":"#/components/securitySchemes"
+                                }
+                             }
+                         ],
+                         "produces":[
+                             "application.json"                
+                         ],
+                         "responses":{
+                             "200":{
+                                 "description":"{auth:false, token:null}",
+                                 "schema":{
+                                     "$ref":"#/definitions/Autentication"
+                                 }
+                             }
+                         }
+                     }
+                 },
+                 "/technic/results/firstTest/{userId}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                     "parameters":[
+                         {
+                             "name":"userId",
+                             "in":"path",
+                             "required":true,
+                             "description":"Id of user that we want to find and update result",
+                             "type":"string"
+                         },
+                         {
+                            "name":"token",
+                            "in":"header",
+                            "description":"Token generated after login",
+                            "schema":{
+                               "$ref":"#/components/securitySchemes"
+                           }
+                        }
+                     ],
+                     "put":{
+                         "summary":"Update the result of the first test with given Id",
+                         "tags":[
+                             "Technics"
+                         ],
+                         "parameters":[
+                             {
+                            "name":"First Result",
+                            "in":"body",
+                            "description":"Update new result in system",
+                            "schema":{
+                                "$ref":"#/definitions/First"
+                            }
+                             }
+                         ],
+                         "responses":{
+                             "200":{
+                                 "description":"{oldTest, newTest }",
+                                 "schema":{
+                                     "$ref":"#/definitions/Tests"
+                                 }
+                             }
+                         }
+                     }
+                 },
+                 
+                 "/technic/results/secondTest/{userId}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                    "parameters":[
+                        {
+                            "name":"userId",
+                            "in":"path",
+                            "required":true,
+                            "description":"Id of user that we want to find and update result",
+                            "type":"string"
+                        },
+                        {
+                            "name":"Authorization",
+                            "in":"header",
+                            "required":true,
+                            "description":"Access token",
+                            "type":"string"
+                        }
+                    ],
+                    "put":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
+                        "summary":"Update the result of second test with given Id",
+                        "tags":[
+                            "Technics"
+                        ],
+                        "parameters":[
+                            {
+                           "name":"Second result",
+                           "in":"body",
+                           "description":"Update new result in system",
+                           "schema":{
+                               "$ref":"#/definitions/Second"
+                           }
+                            }
+                        ],
+                        "responses":{
+                            "200":{
+                                "description":"{oldTest, newTest }",
+                                "schema":{
+                                    "$ref":"#/definitions/Tests"
+                                }
+                            },
+                            "404":{
+                                "description":"Fisrt result not defined yet "
+                            }
+                        }
+                    }
+                },
+                "/technic/scheduleTest/{userId}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                    "parameters":[
+                        {
+                            "name":"userId",
+                            "in":"path",
+                            "required":true,
+                            "description":"Id of user that we want to find and update result",
+                            "type":"string"
+                        },
+                        {
+                            "name":"Authorization",
+                            "in":"header",
+                            "required":true,
+                            "description":"Access token",
+                            "type":"string"
+                        }
+                    ],
+                    "put":{
+                        "summary":"Schedule first test with given Id",
+                        "tags":[
+                            "Technics"
+                        ],
+                        "parameters":[
+                            {
+                           "name":"Data Primeiro Teste",
+                           "in":"body",
+                           "description":"Update new result in system",
+                           "schema":{
+                               "$ref":"#/definitions/Date"
+                           }
+                            }
+                        ],
+                        "responses":{
+                            "200":{
+                                "description":"{oldTest, newTest }",
+                                "schema":{
+                                    "$ref":"#/definitions/Tests"
+                                }
+                            }
+                        }
+                    }
+                },
+                "/admin/update/{userId}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                    "parameters":[
+                        {
+                            "name":"userId",
+                            "in":"path",
+                            "required":true,
+                            "description":"Id of user that we want to find and update",
+                            "type":"string"
+                        },
+                        {
+                            "name":"token",
+                            "in":"header",
+                            "required":true,
+                            "description":"Access token",
+                            "type":"string"
+                        }
+                    ],
+                    "put":{
+                        "summary":"Update user with given Id",
+                        "tags":[
+                            "Admnistrator"
+                        ],
+                        "parameters":[
+                            {
+                                "name":"User",
+                                "in":"body",
+                                "description":"User with new values of properties",
+                                "schema":{
+                                    "$ref":"#/definitions/User"
+                                }
+                            }
+                        ],
+                        "responses":{
+                            "200":{
+                                "description":"Admin updated",
+                                "schema":{
+                                    "$ref":"#/definitions/User"
+                                }
+                            },
+                            "401":{
+                                "description":"Autentication failed",
+                                "schema":{
+                                    "$ref":"#/components/responses/UnauthorizedError"
+                                }
+                            }
+
+                        }
+                    }
+                },
+                
+                "/admin/updatepass/{userId}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                    "parameters":[
+                        {
+                            "name":"userId",
+                            "in":"path",
+                            "required":true,
+                            "description":"Id of user that we want to find and update",
+                            "type":"string"
+                        },
+                        {
+                            "name":"token",
+                            "in":"header",
+                            "required":true,
+                            "description":"Access token",
+                            "type":"string"
+                        }
+                    ],
+                    "put":{
+                        "summary":"Update user with given Id",
+                        "tags":[
+                            "Admnistrator"
+                        ],
+                        "parameters":[
+                            {
+                                "name":"Password",
+                                "in":"body",
+                                "description":"New password",
+                                "schema":{
+                                    "$ref":"#/definitions/Password"
+                                }
+                            }
+                        ],
+                        "responses":{
+                            "200":{
+                                "description":"{oldUser, newUser }",
+                                "schema":{
+                                    "$ref":"#/definitions/User"
+                                }
+                            },
+                            "401":{
+                                "description":"Autentication failed",
+                                "schema":{
+                                    "$ref":"#/components/responses/UnauthorizedError"
+                                }
+                            }
+
+                        }
+                    }
+                },
+                
+                "/admin/show/{userId}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                    "parameters":[
+                        {
+                            "name": "userId",
+                            "in": "path",
+                            "required": true,
+                            "description": "Id of user that we want to find",
+                            "type":"string"
+                        },
+                        
+                        {
+                            "name":"token",
+                            "in":"header",
+                            "description":"Token generated after login"
+                        }
+                    ],
+                    "get":{
+                        "tags":[
+                            "Admnistrator"
+                        ],
+                        "summary": "Get user with given Id",
+                        "responses":{
+                            "200":{
+                                "description":"User is found",
+                                "schema":{
+                                    "$ref":"#/definitions/User"
+                                }
+                            },
+                            "404":{
+                                "description":"User not found",
+                            "schema":{
+                                "$ref":"#/definitions/User"
+                            }
+                        }
+                        }
+                    }
+                },
+                "/admin/signuptechnics":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                    "post":{
+                        "tags":[
+                            "Admnistrator"
+                        ],
+                        "description":"Sing up technic",
+                        "parameters":[{
+                            "name": "authorization",
+                            "in":"header",
+                            "description":"Token generated after login"
+                        }
+                    ],
+                    "produces":[
+                        "application.json"
+                    ],
+                    "responses":{
+                        "201":{
+                            "description":"Sign up successful!"
+                           
+                            },
+                            "500":{
+                                "description":"Error"
+                              
+                            }
+                         }
+                     }
+                 },
+                 "/admin/delete/{userId}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                     "parameters":[
+                        {
+                            "name": "userId",
+                            "in": "path",
+                            "required": true,
+                            "description": "Id of user that we want to find",
+                            "type":"string"
+                        },
+                        {
+                            "name":"token",
+                            "in":"header",
+                            "required":true,
+                            "description":"Access token",
+                            "type":"string"
+                        }
+
+                     ],
+                     "delete":{
+                         "summary":"Delete user with given Id",
+                         "tags":[
+                             "Admnistrator"
+                         ],
+                         "responses":{
+                             "200":{
+                                 "description":"Removal successful!",
+                                 "schema":{
+                                     "$ref":"#/definitions/User"
+                                 }
+                             }
+                         }
+                     }
+                 },
+                 "/admin/logout":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                    "post":{
+                        "tags":[
+                            "Admnistrator"
+                        ],
+                        "description":"Logout User",
+                        "parameters":[
+                            {
+                                "name":"token",
+                                "in":"header",
+                                "description":"Token generated after login",
+                                "schema":{
+                                    "$ref":"#/components/securitySchemes"
+                                }
+                            }
+                        ],
+                        "produces":[
+                            "application.json"                
+                        ],
+                        "responses":{
+                            "200":{
+                                "description":"{auth:false, token:null}"
+                              
+                            }
+                        }
+                    }
+                },
+                "/admin/tests/day":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                    "post":{
+                        "tags":[
+                            "Admnistrator"
+                        ],
+                        "description":"Logout User",
+                        "parameters":[
+                            {
+                                "name": "data",
+                                "in": "body",
+                                "required": true,
+                                "description": "Date of tests that we want to find",
+                                "type":"string"
+                            },
+                            {
+                                "name":"token",
+                                "in":"header",
+                                "description":"Token generated after login",
+                                "schema":{
+                                    "$ref":"#/components/securitySchemes"
+                                }
+                            }
+                        ],
+                        "produces":[
+                            "application.json"                
+                        ],
+                        "responses":{
+                            "200":{
+                                "description":"Found tests",
+                                "schema":{
+                                    "$ref":"#/definitions/Total"
+                                }
+                            }
+                        }
+                    }
+                },
+                "/admin/tests/{username}":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                    "parameters":[
+                        {
+                            "name": "username",
+                            "in": "path",
+                            "required": true,
+                            "description": "Id of user that we want to find",
+                            "type":"integer",
+                            "minimum": 100000000,
+                            "maximum": 999999999
+                        },
+                        
+                        {
+                            "name":"token",
+                            "in":"header",
+                            "description":"Token generated after login"
+                        }
+                    ],
+                    "get":{
+                        "tags":[
+                            "Admnistrator"
+                        ],
+                        "summary": "Get user tests with given Id",
+                        "responses":{
+                            "200":{
+                                "description":"User is found",
+                                "schema":{
+                                    "$ref":"#/definitions/Total"
+                                }
+                            },
+                            "404":{
+                                "description":"User not found",
+                            "schema":{
+                                "$ref":"#/definitions/User"
+                            }
+                        }
+                        }
+                    },
+                    "/admin/tests/infected":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
+                        "post":{
+                            "tags":[
+                                "Admnistrator"
+                            ],
+                            "description":"Sing up technic",
+                            "parameters":[{
+                                "name": "authorization",
+                                "in":"header",
+                                "description":"Token generated after login",
+                                "schema":{
+                                    "$ref":"#/components/securitySchemes"
+                                }
+                            }
+                        ],
+                        "produces":[
+                            "application.json"
+                        ],
+                        "responses":{
+                            "200":{
+                                "description":"Found tests",
+                                "schema":{
+                                    "$ref":"#/definitions/Total"
+                                        }
+                                },
+                                "500":{
+                                    "description":"Error",
+                                    "schema":{
+                                        "$ref":"#/components/responses/UnauthorizedError"
+                                    }
+                                }
+                             }
+                         }
+                     }
+                     
+
+                },
+                "/admin/tests":{
+                    "security":{                            
+                        "bearerAuth": []
+                    },
+                    "parameters":[                                    
+                        {
+                            "name":"token",
+                            "in":"header",
+                            "description":"Token generated after login"
+                        }
+                    ],
+                    "get":{
+                        "tags":[
+                            "Admnistrator"
+                        ],
+                        "summary": "Get users tests",
+                        "responses":{
+                            "200":{
+                                "description":"Tests found",
+                                "schema":{
+                                    "$ref":"#/definitions/Total"
+                                }
+                            },
+                            "404":{
+                                "description":"User not found",
+                            "schema":{
+                                "$ref":"#/components/responses/UnauthorizedError"
+                            }
+                        }
+                        }
+                    }
             },
-            "components":{
-            "securitySchemes":{
-              "bearerAuth":{
-                "type": "http",
-                "scheme": "bearer",
-                "bearerFormat":"JWT"
-              }
-            },"responses":{
-                "UnauthorizedError":{
-                    "description":"Access token is missing or invalid"
+                "components":{
+                "securitySchemes":{
+                "bearerAuth":{
+                    "type": "http",
+                    "scheme": "bearer",
+                    "bearerFormat":"JWT"
                 }
-            }
-        },
-        "definitions":{
-            "User":{
-                "required":[
-                    "name",
-                    "username",
-                    "password",
-                    "role"
-                ],
-                "properties":{
-                    "name":{
-                        "type":"string",
-                        "uniqueItems": true
-                    },
-                    "username":{
-                        "type":"Number",
-                        "uniqueItems": true
-                    },
-                    "password":{
-                        "type":"string",
-                        "uniqueItems": true
-                    },
-                    "role":{
-                        "type":"string",
-                        "uniqueItems": true
+                },"responses":{
+                    "UnauthorizedError":{
+                        "description":"Access token is missing or invalid"
                     }
                 }
             },
-            "Tests":{
-                "required":[
-                    "nomeUtente"
-                ],
-                "properties":{
-                    "nomeUtente":{
-                        "type":"string"
-                    },
-                    "sns24":{
-                        "type":"boolean"
-                    },
-                    "grupoRisco":{
-                        "type":"boolean"
-                    },
-                    "trabalhoLocalRisco":{
-                        "type":"boolean"
-                    },
-                    "prioridade": {
-                        "type":"Boolean"
-                    },
-                    "dataPrimeiroTeste": {
-                        "type": "Date"
+            "definitions":{
+                "User":{
+                    "required":[
+                        "name",
+                        "username",
+                        "password",
+                        "role"
+                    ],
+                    "properties":{
+                        "name":{
+                            "type":"string",
+                            "uniqueItems": true
                         },
-                    "realizadoPrimeiroTeste": {
-                        "type": "Boolean"
+                        "username":{
+                            "type":"Number",
+                            "uniqueItems": true
                         },
-                    "primeiroResultado": {
-                        "type": "Boolean"
+                        "password":{
+                            "type":"string",
+                            "uniqueItems": true
                         },
-                    "dataSegundoTeste": {
-                        "type": "Date"
-                        },
-                    "realizadoSegundoTeste": {
-                        "type": "Boolean" 
-                        },
-                    "segundoResultado": { 
-                        "type": "Boolean" 
-                    },
-                    "infetado": {
-                        "type": "Boolean"
+                        "role":{
+                            "type":"string",
+                            "uniqueItems": true
                         }
+                    }
+                },
+                "Tests":{
+                    "required":[
+                        "nomeUtente"
+                    ],
+                    "properties":{
+                        "nomeUtente":{
+                            "type":"string"
+                        },
+                        "sns24":{
+                            "type":"boolean"
+                        },
+                        "grupoRisco":{
+                            "type":"boolean"
+                        },
+                        "trabalhoLocalRisco":{
+                            "type":"boolean"
+                        },
+                        "prioridade": {
+                            "type":"boolean"
+                        },
+                        "dataPrimeiroTeste": {
+                            "type": "Date"
+                            },
+                        "realizadoPrimeiroTeste": {
+                            "type": "boolean"
+                            },
+                        "primeiroResultado": {
+                            "type": "boolean"
+                            },
+                        "dataSegundoTeste": {
+                            "type": "date"
+                            },
+                        "realizadoSegundoTeste": {
+                            "type": "boolean" 
+                            },
+                        "segundoResultado": { 
+                            "type": "boolean" 
+                        },
+                        "infetado": {
+                            "type": "boolean"
+                            }
+                    }
+                },
+                "First":{
+                    "required":[
+                        "primeiroResultado"
+                    ],
+                    "properties":{
+                        "primeiroResultado":{
+                            "type":"boolean"
+                        }
+                    }
+                },
+                "Second":{
+                    "required":[
+                        "segundoResultado"
+                    ],
+                    "properties":{
+                        "segundoResultado":{
+                            "type":"boolean"
+                        }
+                    }
+                },
+                "Date":{
+                    "required":[
+                        "dataPrimeiroTeste"
+                    ],
+                    "properties":{
+                        "dataPrimeiroTeste":{
+                            "type":"string"
+                        }
+                    }
+                },
+                "Password":{
+                    "required":[
+                        "password"
+                    ],
+                    "properties":{
+                        "password":{
+                            "type":"string"
+                        }
+                    },
+                    "Total":{
+                        "required":[
+                            "data"
+                        ],
+                        "properties":{
+                            "data":{
+                                "type":"integer"
+                            }
+                    }
                 }
             }
-        }
-       
+        
+            }
+    }
 }
