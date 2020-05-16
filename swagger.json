@@ -1,348 +1,957 @@
 {
-    "swagger":"2.0",
-    "info":{
-        "version":"1.0.0",
-        "title":"COVID API",
-        "description":"REST API COVID"
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "COVID API",
+        "description": "REST API COVID"
     },
-    "host":"localhost:3000",
+    "host": "localhost:3000",
     "basePath": "/",
-    "tags":[
-        {
-            "name": "Home",
-            "description": "API"
-        }
-    ],
-    "schemes":[
+    "tags": [{
+        "name": "Home",
+        "description": "API"
+    }],
+    "schemes": [
         "http"
     ],
-    "consumers":[
+    "consumers": [
         "application/json"
     ],
-    "produces":[
+    "produces": [
         "application.json"
     ],
-    "paths":{
-        "/signup":{
-            "post":{
-                "tags":[
+    "paths": {
+        "/signup": {
+            "post": {
+                "tags": [
                     "Autentication"
                 ],
                 "description": "Creat new user in system",
-                "parameters":[
-                    {
-                        "name": "utilizador",
-                        "in": "body",
-                        "description": "User that we want to create",
-                        "schema":{
-                            "$ref": "#/definitions/Autentication"
-                        }
+                "parameters": [{
+                    "name": "utilizador",
+                    "in": "body",
+                    "description": "User that we want to create",
+                    "schema": {
+                        "$ref": "#/definitions/Autentication"
                     }
-                ],
-                "produces":[
+                }],
+                "produces": [
                     "application.json"
                 ],
-                "responses":{
-                    "201":{
-                        "description":"User adicionado com sucesso",
-                        "schema":{
+                "responses": {
+                    "201": {
+                        "description": "User adicionado com sucesso",
+                        "schema": {
                             "$ref": "#/definitions/Autentication"
                         }
                     }
                 }
             }
         },
-            "/login":{
-                "post":{
-                "tags":[
+        "/login": {
+            "post": {
+                "tags": [
                     "Autentication"
                 ],
                 "description": "Log the user in the system",
-                "parameters":[
-                    {
-                        "name": "utilizador",
-                        "in": "body",
-                        "description": "User that we want to login",
-                        "schema":{
-                            "$ref": "#/definitions/Autentication"
-                        }
+                "parameters": [{
+                    "name": "utilizador",
+                    "in": "body",
+                    "description": "User that we want to login",
+                    "schema": {
+                        "$ref": "#/definitions/Autentication"
                     }
-                ],
-                "produces":[
+                }],
+                "produces": [
                     "application.json"
                 ],
-                "responses":{
-                    "200":{
-                        "description":"Login successful",
-                        "schema":{
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "schema": {
                             "$ref": "#/definitions/Autentication"
                         }
                     },
-                    "401":{
-                        "description":"Auth failed",
-                        "schema":{
+                    "401": {
+                        "description": "Auth failed",
+                        "schema": {
                             "$ref": "#/definitions/Autentication"
-                            }
-                        }
-                    
-                    }
-                }
-            },
-                "/user/show/{userId}":{
-                    "parameters":[
-                        {
-                            "name": "userId",
-                            "in": "path",
-                            "required": true,
-                            "description": "Id of user that we want to find",
-                            "type":"string"
-                        }
-                    ],
-                    "get":{
-                        "tags":[
-                            "Users"
-                        ],
-                        "summary": "Get user with given Id",
-                        "responses":{
-                            "200":{
-                                "description":"User is found",
-                                "schema":{
-                                    "$ref":"#/definitions/User"
-                                }
-                            },
-                            "404":{
-                                "description":"User not found",
-                            "schema":{
-                                "$ref":"#/definitions/User"
-                            }
-                        }
                         }
                     }
-                },
-                
-                "/user/update/{userId}":{
-                    "parameters":[
-                        {
-                            "name": "userId",
-                            "in": "path",
-                            "required": true,
-                            "description": "Id of user that we want to find",
-                            "type":"string"
-                        }
-                    ],
-                    "put":{
-                       "summary":"Update user with given Id",
-                       "tags":[
-                           "Users"
-                        ],
-                        "parameters":[
-                            {
-                                "name":"user",
-                                "in":"body",
-                                "description":"User with new values of properties",
-                                "schema":{
-                                    "$ref":"#/definitions/User"
-                                }
-                            }
-                        ],
-                        "responses":{
-                            "":{
-                                "description":"New user updated",
-                                "schema":{
-                                    "$ref":"#/definitions/User"
-                                }
-                            }
-                        }
-                    }
-                },
-                "/user/logout":{
-                    "post":{
-                        "tags":[
-                            "Users"
-                        ],
-                        "description":"Logout user",
-                        "parameters":[{
-                            "name": "authorization",
-                            "in":"header",
-                            "description":"Token generated after login",
-                            "schema":{
-                                "$ref":"#/definitions/User"
-                            }
-                        }
-                    ],
-                    "produces":[
-                        "application.json"
-                    ],
-                    "responses":{
-                        "200":{
-                            "description":"auth and token deleted",
-                            "schema":{
-                                "$ref":"#/definitions/User"
-                                    }
-                                }
-                         }
-                     }
-                 },
-                 "/user/ordertest/{userId}":{
-                     "parameters":[
-                         {
-                             "name":"userId",
-                             "in":"path",
-                             "required":true,
-                             "description":"Id of user that we want to find",
-                            "type":"string"
-                         }
-                     ],
-                     "put":{
-                         "summary":"Update the order of the test with given Id",
-                         "tags":[
-                             "Users"
-                         ],
-                         "parameters":[
-                             {
-                                 "name":"orderTest",
-                                 "in":"body",
-                                 "description":"Order test with new values of properties",
-                                 "schema":{
-                                     "$ref":"#/definitions/Test"
-                                 }
-                             }
-                         ]
-                     }
-                 },
-                 "/technic/update/{userId}":{
-                     "parameters":[
-                         {
-                             "name":"userId",
-                             "in":"path",
-                             "required":true,
-                             "description":"Id of user that we want to find and update",
-                             "type":"string"
-                         },
-                         {
-                             "name":"token",
-                             "in":"header",
-                             "required":true,
-                             "description":"Access token",
-                             "type":"string"
-                         }
-                     ],
-                     "put":{
-                         "summary":"Update user with given Id",
-                         "tags":[
-                             "Technics"
-                         ],
-                         "parameters":[
-                             {
-                                 "name":"User",
-                                 "in":"body",
-                                 "description":"User with new values of properties",
-                                 "schema":{
-                                     "$ref":"#/definitions/User"
-                                 }
-                             }
-                         ],
-                         "responses":{
-                             "200":{
-                                 "description":"User updated",
-                                 "schema":{
-                                     "$ref":"#/definitions/User"
-                                 }
-                             },
-                             "401":{
-                                 "description":"Autentication failed",
-                                 "schema":{
-                                     "$ref":"#/components/responses/UnauthorizedError"
-                                 }
-                             }
 
-                         }
-                     }
-                 }
-            },
-            "components":{
-            "securitySchemes":{
-              "bearerAuth":{
-                "type": "http",
-                "scheme": "bearer",
-                "bearerFormat":"JWT"
-              }
-            },"responses":{
-                "UnauthorizedError":{
-                    "description":"Access token is missing or invalid"
                 }
             }
         },
-        "definitions":{
-            "User":{
-                "required":[
+        "/user/show/{userId}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find",
+                    "type": "string"
+                },
+                {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "Token generated after login"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user with given Id",
+                "responses": {
+                    "200": {
+                        "description": "User is found",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/user/update/{userId}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find",
+                    "type": "string"
+                },
+                {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "Token generated after login"
+                }
+            ],
+            "put": {
+                "summary": "Update user with given Id",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [{
+                    "name": "user",
+                    "in": "body",
+                    "description": "User with new values of properties",
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }],
+                "responses": {
+                    "": {
+                        "description": "New user updated",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/logout": {
+            "security": {
+                "bearerAuth": []
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Logout user",
+                "parameters": [{
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "Token generated after login"
+                }],
+                "produces": [
+                    "application.json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "auth and token deleted",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/ordertest/{userId}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find",
+                    "type": "string"
+                },
+                {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "Token generated after login"
+                }
+            ],
+            "put": {
+                "summary": "Update the order of the test with given Id",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [{
+                    "name": "orderTest",
+                    "in": "body",
+                    "description": "Order test with new values of properties",
+                    "schema": {
+                        "$ref": "#/definitions/Test"
+                    }
+                }]
+            }
+        },
+        "/technic/update/{userId}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find and update",
+                    "type": "string"
+                },
+                {
+                    "name": "token",
+                    "in": "header",
+                    "required": true,
+                    "description": "Access token",
+                    "type": "string",
+                    "schema": {
+                        "$ref": "#/components/securitySchemes"
+                    }
+                }
+            ],
+            "put": {
+                "summary": "Update user with given Id",
+                "tags": [
+                    "Technics"
+                ],
+                "parameters": [{
+                    "name": "User",
+                    "in": "body",
+                    "description": "User with new values of properties",
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "User updated",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "401": {
+                        "description": "Autentication failed",
+                        "schema": {
+                            "$ref": "#/components/responses/UnauthorizedError"
+                        }
+                    }
+
+                }
+            }
+        },
+        "/technic/logout": {
+            "security": {
+                "bearerAuth": []
+            },
+            "post": {
+                "security": {
+                    "bearerAuth": []
+                },
+                "tags": [
+                    "Technics"
+                ],
+                "description": "Logout User",
+                "parameters": [{
+                    "name": "token",
+                    "in": "header",
+                    "description": "Token generated after login",
+                    "schema": {
+                        "$ref": "#/components/securitySchemes"
+                    }
+                }],
+                "produces": [
+                    "application.json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{auth:false, token:null}",
+                        "schema": {
+                            "$ref": "#/definitions/Autentication"
+                        }
+                    }
+                }
+            }
+        },
+        "/technic/results/firstTest/{userId}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find and update result",
+                    "type": "string"
+                },
+                {
+                    "name": "token",
+                    "in": "header",
+                    "description": "Token generated after login",
+                    "schema": {
+                        "$ref": "#/components/securitySchemes"
+                    }
+                }
+            ],
+            "put": {
+                "summary": "Update the result of the first test with given Id",
+                "tags": [
+                    "Technics"
+                ],
+                "parameters": [{
+                    "name": "First Result",
+                    "in": "body",
+                    "description": "Update new result in system",
+                    "schema": {
+                        "$ref": "#/definitions/First"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "{oldTest, newTest }",
+                        "schema": {
+                            "$ref": "#/definitions/Tests"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/technic/results/secondTest/{userId}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find and update result",
+                    "type": "string"
+                },
+                {
+                    "name": "Authorization",
+                    "in": "header",
+                    "required": true,
+                    "description": "Access token",
+                    "type": "string"
+                }
+            ],
+            "put": {
+                "security": {
+                    "bearerAuth": []
+                },
+                "summary": "Update the result of second test with given Id",
+                "tags": [
+                    "Technics"
+                ],
+                "parameters": [{
+                    "name": "Second result",
+                    "in": "body",
+                    "description": "Update new result in system",
+                    "schema": {
+                        "$ref": "#/definitions/Second"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "{oldTest, newTest }",
+                        "schema": {
+                            "$ref": "#/definitions/Tests"
+                        }
+                    },
+                    "404": {
+                        "description": "Fisrt result not defined yet "
+                    }
+                }
+            }
+        },
+        "/technic/scheduleTest/{userId}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find and update result",
+                    "type": "string"
+                },
+                {
+                    "name": "Authorization",
+                    "in": "header",
+                    "required": true,
+                    "description": "Access token",
+                    "type": "string"
+                }
+            ],
+            "put": {
+                "summary": "Schedule first test with given Id",
+                "tags": [
+                    "Technics"
+                ],
+                "parameters": [{
+                    "name": "Data Primeiro Teste",
+                    "in": "body",
+                    "description": "Update new result in system",
+                    "schema": {
+                        "$ref": "#/definitions/Date"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "{oldTest, newTest }",
+                        "schema": {
+                            "$ref": "#/definitions/Tests"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/update/{userId}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find and update",
+                    "type": "string"
+                },
+                {
+                    "name": "token",
+                    "in": "header",
+                    "required": true,
+                    "description": "Access token",
+                    "type": "string"
+                }
+            ],
+            "put": {
+                "summary": "Update user with given Id",
+                "tags": [
+                    "Admnistrator"
+                ],
+                "parameters": [{
+                    "name": "User",
+                    "in": "body",
+                    "description": "User with new values of properties",
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Admin updated",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "401": {
+                        "description": "Autentication failed",
+                        "schema": {
+                            "$ref": "#/components/responses/UnauthorizedError"
+                        }
+                    }
+
+                }
+            }
+        },
+
+        "/admin/updatepass/{userId}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find and update",
+                    "type": "string"
+                },
+                {
+                    "name": "token",
+                    "in": "header",
+                    "required": true,
+                    "description": "Access token",
+                    "type": "string"
+                }
+            ],
+            "put": {
+                "summary": "Update user with given Id",
+                "tags": [
+                    "Admnistrator"
+                ],
+                "parameters": [{
+                    "name": "Password",
+                    "in": "body",
+                    "description": "New password",
+                    "schema": {
+                        "$ref": "#/definitions/Password"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "{oldUser, newUser }",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "401": {
+                        "description": "Autentication failed",
+                        "schema": {
+                            "$ref": "#/components/responses/UnauthorizedError"
+                        }
+                    }
+
+                }
+            }
+        },
+
+        "/admin/show/{userId}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find",
+                    "type": "string"
+                },
+
+                {
+                    "name": "token",
+                    "in": "header",
+                    "description": "Token generated after login"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Admnistrator"
+                ],
+                "summary": "Get user with given Id",
+                "responses": {
+                    "200": {
+                        "description": "User is found",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/signuptechnics": {
+            "security": {
+                "bearerAuth": []
+            },
+            "post": {
+                "tags": [
+                    "Admnistrator"
+                ],
+                "description": "Sing up technic",
+                "parameters": [{
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "Token generated after login"
+                }],
+                "produces": [
+                    "application.json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Sign up successful!"
+
+                    },
+                    "500": {
+                        "description": "Error"
+
+                    }
+                }
+            }
+        },
+        "/admin/delete/{userId}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find",
+                    "type": "string"
+                },
+                {
+                    "name": "token",
+                    "in": "header",
+                    "required": true,
+                    "description": "Access token",
+                    "type": "string"
+                }
+
+            ],
+            "delete": {
+                "summary": "Delete user with given Id",
+                "tags": [
+                    "Admnistrator"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Removal successful!",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/logout": {
+            "security": {
+                "bearerAuth": []
+            },
+            "post": {
+                "tags": [
+                    "Admnistrator"
+                ],
+                "description": "Logout User",
+                "parameters": [{
+                    "name": "token",
+                    "in": "header",
+                    "description": "Token generated after login",
+                    "schema": {
+                        "$ref": "#/components/securitySchemes"
+                    }
+                }],
+                "produces": [
+                    "application.json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{auth:false, token:null}"
+
+                    }
+                }
+            }
+        },
+        "/admin/tests/day": {
+            "security": {
+                "bearerAuth": []
+            },
+            "post": {
+                "tags": [
+                    "Admnistrator"
+                ],
+                "description": "Logout User",
+                "parameters": [{
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "description": "Date of tests that we want to find",
+                        "type": "string"
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "Token generated after login",
+                        "schema": {
+                            "$ref": "#/components/securitySchemes"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application.json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Found tests",
+                        "schema": {
+                            "$ref": "#/definitions/Total"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/tests/{username}": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                    "name": "username",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of user that we want to find",
+                    "type": "integer",
+                    "minimum": 100000000,
+                    "maximum": 999999999
+                },
+
+                {
+                    "name": "token",
+                    "in": "header",
+                    "description": "Token generated after login"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Admnistrator"
+                ],
+                "summary": "Get user tests with given Id",
+                "responses": {
+                    "200": {
+                        "description": "User is found",
+                        "schema": {
+                            "$ref": "#/definitions/Total"
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "/admin/tests/infected": {
+                "security": {
+                    "bearerAuth": []
+                },
+                "post": {
+                    "tags": [
+                        "Admnistrator"
+                    ],
+                    "description": "Sing up technic",
+                    "parameters": [{
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "Token generated after login",
+                        "schema": {
+                            "$ref": "#/components/securitySchemes"
+                        }
+                    }],
+                    "produces": [
+                        "application.json"
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Found tests",
+                            "schema": {
+                                "$ref": "#/definitions/Total"
+                            }
+                        },
+                        "500": {
+                            "description": "Error",
+                            "schema": {
+                                "$ref": "#/components/responses/UnauthorizedError"
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        },
+        "/admin/tests": {
+            "security": {
+                "bearerAuth": []
+            },
+            "parameters": [{
+                "name": "token",
+                "in": "header",
+                "description": "Token generated after login"
+            }],
+            "get": {
+                "tags": [
+                    "Admnistrator"
+                ],
+                "summary": "Get users tests",
+                "responses": {
+                    "200": {
+                        "description": "Tests found",
+                        "schema": {
+                            "$ref": "#/definitions/Total"
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "schema": {
+                            "$ref": "#/components/responses/UnauthorizedError"
+                        }
+                    }
+                }
+            }
+        },
+        "components": {
+            "securitySchemes": {
+                "bearerAuth": {
+                    "type": "http",
+                    "scheme": "bearer",
+                    "bearerFormat": "JWT"
+                }
+            },
+            "responses": {
+                "UnauthorizedError": {
+                    "description": "Access token is missing or invalid"
+                }
+            }
+        },
+        "definitions": {
+            "User": {
+                "required": [
                     "name",
                     "username",
                     "password",
                     "role"
                 ],
-                "properties":{
-                    "name":{
-                        "type":"string",
+                "properties": {
+                    "name": {
+                        "type": "string",
                         "uniqueItems": true
                     },
-                    "username":{
-                        "type":"Number",
+                    "username": {
+                        "type": "Number",
                         "uniqueItems": true
                     },
-                    "password":{
-                        "type":"string",
+                    "password": {
+                        "type": "string",
                         "uniqueItems": true
                     },
-                    "role":{
-                        "type":"string",
+                    "role": {
+                        "type": "string",
                         "uniqueItems": true
                     }
                 }
             },
-            "Tests":{
-                "required":[
+            "Tests": {
+                "required": [
                     "nomeUtente"
                 ],
-                "properties":{
-                    "nomeUtente":{
-                        "type":"string"
+                "properties": {
+                    "nomeUtente": {
+                        "type": "string"
                     },
-                    "sns24":{
-                        "type":"boolean"
+                    "sns24": {
+                        "type": "boolean"
                     },
-                    "grupoRisco":{
-                        "type":"boolean"
+                    "grupoRisco": {
+                        "type": "boolean"
                     },
-                    "trabalhoLocalRisco":{
-                        "type":"boolean"
+                    "trabalhoLocalRisco": {
+                        "type": "boolean"
                     },
                     "prioridade": {
-                        "type":"Boolean"
+                        "type": "boolean"
                     },
                     "dataPrimeiroTeste": {
                         "type": "Date"
-                        },
+                    },
                     "realizadoPrimeiroTeste": {
-                        "type": "Boolean"
-                        },
+                        "type": "boolean"
+                    },
                     "primeiroResultado": {
-                        "type": "Boolean"
-                        },
+                        "type": "boolean"
+                    },
                     "dataSegundoTeste": {
-                        "type": "Date"
-                        },
+                        "type": "date"
+                    },
                     "realizadoSegundoTeste": {
-                        "type": "Boolean" 
-                        },
-                    "segundoResultado": { 
-                        "type": "Boolean" 
+                        "type": "boolean"
+                    },
+                    "segundoResultado": {
+                        "type": "boolean"
                     },
                     "infetado": {
-                        "type": "Boolean"
+                        "type": "boolean"
+                    }
+                }
+            },
+            "First": {
+                "required": [
+                    "primeiroResultado"
+                ],
+                "properties": {
+                    "primeiroResultado": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Second": {
+                "required": [
+                    "segundoResultado"
+                ],
+                "properties": {
+                    "segundoResultado": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Date": {
+                "required": [
+                    "dataPrimeiroTeste"
+                ],
+                "properties": {
+                    "dataPrimeiroTeste": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Password": {
+                "required": [
+                    "password"
+                ],
+                "properties": {
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "Total": {
+                    "required": [
+                        "data"
+                    ],
+                    "properties": {
+                        "data": {
+                            "type": "integer"
                         }
+                    }
                 }
             }
+
         }
-       
+    }
 }

@@ -125,20 +125,18 @@ const updateUser = async(req, res) => {
         const newUser = await User.findById(
             req.params.userId,
         )
-        const oldTest= await Test.findByIdAndUpdate(req.params.userId,
-            {
-                nomeUtente:req.body.name
-            }
-            )
-            const newTest = await Test.findById(
-                req.params.userId,
-            )
+        const oldTest = await Test.findByIdAndUpdate(req.params.userId, {
+            nomeUtente: req.body.name
+        })
+        const newTest = await Test.findById(
+            req.params.userId,
+        )
 
         res.send({
             old: oldUser,
             new: newUser,
             oldTest: oldTest,
-            newTest:newTest
+            newTest: newTest
         })
     } else {
         res.send("Não tem permissão para alterar os dados desse utilizador")
@@ -146,20 +144,18 @@ const updateUser = async(req, res) => {
 }
 
 const logout = (req, res) => {
-    
-    let token = req.headers.authorization.split(" ")[1];
+    let token = req.headers.authorization.split(" ")[1]
     console.log(token)
-    token = null;
+    token = null
     console.log(token)
-    
-/* 
-    
+
+    /* 
     console.log(req.headers.authorization.split(" ")[1])
     req.headers.authorization.split(" ")[1] = null
     console.log(req.headers.authorization.split(" ")[1])
     */
 
-  //  res.status(200).send({ auth: false, token: null })
+    //res.status(200).send({ auth: false, token: null })
 
     res.send("Logout successful")
 }
