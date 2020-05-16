@@ -137,10 +137,105 @@
                         ],
                         "responses":{
                             "":{
-                                "description":""
+                                "description":"New user updated",
+                                "schema":{
+                                    "$ref":"#/definitions/User"
+                                }
                             }
                         }
                     }
+                },
+                "/logout":{
+                    "post":{
+                        "tags":[
+                            "Users"
+                        ],
+                        "description":"Logout user",
+                        "parameters":[{
+                            "name": "authorization",
+                            "in":"header",
+                            "description":"Token generated after login",
+                            "schema":{
+                                "$ref":"#/definitions/User"
+                            }
+                        }
+                    ],
+                    "produces":[
+                        "application.json"
+                    ],
+                    "responses"
+                    }
                 }
+},
+"definitions":{
+    "User":{
+        "required":[
+            "name",
+            "username",
+            "password",
+            "role"
+        ],
+        "properties":{
+            "name":{
+                "type":"string",
+                "uniqueItems": true
+            },
+            "username":{
+                "type":"Number",
+                "uniqueItems": true
+            },
+            "password":{
+                "type":"string",
+                "uniqueItems": true
+            },
+             "role":{
+                "type":"string",
+                "uniqueItems": true
+            }
+        }
+    },
+    "Tests":{
+        "required":[
+            "nomeUtente"
+        ],
+        "properties":{
+            "nomeUtente":{
+                "type":"string"
+            },
+            "sns24":{
+                "type":"boolean"
+            },
+            "grupoRisco":{
+                "type":"boolean"
+            },
+            "trabalhoLocalRisco":{
+                "type":"boolean"
+            },
+            "prioridade": {
+                "type":"Boolean"
+            },
+            "dataPrimeiroTeste": {
+                 "type": "Date"
+                },
+            "realizadoPrimeiroTeste": {
+                 "type": "Boolean"
+                 },
+            "primeiroResultado": {
+                 "type": "Boolean"
+                 },
+            "dataSegundoTeste": {
+                 "type": "Date"
+                },
+            "realizadoSegundoTeste": {
+                 "type": "Boolean" 
+                },
+            "segundoResultado": { 
+                "type": "Boolean" 
+            },
+            "infetado": {
+                 "type": "Boolean"
+                 }
+        }
+    }
 }
 }
