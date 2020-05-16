@@ -7,8 +7,8 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
-const swaggerUi=require('swagger-ui-express');
-const swaggerDocument=require('./swagger.json')
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json')
 
 const apiRouter = require('./api')
 const adminRouter = require('./api/routes/admin-router');
