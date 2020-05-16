@@ -116,7 +116,7 @@
                             "200":{
                                 "description":"User is found",
                                 "schema":{
-                                    "$ref":"#/definitions/User"
+                                    "$ref":"#definitions/User"
                                 }
                             },
                             "404":{
@@ -997,7 +997,8 @@
                         "password":{
                             "type":"string"
                         }
-                    },
+                    }
+                },
                     "Total":{
                         "required":[
                             "data"
@@ -1012,4 +1013,3 @@
         
             }
     }
-}
