@@ -35,7 +35,7 @@
                         "in": "body",
                         "description": "User that we want to create",
                         "schema":{
-                            "$ref": "#/definitions/Autentication"
+                            "$ref": "#/definitions/User"
                         }
                     }
                 ],
@@ -46,7 +46,7 @@
                     "201":{
                         "description":"User adicionado com sucesso",
                         "schema":{
-                            "$ref": "#/definitions/Autentication"
+                            "$ref": "#/definitions/User"
                         }
                     }
                 }
@@ -64,7 +64,7 @@
                         "in": "body",
                         "description": "User that we want to login",
                         "schema":{
-                            "$ref": "#/definitions/Autentication"
+                            "$ref": "#/definitions/User"
                         }
                     }
                 ],
@@ -75,13 +75,13 @@
                     "200":{
                         "description":"Login successful",
                         "schema":{
-                            "$ref": "#/definitions/Autentication"
+                            "$ref": "#/definitions/User"
                         }
                     },
                     "401":{
                         "description":"Auth failed",
                         "schema":{
-                            "$ref": "#/definitions/Autentication"
+                            "$ref": "#/definitions/User"
                             }
                         }
                     
@@ -323,7 +323,7 @@
                              "200":{
                                  "description":"{auth:false, token:null}",
                                  "schema":{
-                                     "$ref":"#/definitions/Autentication"
+                                     "$ref":"#definitions/User"
                                  }
                              }
                          }
@@ -957,7 +957,7 @@
                             },
                             "infetado": {
                                 "type": "boolean"
-                                }
+                            }
                         }
                     },
                         "First":{
