@@ -16,14 +16,14 @@ const createUser = (req, res, next) => {
                 password: hash,
                 role: req.body.role
             });
-            
+
             user
                 .save()
                 .then(result => {
                     console.log(user._id, user.name)
-                    if(user.role=="UTENTE") {           
+                    if (user.role == "UTENTE") {
                         const test = new Test({
-                            _id:user._id,
+                            _id: user._id,
                             nomeUtente: user.name
                         });
                         test.save().then(testeCriado => {
@@ -38,8 +38,8 @@ const createUser = (req, res, next) => {
                             res.status(500).json({
                                 message: 'Pedido de teste falhou!!'
                             });
-                        });                    
-                    }else{
+                        });
+                    } else {
                         res.send(user)
                     }
 
@@ -101,7 +101,7 @@ const getUserById = async(req, res) => {
     try {
         console.log('ID', req.params.userId)
         const userResult = await User.findById(req.params.userId);
-        res.send(userResult)      
+        res.send(userResult)
     } catch (e) {
         console.error(e)
         res.status(404)
@@ -110,16 +110,16 @@ const getUserById = async(req, res) => {
 }
 
 const updateUser = async(req, res) => {
-    const user= await User.findById(req.params.userId);
+    const user = await User.findById(req.params.userId);
 
     if (req.body.password) {
         req.body.password = bcrypt.hashSync(req.body.password, 10)
-    } 
+    }
 
-    if(user.role=="UTENTE" || user.role=="TECH"){
+    if (user.role == "UTENTE" || user.role == "TECH") {
         const oldUser = await User.findByIdAndUpdate(
             req.params.userId,
-            {name:req.body.name,username:req.body.username, password:req.body.password}
+            req.body
         )
 
         const newUser = await User.findById(
@@ -130,16 +130,28 @@ const updateUser = async(req, res) => {
             old: oldUser,
             new: newUser
         })
-    }else{
+    } else {
         res.send("Não tem permissão para alterar os dados desse utilizador")
     }
 }
 
 const logout = (req, res) => {
+    /*
     let token = req.headers.authorization.split(" ")[1];
-    token = null
+    console.log(token)
+    token = null;
+    console.log(token)
+    */
 
-    res.send("Logout successful")
+    /*
+    console.log(req.headers.authorization.split(" ")[1])
+    req.headers.authorization.split(" ")[1] = null
+    console.log(req.headers.authorization.split(" ")[1])
+    */
+
+    res.status(200).send({ auth: false, token: null })
+
+    //res.send("Logout successful")
 }
 
 module.exports = {

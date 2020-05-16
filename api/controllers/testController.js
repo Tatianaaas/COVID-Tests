@@ -2,22 +2,25 @@ const Test = require('../models/Test')
 var moment = require('moment');
 const PDFKit = require('pdfkit');
 const fs = require('fs');
-const createOrder = async (req, res, next) => {
 
+const createOrder = async(req, res, next) => {
     let localDate;
     let dataPrimeiroTeste;
     console.log(req.body.trabalhoLocalRisco)
-    if(req.body.trabalhoLocalRisco=="true"){        
+
+    if (req.body.trabalhoLocalRisco == true) {
         localDate = moment();
-        dataPrimeiroTeste= localDate.add(24,'hours')
+        dataPrimeiroTeste = localDate.add(24, 'hours')
     }
+
     const oldTest = await Test.findByIdAndUpdate(
         req.params.userId, {
-             sns24:req.body.sns24,
-              grupoRisco:req.body.grupoRisco,
-             trabalhoLocalRisco:req.body.trabalhoLocalRisco,
-             prioridade:req.body.trabalhoLocalRisco,
-            dataPrimeiroTeste: dataPrimeiroTeste}
+            sns24: req.body.sns24,
+            grupoRisco: req.body.grupoRisco,
+            trabalhoLocalRisco: req.body.trabalhoLocalRisco,
+            prioridade: req.body.trabalhoLocalRisco,
+            dataPrimeiroTeste: dataPrimeiroTeste
+        }
     )
 
     const newTest = await Test.findById(
@@ -33,61 +36,60 @@ const createOrder = async (req, res, next) => {
 const getOrders = async(req, res) => {
     const testsList = await Test.find()
     res.send(testsList)
-
 }
 
 const getTestsByDay = async(req, res) => {
-    let total=0 ;
-   Test.countDocuments({ dataPrimeiroTeste: req.body.data}, function(err, result) {
-    if (err) {
-        res.send(err)
-    } else {
-      total+=result
-    }
-    })
+    let total = 0;
 
-    Test.countDocuments({dataSegundoTeste: req.body.data }, function(err, result) {
+    Test.countDocuments({ dataPrimeiroTeste: req.body.data }, function(err, result) {
         if (err) {
             res.send(err)
         } else {
-          total+=result
-          res.json(total)
+            total += result
+        }
+    })
+
+    Test.countDocuments({ dataSegundoTeste: req.body.data }, function(err, result) {
+        if (err) {
+            res.send(err)
+        } else {
+            total += result
+            res.json(total)
         }
     })
 
 }
 
 const getTestsByPerson = async(req, res) => {
+    let total = 0;
 
-    let total=0 ;
-   Test.countDocuments({ nomeUtente:req.params.username ,realizadoPrimeiroTeste:true}, function(err, result) {
-    if (err) {
-        res.send(err)
-    } else {
-      total+=result
-    }
-    })
-
-    Test.countDocuments({nomeUtente: req.params.username, realizadoSegundoTest:true}, function(err, result) {
+    Test.countDocuments({ nomeUtente: req.params.username, realizadoPrimeiroTeste: true }, function(err, result) {
         if (err) {
             res.send(err)
         } else {
-          total+=result
-          
-            res.json(total)
+            total += result
         }
     })
 
-    
+    Test.countDocuments({ nomeUtente: req.params.username, realizadoSegundoTest: true }, function(err, result) {
+        if (err) {
+            res.send(err)
+        } else {
+            total += result
+
+            res.json(total)
+        }
+    })
 }
 
 const getinfetados = (req, res) => {
-    let total=0;
+    let total = 0;
+
     Test.countDocuments({ infetado: true }, function(err, result) {
         if (err) {
             res.send(err)
         } else {
-            total+=result
+            total += result
             res.json(total)
         }
     })
@@ -120,11 +122,12 @@ const getResultById = async(req, res) => {
 }
 
 const updateFirstResult = async(req, res) => {
-    const user= await Test.findById(req.params.userId)
+    const user = await Test.findById(req.params.userId)
     const data = moment(user.dataPrimeiroTeste);
-    const dataSegundoTeste= data.add(48,'hours')
+    const dataSegundoTeste = data.add(48, 'hours')
+
     const oldTest = await Test.findByIdAndUpdate(
-        req.params.userId, { primeiroResultado: req.body.primeiroResultado, dataSegundoTeste: dataSegundoTeste, infetado: true , realizadoPrimeiroTeste:true}
+        req.params.userId, { primeiroResultado: req.body.primeiroResultado, dataSegundoTeste: dataSegundoTeste, infetado: true, realizadoPrimeiroTeste: true }
     )
 
     const newTest = await Test.findById(
@@ -143,61 +146,59 @@ const updateSecondResult = async(req, res) => {
     const pdf = new PDFKit();
     let firstTest, secondTest, covid;
 
-    if(primeiro.primeiroResultado==true || primeiro.primeiroResultado==false){
-            
-        if (req.body.segundoResultado == true|| primeiro.primeiroResultado == true) {
+    if (primeiro.primeiroResultado == true || primeiro.primeiroResultado == false) {
+        if (req.body.segundoResultado == true || primeiro.primeiroResultado == true) {
             result = true;
-        } 
+        }
 
         const oldTest = await Test.findByIdAndUpdate(
-            req.params.userId, { segundoResultado: req.body.segundoResultado, infetado: result, realizadoSegundoTest:true }
+            req.params.userId, { segundoResultado: req.body.segundoResultado, infetado: result, realizadoSegundoTest: true }
         )
 
         const newTest = await Test.findById(
             req.params.userId,
         )
 
-            if(newTest.primeiroResultado==true){
-                firstTest="Positivo";
-            }else{
-                firstTest="Negativo";
-            }
-            if(newTest.segundoResultado==true){
-                secondTest="Positivo";
-            }else{
-                secondTest="Negativo"
-            }
-            if(newTest.infetado==true){
-                covid="Sim";
-            }else{
-                covid="Não"
-            }
+        if (newTest.primeiroResultado == true) {
+            firstTest = "Positivo";
+        } else {
+            firstTest = "Negativo";
+        }
+        if (newTest.segundoResultado == true) {
+            secondTest = "Positivo";
+        } else {
+            secondTest = "Negativo"
+        }
+        if (newTest.infetado == true) {
+            covid = "Sim";
+        } else {
+            covid = "Não"
+        }
 
-            pdf.fontSize(20);
-            pdf.image('./api/images/índice.png', 60, 20, {width: 100});
-            pdf.text('Resultados Clínicos',{align:'center', });
-            pdf.text("    ");
-            pdf.text("  ");
-            pdf.text("  ");
-            pdf.text(`ID Nº ${newTest._id}`);
-            pdf.text("   ");
-            pdf.text(`-Nome: ${newTest.nomeUtente}`);
-            pdf.text(`-Resultado primeiro teste: ${firstTest}`);
-            pdf.text(`-Resultado segundo teste: ${secondTest}`);
-            pdf.text(`-Infetado: ${covid}`);
-            pdf.pipe(fs.createWriteStream(`./api/docs/${newTest._id}.pdf`));
-            pdf.end();
-    
+        pdf.fontSize(20);
+        pdf.image('./api/images/índice.png', 60, 20, { width: 100 });
+        pdf.text('Resultados Clínicos', { align: 'center', });
+        pdf.text("    ");
+        pdf.text("  ");
+        pdf.text("  ");
+        pdf.text(`ID Nº ${newTest._id}`);
+        pdf.text("   ");
+        pdf.text(`-Nome: ${newTest.nomeUtente}`);
+        pdf.text(`-Resultado primeiro teste: ${firstTest}`);
+        pdf.text(`-Resultado segundo teste: ${secondTest}`);
+        pdf.text(`-Infetado: ${covid}`);
+        pdf.pipe(fs.createWriteStream(`./api/docs/${newTest._id}.pdf`));
+        pdf.end();
+
         res.send({
             old: oldTest,
             new: newTest
         })
-    }else{
+    } else {
         res.status(404)
         res.json("Ainda nao se encontra registado o resultado do primeiro teste")
     }
 }
-
 
 const scheduleFirstTest = async(req, res) => {
     const oldTest = await Test.findByIdAndUpdate(
@@ -213,7 +214,6 @@ const scheduleFirstTest = async(req, res) => {
         new: newTest
     })
 }
-
 
 module.exports = {
     createOrder,

@@ -1,14 +1,14 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const updateAdminPassword = async(req, res) => {
     if (req.body.password) {
         req.body.password = bcrypt.hashSync(req.body.password, 10)
     }
+
     const oldUser = await User.findByIdAndUpdate(
         req.params.userId,
-        req.body.password
+        req.body
     )
 
     const newUser = await User.findById(
@@ -20,7 +20,6 @@ const updateAdminPassword = async(req, res) => {
         new: newUser
     })
 }
-
 
 const createTechnics = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)

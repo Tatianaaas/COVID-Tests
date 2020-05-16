@@ -31,7 +31,7 @@ adminRouter.post("/logout", session, authorize, userController.logout)
 adminRouter.post("/tests/day", session, authorize, testController.getTestsByDay);
 
 //Obter numero de testes por pessoa
-adminRouter.get("/tests/:username", session, authorize,testController.getTestsByPerson);
+adminRouter.get("/tests/:username", testController.getTestsByPerson);
 
 //Obter numero total de infetados
 adminRouter.post("/tests/infected", session, authorize, testController.getinfetados);
