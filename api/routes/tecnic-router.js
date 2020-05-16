@@ -20,6 +20,6 @@ technicRouter.put("/results/firstTest/:userId", session, authorize, testControll
 technicRouter.put("/results/secondTest/:userId", session, authorize, testController.updateSecondResult);
 
 //Agendar primeiro teste
-technicRouter.put("/scheduleTest/first/:userId", session, authorize, testController.scheduleFirstTest);
+technicRouter.put("/scheduleTest/:userId", session, authorize, testController.scheduleFirstTest);
 
 module.exports = technicRouter
