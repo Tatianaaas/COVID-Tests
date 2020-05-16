@@ -228,9 +228,6 @@
                          }
                      ],
                      "put":{
-                         "security":{
-                             "barearAuth":[]
-                         },
                          "summary":"Update user with given Id",
                          "tags":[
                              "Technics"
