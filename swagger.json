@@ -875,142 +875,143 @@
                         }
                         }
                     }
-            },
-                "components":{
-                "securitySchemes":{
-                "bearerAuth":{
-                    "type": "http",
-                    "scheme": "bearer",
-                    "bearerFormat":"JWT"
-                }
-                },"responses":{
-                    "UnauthorizedError":{
-                        "description":"Access token is missing or invalid"
-                    }
                 }
             },
-            "definitions":{
-                "User":{
-                    "required":[
-                        "name",
-                        "username",
-                        "password",
-                        "role"
-                    ],
-                    "properties":{
-                        "name":{
-                            "type":"string",
-                            "uniqueItems": true
-                        },
-                        "username":{
-                            "type":"Number",
-                            "uniqueItems": true
-                        },
-                        "password":{
-                            "type":"string",
-                            "uniqueItems": true
-                        },
-                        "role":{
-                            "type":"string",
-                            "uniqueItems": true
+                    "components":{
+                    "securitySchemes":{
+                    "bearerAuth":{
+                        "type": "http",
+                        "scheme": "bearer",
+                        "bearerFormat":"JWT"
+                    }
+                    },"responses":{
+                        "UnauthorizedError":{
+                            "description":"Access token is missing or invalid"
                         }
                     }
                 },
-                "Tests":{
-                    "required":[
-                        "nomeUtente"
-                    ],
-                    "properties":{
-                        "nomeUtente":{
-                            "type":"string"
-                        },
-                        "sns24":{
-                            "type":"boolean"
-                        },
-                        "grupoRisco":{
-                            "type":"boolean"
-                        },
-                        "trabalhoLocalRisco":{
-                            "type":"boolean"
-                        },
-                        "prioridade": {
-                            "type":"boolean"
-                        },
-                        "dataPrimeiroTeste": {
-                            "type": "Date"
-                            },
-                        "realizadoPrimeiroTeste": {
-                            "type": "boolean"
-                            },
-                        "primeiroResultado": {
-                            "type": "boolean"
-                            },
-                        "dataSegundoTeste": {
-                            "type": "date"
-                            },
-                        "realizadoSegundoTeste": {
-                            "type": "boolean" 
-                            },
-                        "segundoResultado": { 
-                            "type": "boolean" 
-                        },
-                        "infetado": {
-                            "type": "boolean"
-                            }
-                    }
-                },
-                "First":{
-                    "required":[
-                        "primeiroResultado"
-                    ],
-                    "properties":{
-                        "primeiroResultado":{
-                            "type":"boolean"
-                        }
-                    }
-                },
-                "Second":{
-                    "required":[
-                        "segundoResultado"
-                    ],
-                    "properties":{
-                        "segundoResultado":{
-                            "type":"boolean"
-                        }
-                    }
-                },
-                "Date":{
-                    "required":[
-                        "dataPrimeiroTeste"
-                    ],
-                    "properties":{
-                        "dataPrimeiroTeste":{
-                            "type":"string"
-                        }
-                    }
-                },
-                "Password":{
-                    "required":[
-                        "password"
-                    ],
-                    "properties":{
-                        "password":{
-                            "type":"string"
-                        }
-                    }
-                },
-                    "Total":{
+                "definitions":{
+                    "User":{
                         "required":[
-                            "data"
+                            "name",
+                            "username",
+                            "password",
+                            "role"
                         ],
                         "properties":{
-                            "data":{
-                                "type":"integer"
+                            "name":{
+                                "type":"string",
+                                "uniqueItems": true
+                            },
+                            "username":{
+                                "type":"Number",
+                                "uniqueItems": true
+                            },
+                            "password":{
+                                "type":"string",
+                                "uniqueItems": true
+                            },
+                            "role":{
+                                "type":"string",
+                                "uniqueItems": true
                             }
-                    }
+                        }
+                    },
+                    "Tests":{
+                        "required":[
+                            "nomeUtente"
+                        ],
+                        "properties":{
+                            "nomeUtente":{
+                                "type":"string"
+                            },
+                            "sns24":{
+                                "type":"boolean"
+                            },
+                            "grupoRisco":{
+                                "type":"boolean"
+                            },
+                            "trabalhoLocalRisco":{
+                                "type":"boolean"
+                            },
+                            "prioridade": {
+                                "type":"boolean"
+                            },
+                            "dataPrimeiroTeste": {
+                                "type": "Date"
+                                },
+                            "realizadoPrimeiroTeste": {
+                                "type": "boolean"
+                                },
+                            "primeiroResultado": {
+                                "type": "boolean"
+                                },
+                            "dataSegundoTeste": {
+                                "type": "date"
+                                },
+                            "realizadoSegundoTeste": {
+                                "type": "boolean" 
+                                },
+                            "segundoResultado": { 
+                                "type": "boolean" 
+                            },
+                            "infetado": {
+                                "type": "boolean"
+                                }
+                        }
+                    },
+                        "First":{
+                            "required":[
+                                "primeiroResultado"
+                            ],
+                            "properties":{
+                                "primeiroResultado":{
+                                    "type":"boolean"
+                                }
+                            }
+                        },
+                        "Second":{
+                            "required":[
+                                "segundoResultado"
+                            ],
+                            "properties":{
+                                "segundoResultado":{
+                                    "type":"boolean"
+                                }
+                            }
+                        },
+                        "Date":{
+                            "required":[
+                                "dataPrimeiroTeste"
+                            ],
+                            "properties":{
+                                "dataPrimeiroTeste":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                        "Password":{
+                            "required":[
+                                "password"
+                            ],
+                            "properties":{
+                                "password":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                            "Total":{
+                                "required":[
+                                    "data"
+                                ],
+                                "properties":{
+                                    "data":{
+                                        "type":"integer"
+                                    }
+                            }
+                        }
                 }
-            }
         
-            }
-    }
+}
+
     
