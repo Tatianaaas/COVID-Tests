@@ -10,7 +10,7 @@
     "tags":[
         {
             "name": "Home",
-            "description": "API"
+            "description": "API for COVID"
         }
     ],
     "schemes":[
@@ -102,6 +102,7 @@
                             "name": "authorization",
                             "in":"header",
                             "description":"Token generated after login"
+                            
                         }
                     ],
                     "get":{
