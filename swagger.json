@@ -234,7 +234,7 @@
                          ],
                          "parameters":[
                              {
-                                 "name":"userId",
+                                 "name":"User",
                                  "in":"body",
                                  "description":"User with new values of properties",
                                  "schema":{
