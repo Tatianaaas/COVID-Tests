@@ -89,9 +89,7 @@
                 }
             },
                 "/user/show/{userId}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                    
                     "parameters":[
                         {
                             "name": "userId",
@@ -107,6 +105,9 @@
                         }
                     ],
                     "get":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                         "tags":[
                             "Users"
                         ],
@@ -129,9 +130,7 @@
                 },
                 
                 "/user/update/{userId}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                   
                     "parameters":[
                         {
                             "name": "userId",
@@ -147,6 +146,9 @@
                         }
                     ],
                     "put":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                        "summary":"Update user with given Id",
                        "tags":[
                            "Users"
@@ -172,10 +174,11 @@
                     }
                 },
                 "/user/logout":{
-                    "security":{                            
+                    
+                    "post":{
+                        "security":{                            
                         "bearerAuth": []
                     },
-                    "post":{
                         "tags":[
                             "Users"
                         ],
@@ -201,9 +204,7 @@
                      }
                  },
                  "/user/ordertest/{userId}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                   
                      "parameters":[
                          {
                              "name":"userId",
@@ -219,6 +220,9 @@
                         }
                      ],
                      "put":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                          "summary":"Update the order of the test with given Id",
                          "tags":[
                              "Users"
@@ -236,9 +240,7 @@
                      }
                  },
                  "/technic/update/{userId}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                   
                      "parameters":[
                          {
                              "name":"userId",
@@ -259,6 +261,9 @@
                          }
                      ],
                      "put":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                          "summary":"Update user with given Id",
                          "tags":[
                              "Technics"
@@ -291,10 +296,9 @@
                      }
                  },
                  "/technic/logout":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                  
                      "post":{
+                         
                         "security":{                            
                             "bearerAuth": []
                         },
@@ -326,9 +330,7 @@
                      }
                  },
                  "/technic/results/firstTest/{userId}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                   
                      "parameters":[
                          {
                              "name":"userId",
@@ -347,6 +349,9 @@
                         }
                      ],
                      "put":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                          "summary":"Update the result of the first test with given Id",
                          "tags":[
                              "Technics"
@@ -373,9 +378,7 @@
                  },
                  
                  "/technic/results/secondTest/{userId}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                 
                     "parameters":[
                         {
                             "name":"userId",
@@ -424,9 +427,7 @@
                     }
                 },
                 "/technic/scheduleTest/{userId}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                   
                     "parameters":[
                         {
                             "name":"userId",
@@ -444,6 +445,9 @@
                         }
                     ],
                     "put":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                         "summary":"Schedule first test with given Id",
                         "tags":[
                             "Technics"
@@ -469,9 +473,7 @@
                     }
                 },
                 "/admin/update/{userId}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                    
                     "parameters":[
                         {
                             "name":"userId",
@@ -489,6 +491,9 @@
                         }
                     ],
                     "put":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                         "summary":"Update user with given Id",
                         "tags":[
                             "Admnistrator"
@@ -522,9 +527,7 @@
                 },
                 
                 "/admin/updatepass/{userId}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                   
                     "parameters":[
                         {
                             "name":"userId",
@@ -542,6 +545,9 @@
                         }
                     ],
                     "put":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                         "summary":"Update user with given Id",
                         "tags":[
                             "Admnistrator"
@@ -575,9 +581,7 @@
                 },
                 
                 "/admin/show/{userId}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                    
                     "parameters":[
                         {
                             "name": "userId",
@@ -594,6 +598,9 @@
                         }
                     ],
                     "get":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                         "tags":[
                             "Admnistrator"
                         ],
@@ -615,10 +622,11 @@
                     }
                 },
                 "/admin/signuptechnics":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                  
                     "post":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                         "tags":[
                             "Admnistrator"
                         ],
@@ -645,9 +653,7 @@
                      }
                  },
                  "/admin/delete/{userId}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                   
                      "parameters":[
                         {
                             "name": "userId",
@@ -666,6 +672,9 @@
 
                      ],
                      "delete":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                          "summary":"Delete user with given Id",
                          "tags":[
                              "Admnistrator"
@@ -681,10 +690,11 @@
                      }
                  },
                  "/admin/logout":{
-                    "security":{                            
+                   
+                    "post":{
+                         "security":{                            
                         "bearerAuth": []
                     },
-                    "post":{
                         "tags":[
                             "Admnistrator"
                         ],
@@ -711,10 +721,11 @@
                     }
                 },
                 "/admin/tests/day":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                   
                     "post":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                         "tags":[
                             "Admnistrator"
                         ],
@@ -750,9 +761,7 @@
                     }
                 },
                 "/admin/tests/{username}":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                  
                     "parameters":[
                         {
                             "name": "username",
@@ -771,6 +780,9 @@
                         }
                     ],
                     "get":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                         "tags":[
                             "Admnistrator"
                         ],
@@ -791,10 +803,11 @@
                         }
                     },
                     "/admin/tests/infected":{
-                        "security":{                            
+                       
+                        "post":{
+                             "security":{                            
                             "bearerAuth": []
                         },
-                        "post":{
                             "tags":[
                                 "Admnistrator"
                             ],
@@ -831,9 +844,7 @@
 
                 },
                 "/admin/tests":{
-                    "security":{                            
-                        "bearerAuth": []
-                    },
+                   
                     "parameters":[                                    
                         {
                             "name":"token",
@@ -842,6 +853,9 @@
                         }
                     ],
                     "get":{
+                        "security":{                            
+                            "bearerAuth": []
+                        },
                         "tags":[
                             "Admnistrator"
                         ],
