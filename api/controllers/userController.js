@@ -144,20 +144,8 @@ const updateUser = async(req, res) => {
 }
 
 const logout = (req, res) => {
-    let token = req.headers.authorization.split(" ")[1]
-    console.log(token)
-    token = null
-    console.log(token)
 
-    /* 
-    console.log(req.headers.authorization.split(" ")[1])
-    req.headers.authorization.split(" ")[1] = null
-    console.log(req.headers.authorization.split(" ")[1])
-    */
-
-    //res.status(200).send({ auth: false, token: null })
-
-    res.send("Logout successful")
+    res.status(200).send({ auth: false, token: null });
 }
 
 module.exports = {
