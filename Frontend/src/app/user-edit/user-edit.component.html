@@ -1,0 +1,18 @@
+<div>
+  <h2>Update</h2>
+  <form>
+      <label>Name:
+        <input type="text" [(ngModel)]="userData.name" placeholder="User Name"/>
+        </label><br>
+        <label>Username:
+        <input type="number" [(ngModel)]="userData.username" placeholder="Username"/>
+        </label><br>
+        <label>Password:
+        <input type="password" [(ngModel)]="userData.password" placeholder="User Password"/>
+        </label><br>
+        <label>Tipo:
+        <input type="text" [(ngModel)]="userData.role" placeholder="User Role"/>
+        </label><br>
+      </form>
+        <button (click)="updateUser()">Save</button>
+</div>

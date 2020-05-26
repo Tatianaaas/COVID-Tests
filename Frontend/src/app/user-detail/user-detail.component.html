@@ -1,0 +1,8 @@
+<div *ngIf="user" class="users">
+  <h2>{{user.name | uppercase}} Detalhes</h2>
+  <div><span>Username: </span>{{user.username}}</div>
+  <div><span>Role: </span>{{user.role}}</div>
+  <div>
+      <button routerLink="/technic/update/{{user.__id}}"> Editar </button>
+  </div>
+</div>

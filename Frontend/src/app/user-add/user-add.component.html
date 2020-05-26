@@ -1,0 +1,18 @@
+<div>
+  <h2>Create</h2>
+  <form>
+      <label>Name:
+        <input type="text" [(ngModel)]="userData.name" placeholder="User Name" required/>
+        </label><br>
+        <label>Username:
+        <input type="number" [(ngModel)]="userData.username" placeholder="Username" required/>
+        </label><br>
+        <label>Password:
+        <input type="password" [(ngModel)]="userData.password" placeholder="User Password" required/>
+        </label><br>
+        <label>Tipo:
+        <input type="text" [(ngModel)]="userData.role" placeholder="User Role" required/>
+        </label><br>
+      </form>
+        <button (click)="createUser()">Save</button>
+</div>

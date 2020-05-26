@@ -1,0 +1,14 @@
+<header class="header">
+	<div class="aside">
+		<div>Logo</div>
+		<div>
+      <a *ngIf="!userIsAuthenticated" mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+      <a *ngIf="!userIsAuthenticated" mat-button routerLink="/signup" routerLinkActive="mat-accent">Sign Up</a>
+			<!-- <a routerLink="/covtests" routerLinkActive="is-selected">Pedir Teste</a> -->
+		</div>
+	</div>
+	<div>
+		<span *ngIf="user">{{user.username}}</span>
+		<button *ngIf="!userIsAuthenticated" (click)="logout()">Logout</button>
+	</div>
+</header>

@@ -1,0 +1,21 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: lightblue;
+	height: 50px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+	a{
+		color:darkslategray;
+		text-decoration: none;
+		padding: 10px;
+  }
+	a.is-selected{
+		color: #111;
+		text-decoration: underline;
+  }
+.aside{
+	display: flex;
+}
