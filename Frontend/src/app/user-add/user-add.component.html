@@ -1,6 +1,6 @@
 <div>
   <h2>Create</h2>
-  <form>
+  <div>
       <label>Name:
         <input type="text" [(ngModel)]="userData.name" placeholder="User Name" required/>
         </label><br>
@@ -8,11 +8,11 @@
         <input type="number" [(ngModel)]="userData.username" placeholder="Username" required/>
         </label><br>
         <label>Password:
-        <input type="password" [(ngModel)]="userData.password" placeholder="User Password" required/>
+        <input type="password" [(ngModel)]="userData.password" placeholder="Password" required/>
         </label><br>
         <label>Tipo:
-        <input type="text" [(ngModel)]="userData.role" placeholder="User Role" required/>
+        <input type="text" [(ngModel)]="userData.role" placeholder="Role" required/>
         </label><br>
-      </form>
+      </div>
         <button (click)="createUser()">Save</button>
 </div>

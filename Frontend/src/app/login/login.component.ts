@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -17,11 +19,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login(): void {
-     this.authServive.login(this.username, this.password).subscribe((user: any) => {
+    console.log(this.username, this.password);
+    this.authServive.login(this.username, this.password).subscribe((user: any) => {
         if (user && user.token) {
            // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
-            this.router.navigate(['']);
+            this.router.navigate([`user/show/${user._id}`]);
              }
         });
   }

@@ -21,7 +21,7 @@ export class UserEditComponent implements OnInit {
 
   updateUser() {
      this.rest.updateUser(this.route.snapshot.params.__id, this.userData).subscribe((result) => {
-        this.router.navigate(['user/show/' + result.id]);
+        this.router.navigate(['user/show/' + result._id]);
        }, (err) => {
           console.log(err);
          });

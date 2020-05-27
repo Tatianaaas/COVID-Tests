@@ -12,16 +12,16 @@ import {User} from '../Models/User';
 export class UserAddComponent implements OnInit {
 
   @Input() userData: User = new User();
-
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(){
       }
 
   createUser(){
+    console.log(this.userData);
     this.rest.createUser(this.userData).subscribe((result: User) => {
         console.log(result);
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       }, (err) => {
         console.log(err);
       });

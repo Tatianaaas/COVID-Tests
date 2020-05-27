@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {MatToolbarModule} from '@angular/material';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatInputModule} from '@angular/material/input';
+import { MatCardModule} from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptorService } from './helper/jwt-interceptor.service';
+import { JwtInterceptorService } from './jwt-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './auth-guard.service';
@@ -48,7 +50,7 @@ const appRoutes: Routes = [
         }, // default redirect to home
 
         {
-           path: '**', redirectTo: 'login'
+           path: '**', redirectTo: ''
           }
 ];
 
@@ -69,7 +71,9 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatInputModule,
+    MatToolbarModule,
+    MatCardModule
   ],
   exports: [
     RouterModule

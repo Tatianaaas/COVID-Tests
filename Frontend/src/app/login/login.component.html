@@ -1,1 +1,13 @@
-<p>login works!</p>
+<mat-card>
+  <form (submit)="login()" #loginForm="ngForm">
+    <mat-form-field>
+      <input matInput #username minlength="9" placeholder="Ex. 92587896" required>
+      <mat-hint>{{username.value.length}} / 9</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+      <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">Login</button>
+  </form>
+</mat-card>
