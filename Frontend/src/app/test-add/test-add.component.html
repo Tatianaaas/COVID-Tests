@@ -1,0 +1,22 @@
+<div>
+    <h2>Create Test</h2>
+
+    <div>
+        <label>Encaminhado pelo SNS24?:
+          <input type="radio" name="sns24" [value]="true" [(ngModel)]="testData.sns24" placeholder="SNS24" /> Sim
+          <input type="radio" name="sns24" [value]="false" [(ngModel)]="testData.sns24" placeholder="SNS24" /> Não
+          </label><br>
+
+        <label>Pertence a um grupo de risco?:
+          <input type="radio" name="grupoRisco" [value]="true" [(ngModel)]="testData.grupoRisco" placeholder="GrupoRisco" /> Sim
+          <input type="radio" name="grupoRisco" [value]="false" [(ngModel)]="testData.grupoRisco" placeholder="GrupoRisco" /> Não
+          </label><br>
+
+        <label>Trabalha num local de risco?:
+          <input type="radio" name="trabalhoLocalRisco" [value]="true" [(ngModel)]="testData.trabalhoLocalRisco" placeholder="TrabalhoRisco" /> Sim
+          <input type="radio" name="trabalhoLocalRisco" [value]="false" [(ngModel)]="testData.trabalhoLocalRisco" placeholder="TrabalhoRisco" /> Não
+          </label><br><br>
+    </div>
+
+    <button (click)="createOrder()">Save</button>
+</div>

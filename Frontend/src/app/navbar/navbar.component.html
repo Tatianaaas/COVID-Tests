@@ -1,15 +1,16 @@
 <header class="header">
-	<div class="aside">
-		<div>Logo</div>
-		<div>
-      <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
-      <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Sign Up</a>
-      <a *ngIf="user" mat-button routerLink="/user/show/5eb1d250f140b2324407a962" routerLinkActive="mat-accent">Detalhes</a>
-			<!-- <a *ngIf="!userIsAuthenticated" routerLink="/covtests" routerLinkActive="is-selected">Pedir Teste</a> -->
-		</div>
-	</div>
-	<div>
-		<span *ngIf="user">{{user.username}}</span>
-		<button *ngIf="!userIsAuthenticated" (click)="onLogout()">Logout</button>
-	</div>
+    <div class="aside">
+        <div>Logo</div>
+        <div>
+            <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+            <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Sign Up</a>
+            <a mat-button routerLink="/user/ordertest/5ece95951512ac4990d840a0" routerLinkActive="mat-accent">Criar teste</a>
+            <a *ngIf="user" mat-button routerLink="/user/show/5ece95951512ac4990d840a0" routerLinkActive="mat-accent">Detalhes</a>
+            <!-- <a *ngIf="!userIsAuthenticated" routerLink="/covtests" routerLinkActive="is-selected">Pedir Teste</a> -->
+        </div>
+    </div>
+    <div>
+        <span *ngIf="user">{{user.username}}</span>
+        <button *ngIf="!userIsAuthenticated" (click)="onLogout()">Logout</button>
+    </div>
 </header>

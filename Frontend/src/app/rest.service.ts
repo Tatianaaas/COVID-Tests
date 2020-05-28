@@ -4,6 +4,8 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 import {User} from './Models/User';
+import { Test } from './Models/Test';
+
 const endpoint = 'http://localhost:3000/';
 const httpOptions = {
      headers: new HttpHeaders({
@@ -38,6 +40,10 @@ export class RestService {
     }
     deleteProduct(id: string): Observable<User> {
       return this.http.delete<User>(endpoint + 'admin/delete/' + id, httpOptions);
+      }
+
+      createOrder(id: string, test: Test): Observable<Test> {
+        return this.http.put<Test>(endpoint + 'user/ordertest/' + id, JSON.stringify(test), httpOptions);
       }
 
     }
