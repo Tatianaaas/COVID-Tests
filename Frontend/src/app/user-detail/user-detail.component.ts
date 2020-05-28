@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService } from '../rest.service';
+import { RestService } from '../service/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class UserDetailComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.rest.getUser(this.route.snapshot.params._id).subscribe((data: {}) => {
+    this.rest.getUser(this.route.snapshot.params.userId).subscribe((data: {}) => {
        console.log(data);
        this.user = data;
     });

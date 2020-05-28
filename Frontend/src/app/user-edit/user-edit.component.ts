@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { RestService } from '../rest.service';
+import { RestService } from '../service/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,19 +9,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-  @Input() userData: any = { name: '', username: 0, password: '', role: '' };
+  @Input() userData: any = { name: '', username: 0, password: ''};
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.rest.getUser(this.route.snapshot.params.__id).subscribe((data: {}) => {
+    this.rest.getUser(this.route.snapshot.params.userId).subscribe((data: {}) => {
        console.log(data);
        this.userData = data;
        });
   }
 
   updateUser() {
-     this.rest.updateUser(this.route.snapshot.params.__id, this.userData).subscribe((result) => {
-        this.router.navigate(['user/show/' + result._id]);
+     this.rest.updateUser(this.route.snapshot.params.userId, this.userData).subscribe((result) => {
+       console.log(result._id);
+       this.router.navigate(['user/show/' + result._id]);
        }, (err) => {
           console.log(err);
          });

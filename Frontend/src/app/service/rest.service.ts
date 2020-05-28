@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
-import {User} from './Models/User';
+import {User} from '../Models/User';
 const endpoint = 'http://localhost:3000/';
 const httpOptions = {
      headers: new HttpHeaders({
@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class RestService {
   logout() {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   constructor(private http: HttpClient) { }
@@ -34,7 +34,7 @@ export class RestService {
        }
 
     updateUser(id: string, user: User): Observable<User> {
-      return this.http.put<User>(endpoint + 'user/update/' + id, JSON.stringify(user), httpOptions);
+      return this.http.put<User>(endpoint + 'technic/update/' + id, JSON.stringify(user), httpOptions);
     }
     deleteProduct(id: string): Observable<User> {
       return this.http.delete<User>(endpoint + 'admin/delete/' + id, httpOptions);

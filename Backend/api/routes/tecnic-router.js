@@ -8,7 +8,7 @@ const testController = require("../controllers/testController")
 const technicRouter = express.Router()
 
 //Editar
-technicRouter.put("/update/:userId", session, authorize, userController.updateUser);
+technicRouter.put("/update/:userId", /* session, authorize, */ userController.updateUser);
 
 //Logout
 technicRouter.post("/logout", session, authorize, userController.logout)

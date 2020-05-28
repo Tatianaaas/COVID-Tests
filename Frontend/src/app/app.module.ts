@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatInputModule} from '@angular/material/input';
 import { MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptorService } from './jwt-interceptor.service';
+import { JwtInterceptorService } from './service/jwt-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuardService } from './auth-guard.service';
+import { AuthGuardService } from './service/auth-guard.service';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -31,8 +32,8 @@ const appRoutes: Routes = [
    {
       path: 'user/show/:userId',
       component: UserDetailComponent,
-      data: { title: 'User Details' },
-      canActivate: [AuthGuardService]
+      data: { title: 'User Details' }/* ,
+      canActivate: [AuthGuardService] */
     },
     {
         path: 'signup',
@@ -40,10 +41,10 @@ const appRoutes: Routes = [
         data: { title: 'Add User' }
     },
     {
-        path: 'user/update/:userId',
+        path: 'technic/update/:userId',
         component: UserEditComponent,
-        data: { title: 'Edit User' },
-        canActivate: [AuthGuardService]
+        data: { title: 'Edit User' }/* ,
+        canActivate: [AuthGuardService] */
         },
        {
           path: 'login', component: LoginComponent
@@ -73,7 +74,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatInputModule,
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
   ],
   exports: [
     RouterModule

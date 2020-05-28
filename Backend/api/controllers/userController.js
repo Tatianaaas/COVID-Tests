@@ -52,10 +52,10 @@ const createUser = (req, res, next) => {
         });
 }
 
-const loginUser = (req, res, next) => {
+const loginUser = async (req, res, next) => {
     let fetchedUser;
 
-    User.findOne({ username: req.body.username })
+   await User.findOne({ username: req.body.username })
         .then(user => {
             if (!user) {
                 return res.status(401).json({
