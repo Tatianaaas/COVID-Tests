@@ -20,8 +20,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
-
-
+import { TestComponent } from './test/test.component';
+import { TestAddComponent } from './test-add/test-add.component';
 
 const appRoutes: Routes = [
    {
@@ -46,10 +46,14 @@ const appRoutes: Routes = [
         data: { title: 'Edit User' }/* ,
         canActivate: [AuthGuardService] */
         },
+        {
+          path: 'user/ordertest/:userId',
+          component: TestAddComponent,
+          data: { title: 'Create Test'}
+        },
        {
           path: 'login', component: LoginComponent
         }, // default redirect to home
-
         {
            path: '**', redirectTo: ''
           }
@@ -63,7 +67,9 @@ const appRoutes: Routes = [
     UserDetailComponent,
     UserEditComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    TestComponent,
+    TestAddComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

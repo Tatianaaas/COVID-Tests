@@ -18,6 +18,6 @@ userRouter.put("/update/:userId", session, authorize, userController.updateUser)
 userRouter.post("/logout", session, authorize, userController.logout)
 
 //Efeuar pedido de teste
-userRouter.put("/ordertest/:userId", session, authorize, testController.createOrder);
+userRouter.put("/ordertest/:userId", /*session, authorize,*/ testController.createOrder);
 
 module.exports = userRouter
