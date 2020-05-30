@@ -14,12 +14,12 @@ technicRouter.put("/update/:userId", /* session, authorize, */ userController.up
 technicRouter.post("/logout", session, authorize, userController.logout)
 
 //Registo resultado do primeiro teste
-technicRouter.put("/results/firstTest/:userId", session, authorize, testController.updateFirstResult);
+technicRouter.put("/results/firstTest/:userId", /*session, authorize,*/ testController.updateFirstResult);
 
 //Registo resultado do segundo teste
-technicRouter.put("/results/secondTest/:userId", session, authorize, testController.updateSecondResult);
+technicRouter.put("/results/secondTest/:userId", /*session, authorize,*/ testController.updateSecondResult);
 
 //Agendar primeiro teste
-technicRouter.put("/scheduleTest/:userId", session, authorize, testController.scheduleFirstTest);
+technicRouter.put("/scheduleTest/:userId", /*session, authorize,*/ testController.scheduleFirstTest);
 
 module.exports = technicRouter

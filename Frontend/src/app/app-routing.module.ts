@@ -10,23 +10,26 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 
 
+import { TestDateComponent } from './test-date/test-date.component';
+import { TestResultComponent } from './test-result/test-result.component';
+import { TestListComponent } from './test-list/test-list.component';
 
 const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
     data: { title: 'User List' }
-   },
+  },
   {
-     path: 'user/show/:userId',
-     component: UserDetailComponent,
-     data: { title: 'User Details' }/* ,
-     canActivate: [AuthGuardService] */
+    path: 'user/show/:userId',
+    component: UserDetailComponent,
+    data: { title: 'User Details' }/* ,
+    canActivate: [AuthGuardService] */
    },
    {
-       path: 'signup',
-       component: UserAddComponent,
-       data: { title: 'Add User' }
+      path: 'signup',
+      component: UserAddComponent,
+      data: { title: 'Add User' }
    },
    {
        path: 'technic/update/:userId',
@@ -64,15 +67,43 @@ const routes: Routes = [
         component: AdminComponent,
         data: { title: 'Show User By Admin'}
       },
-      {
-         path: 'login', component: LoginComponent
-       }, // default redirect to home
-       {
-          path: '**', redirectTo: '/login'
-         }
+    {
+      path: 'technic/update/:userId',
+      component: UserEditComponent,
+      data: { title: 'Edit User' }/* ,
+      canActivate: [AuthGuardService] */
+    },
+    {
+      path: 'user/ordertest/:userId',
+      component: TestAddComponent,
+      data: { title: 'Create Test'}
+    },
+    {
+      path: 'technic/results/firstTest/:userId',
+      component: TestResultComponent,
+      data: { title: 'Update Test Results' }
+    },
+    {
+      path: 'technic/results/secondTest/:userId',
+      component: TestResultComponent,
+      data: { title: 'Update Test Results' }
+    },
+    {
+      path: 'admin/tests',
+      component: TestListComponent,
+      data: { title: 'List of Tests' }
+    },
+    {
+        path: 'login', component: LoginComponent
+    }, // default redirect to home
+    {
+        path: '**', redirectTo: '/login'
+    }
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
