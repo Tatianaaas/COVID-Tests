@@ -1,19 +1,25 @@
 <header class="header">
-<div class="aside">
-		<div>Logo</div>
-		<div>
-      <a *ngIf="!userIsAuthenticated" mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
-      <a *ngIf="!userIsAuthenticated" mat-button routerLink="/signup" routerLinkActive="mat-accent">Sign Up</a>
-     <!--  <a mat-button routerLink="/user/ordertest/5ebc3cc1dc088b9764513305" routerLinkActive="mat-accent">Criar teste</a>
-      <a  mat-button routerLink="/user/show/{{user._id}}" routerLinkActive="mat-accent">Detalhes</a> -->
-      <a  *ngIf="!userIsAuthenticated" mat-button routerLink="/admin/updatepass/5ece94ae0fe1281ad863140d" routerLinkActive="mat-accent">Editar Admin</a>
-<!--  <a mat-button routerLink="/user/show/5eb1d250f140b2324407a962" routerLinkActive="mat-accent">Detalhes</a>
-      <a mat-button routerLink="/technic/update/5eb1d250f140b2324407a962" routerLinkActive="mat-accent">Editar</a>
- -->	<a *ngIf="!userIsAuthenticated" routerLink="/covtests" routerLinkActive="is-selected">Pedir Teste</a>
-		</div>
-	</div>
-	<div>
-		<span *ngIf="user">{{user.username}}</span>
-		<button *ngIf="!userIsAuthenticated" (click)="onLogout()">Logout</button>
-	</div>
+    <div class="aside">
+        <div>Logo</div>
+        <div>
+            <a *ngIf="!userIsAuthenticated" mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+            <a *ngIf="!userIsAuthenticated" mat-button routerLink="/signup" routerLinkActive="mat-accent">Sign Up</a>
+            <a mat-button routerLink="/user/ordertest/5ed28b963e72e00d80ca37a3" routerLinkActive="mat-accent">Criar teste</a>
+
+            <!--<a mat-button routerLink="/user/show/{{user._id}}" routerLinkActive="mat-accent">Detalhes</a>-->
+
+            <a *ngIf="!userIsAuthenticated" mat-button routerLink="/admin/updatepass/5ece94ae0fe1281ad863140d" routerLinkActive="mat-accent">Editar Admin</a>
+
+            <!--  <a mat-button routerLink="/user/show/5eb1d250f140b2324407a962" routerLinkActive="mat-accent">Detalhes</a>
+            <a mat-button routerLink="/technic/update/5eb1d250f140b2324407a962" routerLinkActive="mat-accent">Editar</a>
+            -->
+
+            <a *ngIf="!userIsAuthenticated" mat-button routerLink="/technic/scheduleTest/5ed28b963e72e00d80ca37a3" routerLinkActive="mat-accent">Marcar Teste</a>
+            <a *ngIf="!userIsAuthenticated" routerLink="/covtests" routerLinkActive="is-selected">Pedir Teste</a>
+        </div>
+    </div>
+    <div>
+        <span *ngIf="user">{{user.username}}</span>
+        <button *ngIf="!userIsAuthenticated" (click)="onLogout()">Logout</button>
+    </div>
 </header>

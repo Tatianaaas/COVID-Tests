@@ -15,8 +15,8 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class RestService {
 
+export class RestService {
   private _user: User;
   user: BehaviorSubject<User>;
 
@@ -30,37 +30,38 @@ export class RestService {
     this.user = new BehaviorSubject<User>(this._user);
   }
 
-
   private extractData(res: Response) {
-     let body = res;
-     return body || { };
-    }
+    let body = res;
+    return body || { };
+  }
 
-    getUser(id: string): Observable<User> {
-       return this.http.get<User>(endpoint + 'user/show/' + id);
-      }
+  getUser(id: string): Observable<User> {
+    return this.http.get<User>(endpoint + 'user/show/' + id);
+  }
 
-    createUser(user: User): Observable<User> {
-       console.log(user);
-       return this.http.post<User>(endpoint + 'signup', JSON.stringify(user), httpOptions );
-       }
+  createUser(user: User): Observable<User> {
+    console.log(user);
+    return this.http.post<User>(endpoint + 'signup', JSON.stringify(user), httpOptions );
+  }
 
-    updateUser(id: string, user: User): Observable<User> {
-      return this.http.put<User>(endpoint + 'technic/update/' + id, JSON.stringify(user), httpOptions);
-    }
-    deleteProduct(id: string): Observable<User> {
-      return this.http.delete<User>(endpoint + 'admin/delete/' + id, httpOptions);
-      }
+  updateUser(id: string, user: User): Observable<User> {
+    return this.http.put<User>(endpoint + 'technic/update/' + id, JSON.stringify(user), httpOptions);
+  }
 
-      createOrder(id: string, test: Test): Observable<Test> {
-        console.log(id);
-        return this.http.put<Test>(endpoint + 'user/ordertest/' + id, JSON.stringify(test), httpOptions);
-      }
+  deleteProduct(id: string): Observable<User> {
+    return this.http.delete<User>(endpoint + 'admin/delete/' + id, httpOptions);
+  }
 
+  createOrder(id: string, test: Test): Observable<Test> {
+    console.log(id);
+    return this.http.put<Test>(endpoint + 'user/ordertest/' + id, JSON.stringify(test), httpOptions);
+  }
 
-    updateAdminPassword(id: string, password: string): Observable<User> {
-      return this.http.put<User>(endpoint + 'admin/updatepass/:userId' + id, JSON.stringify(password), httpOptions);
-    }
+  updateAdminPassword(id: string, password: string): Observable<User> {
+    return this.http.put<User>(endpoint + 'admin/updatepass/' + id, JSON.stringify(password), httpOptions);
+  }
 
-
-    }
+  scheduleFirstTest(id: string, date: Date): Observable<Test> {
+    return this.http.put<Test>(endpoint + 'technic/scheduleTest/' + id, JSON.stringify(date), httpOptions)
+  }
+}
