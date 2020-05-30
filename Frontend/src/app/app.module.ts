@@ -26,6 +26,8 @@ import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { TestDateComponent } from './test-date/test-date.component';
+import { TestResultComponent } from './test-result/test-result.component';
+import { TestListComponent } from './test-list/test-list.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { TestDateComponent } from './test-date/test-date.component';
     AdminEditComponent,
     AdminComponent,
     AdminUsersComponent,
-    TestDateComponent
+    TestDateComponent,
+    TestResultComponent,
+    TestListComponent
   ],
   imports: [
     BrowserModule,

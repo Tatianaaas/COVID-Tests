@@ -8,6 +8,8 @@ import { TestAddComponent } from './test-add/test-add.component';
 import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { LoginComponent } from './login/login.component';
 import { TestDateComponent } from './test-date/test-date.component';
+import { TestResultComponent } from './test-result/test-result.component';
+import { TestListComponent } from './test-list/test-list.component';
 
 const routes: Routes = [
   {
@@ -50,7 +52,22 @@ const routes: Routes = [
     {
       path: 'technic/scheduleTest/:userId',
       component: TestDateComponent,
-      data: { titl: 'Schedule First Test' }
+      data: { title: 'Schedule First Test' }
+    },
+    {
+      path: 'technic/results/firstTest/:userId',
+      component: TestResultComponent,
+      data: { title: 'Update Test Results' }
+    },
+    {
+      path: 'technic/results/secondTest/:userId',
+      component: TestResultComponent,
+      data: { title: 'Update Test Results' }
+    },
+    {
+      path: 'admin/tests',
+      component: TestListComponent,
+      data: { title: 'List of Tests' }
     },
     {
         path: 'login', component: LoginComponent

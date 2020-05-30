@@ -62,6 +62,18 @@ export class RestService {
   }
 
   scheduleFirstTest(id: string, date: Date): Observable<Test> {
-    return this.http.put<Test>(endpoint + 'technic/scheduleTest/' + id, JSON.stringify(date), httpOptions)
+    return this.http.put<Test>(endpoint + 'technic/scheduleTest/' + id, JSON.stringify(date), httpOptions);
+  }
+
+  updateFirstResult(id: string, primeiroResultado: boolean): Observable<Test> {
+    return this.http.put<Test>(endpoint + 'technic/results/firstTest/' + id, JSON.stringify(primeiroResultado), httpOptions);
+  }
+
+  updateSecondResult(id: string, segundoResultado: boolean): Observable<Test> {
+    return this.http.put<Test>(endpoint + 'technic/results/secondTest/' + id, JSON.stringify(segundoResultado), httpOptions);
+  }
+
+  getOrders(test: Test): Observable<Test> {
+    return this.http.get<Test>(endpoint + 'admin/tests');
   }
 }
