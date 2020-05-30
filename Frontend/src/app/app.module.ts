@@ -22,42 +22,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { TestComponent } from './test/test.component';
 import { TestAddComponent } from './test-add/test-add.component';
+import { AdminEditComponent } from './admin-edit/admin-edit.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 
-const appRoutes: Routes = [
-   {
-     path: 'user',
-     component: UserComponent,
-     data: { title: 'User List' }
-    },
-   {
-      path: 'user/show/:userId',
-      component: UserDetailComponent,
-      data: { title: 'User Details' }/* ,
-      canActivate: [AuthGuardService] */
-    },
-    {
-        path: 'signup',
-        component: UserAddComponent,
-        data: { title: 'Add User' }
-    },
-    {
-        path: 'technic/update/:userId',
-        component: UserEditComponent,
-        data: { title: 'Edit User' }/* ,
-        canActivate: [AuthGuardService] */
-        },
-        {
-          path: 'user/ordertest/:userId',
-          component: TestAddComponent,
-          data: { title: 'Create Test'}
-        },
-       {
-          path: 'login', component: LoginComponent
-        }, // default redirect to home
-        {
-           path: '**', redirectTo: ''
-          }
-];
 
 @NgModule({
   declarations: [
@@ -69,10 +37,12 @@ const appRoutes: Routes = [
     NavbarComponent,
     LoginComponent,
     TestComponent,
-    TestAddComponent
+    TestAddComponent,
+    AdminEditComponent,
+    AdminComponent,
+    AdminUsersComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
     BrowserModule,
     AppRoutingModule,
     FormsModule,

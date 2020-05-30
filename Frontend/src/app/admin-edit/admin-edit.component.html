@@ -1,0 +1,14 @@
+<div *ngIf="user" class="users">
+  <h2><span>Nome: </span>{{user.name | uppercase}}</h2>
+  <h2>Detalhes</h2>
+  <div><span>Username: </span>{{user.username}}</div>
+  <div><span>Role: </span>{{user.role}}</div>
+  <br>
+  <mat-form-field>
+    <mat-label>Password:</mat-label>
+    <input matInput type="password" [(ngModel)]="password" placeholder="Password" required/>
+  </mat-form-field>
+  <div>
+    <button mat-raised-button color="primary" routerLink="/admin/show/{{user._id}}"> Guardar </button>
+  </div>
+</div>

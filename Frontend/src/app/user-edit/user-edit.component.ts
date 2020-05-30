@@ -15,7 +15,6 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.rest.getUser(this.route.snapshot.params.userId).subscribe((data: {}) => {
        console.log(data);
-       this.userData = data;
        });
   }
 

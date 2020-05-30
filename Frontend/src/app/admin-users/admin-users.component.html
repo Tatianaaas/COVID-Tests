@@ -1,0 +1,11 @@
+<form>
+  <mat-form-field class="example-full-width">
+    <mat-label>ID</mat-label>
+    <input matInput  [(ngModel)]="id">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="getUser()">Procurar</button>
+  <button mat-raised-button color="primary" (click)="deleteUser()">Eliminar</button>
+</form>
+<app-user-detail></app-user-detail>
+<!-- <app-user-edit></app-user-edit>
+ -->

@@ -1,18 +1,26 @@
 <div>
   <h2>Create</h2>
   <div>
-      <label>Name:
-        <input type="text" [(ngModel)]="userData.name" placeholder="User Name" required/>
-        </label><br>
-        <label>Username:
-        <input type="number" [(ngModel)]="userData.username" placeholder="Username" required/>
-        </label><br>
-        <label>Password:
-        <input type="password" [(ngModel)]="userData.password" placeholder="Password" required/>
-        </label><br>
-        <label>Tipo:
-        <input type="text" [(ngModel)]="userData.role" placeholder="Role" required/>
-        </label><br>
-      </div>
+    <mat-form-field>
+      <mat-label>Name:</mat-label>
+        <input matInput  type="text" [(ngModel)]="userData.name" placeholder="User Name" required/>
+    </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Username:</mat-label>
+        <input matInput  [(ngModel)]="userData.username" placeholder="Username" required/>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Password:</mat-label>
+        <input matInput type="password" [(ngModel)]="userData.password" placeholder="Password" required/>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Tipo:</mat-label>
+        <input matInput type="text" [(ngModel)]="userData.role" placeholder="Role" required/>
+      </mat-form-field>
+      <br>
         <button mat-raised-button color="primary" (click)="createUser()">Save</button>
+    </div>
 </div>

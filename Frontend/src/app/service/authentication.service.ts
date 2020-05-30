@@ -35,7 +35,8 @@ const httpOptions = {
 
         logout() {
             // remove user from local storage to log user out
-            this.expired= true;
+            this.isAuthenticated = false;
+            this.expired = true;
             localStorage.removeItem('currentUser');
             }
 
@@ -53,4 +54,5 @@ const httpOptions = {
           me(): Observable<any> {
             return this.session;
           }
+
       }

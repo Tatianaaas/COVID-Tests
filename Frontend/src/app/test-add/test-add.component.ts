@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { RestService } from '../rest.service';
+import { RestService } from '../service/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Test } from '../Models/Test';
@@ -14,16 +14,15 @@ import { Test } from '../Models/Test';
 export class TestAddComponent implements OnInit {
   @Input() testData: Test = new Test();
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
-  
+
   ngOnInit(){
       }
 
   createOrder(){
     console.log(this.testData);
-
-    this.rest.createOrder(this.route.snapshot.params.userId, this.testData).subscribe((result: Test) => {
+    this.rest.createOrder(this.route.snapshot.params.userId, this.testData).subscribe((result) => {
         console.log(result);
-        //this.router.navigate(['user/show/' + result._id]);
+        //this.router.navigate(['user/show/' + result.new._id]);
       }, (err) => {
         console.log(err);
       });

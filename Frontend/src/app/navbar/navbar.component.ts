@@ -11,12 +11,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-
+  @Input()
+  user: any ;
   userIsAuthenticated = false;
   private authListenerSubs: Subscription;
 
-  @Input()
-  user: any;
   constructor(private authService: AuthenticationService, private rest: RestService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -24,15 +23,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
-   this.rest.getUser(this.route.snapshot.params.userId).subscribe((data: {}) => {
-       console.log(data);
-       this.user = data;
-       });
   }
-
 
   onLogout() {
     this.authService.logout();
+    this.user = null;
   }
 
   ngOnDestroy() {
