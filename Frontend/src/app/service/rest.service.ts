@@ -48,7 +48,7 @@ export class RestService {
     updateUser(id: string, user: User): Observable<User> {
       return this.http.put<User>(endpoint + 'technic/update/' + id, JSON.stringify(user), httpOptions);
     }
-    deleteProduct(id: string): Observable<User> {
+    deleteUser(id: string): Observable<User> {
       return this.http.delete<User>(endpoint + 'admin/delete/' + id, httpOptions);
       }
 

@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
     this.authServive.login(form.value.username, form.value.password).subscribe((user: any) => {
         if (user && user.token) {
            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            console.log(user.userId);
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.router.navigate([`user/show/${user.userId}`]);
              }

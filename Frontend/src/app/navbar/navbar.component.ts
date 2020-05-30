@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { AuthenticationService } from '../service/authentication.service';
 import { Subscription } from 'rxjs';
 import { RestService } from '../service/rest.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -16,18 +16,26 @@ export class NavbarComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   private authListenerSubs: Subscription;
 
-  constructor(private authService: AuthenticationService, private rest: RestService, private route: ActivatedRoute) { }
+  constructor(private authService: AuthenticationService, private rest: RestService,
+              private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-   this.userIsAuthenticated = this.authService.getIsAuth();
-   this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+    let dados = null;
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
+    dados = JSON.parse(localStorage.getItem('currentUser'));
+    this.rest.getUser(dados.userId).subscribe((data: {}) => {
+      this.user = data;
+   });
   }
 
+
   onLogout() {
-    this.authService.logout();
     this.user = null;
+    this.authService.logout();
+    this.router.navigate(['login']);
   }
 
   ngOnDestroy() {

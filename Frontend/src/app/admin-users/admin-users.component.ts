@@ -25,12 +25,19 @@ export class AdminUsersComponent implements OnInit {
   getUser(){
     console.log(this.id);
     this.rest.getUser(this.id).subscribe((data: {}) => {
-      localStorage.setItem('user', JSON.stringify(data));
       console.log(data);
       this.user = data;
- });
+      });
   }
-  deleteUser(){
 
+
+  selectUser(user: User){
+    this.selectedUser = user;
+  }
+
+  deleteUser(){
+    this.rest.deleteUser(this.id).subscribe((data: {}) => {
+      console.log(data);
+    });
   }
 }

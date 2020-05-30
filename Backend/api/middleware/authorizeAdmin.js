@@ -3,7 +3,7 @@ const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 
 const authorize = async(req, res, next) => {
-    const token = req.header['x-access-token']
+    const token = req.header('Authorization').replace('Bearer ', '')
     const data = jwt.verify(token, 'segredo_para_a_criacao_dos_tokens')
 
     try {

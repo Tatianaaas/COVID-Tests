@@ -27,7 +27,6 @@ const httpOptions = {
         constructor(private http: HttpClient) { }
 
        login(username: number, password: string): Observable<any> {
-          console.log(username, password);
           this.isAuthenticated = true;
           this.expired = false;
           return this.http.post<any>('http://localhost:3000/login', JSON.stringify({ username, password }), httpOptions);
@@ -52,6 +51,7 @@ const httpOptions = {
             return this.authStatusListener.asObservable();
           }
           me(): Observable<any> {
+            console.log(this.session);
             return this.session;
           }
 

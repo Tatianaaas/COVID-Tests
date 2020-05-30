@@ -7,6 +7,7 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import { TestAddComponent } from './test-add/test-add.component';
 import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 
@@ -43,16 +44,31 @@ const routes: Routes = [
          component: AdminEditComponent,
          data: { title: 'Edit Password'}
        },
-       {
+      /*  {
         path: 'admin/update/:userId',
-        component: UserEditComponent,
+        component: AdminComponent,
         data: { title: 'Edit User By Admin'}
+      }, */
+      {
+        path: 'admin/show',
+        component: AdminComponent,
+        data: { title: 'Show User By Admin'}
+      },
+      {
+        path: 'admin/show/:userId',
+        component: AdminComponent,
+        data: { title: 'Show User By Admin'}
+      },
+      {
+        path: 'admin/delete/:userId',
+        component: AdminComponent,
+        data: { title: 'Show User By Admin'}
       },
       {
          path: 'login', component: LoginComponent
        }, // default redirect to home
        {
-          path: '**', redirectTo: ''
+          path: '**', redirectTo: '/login'
          }
 ];
 @NgModule({
