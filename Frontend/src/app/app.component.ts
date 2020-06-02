@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authenticationService.me().subscribe((user) => {
       this.user = user;
+      console.log(this.user);
       if (!this.user) {
         const options = this.authenticationService.expired ? { queryParams: { expired: 'true' } } : undefined;
         this.router.navigate(['/login'], options);

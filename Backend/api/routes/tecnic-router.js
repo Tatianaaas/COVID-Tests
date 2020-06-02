@@ -11,7 +11,7 @@ const technicRouter = express.Router()
 technicRouter.put("/update/:userId", /* session, authorize, */ userController.updateUser);
 
 //Logout
-technicRouter.post("/logout", session, authorize, userController.logout)
+//technicRouter.post("/logout", session, authorize, userController.logout)
 
 //Registo resultado do primeiro teste
 technicRouter.put("/results/firstTest/:userId", /*session, authorize,*/ testController.updateFirstResult);

@@ -13,7 +13,7 @@ apiRouter.post('/login', userController.loginUser);
 //Sign up 
 apiRouter.post('/signup', userController.createUser);
 
-
+apiRouter.post('/logout', userController.logout);
 
 apiRouter.use('/user', userRouter)
 apiRouter.use('/admin', adminRouter)

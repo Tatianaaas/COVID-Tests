@@ -1,0 +1,18 @@
+:host{
+  display: block;
+  margin-top: 1rem;
+}
+
+mat-card{
+  display: flex;
+	justify-content: space-between;
+  align-items: center;
+  height: 30px;
+	padding: 90px;
+	box-sizing: border-box;
+}
+
+
+mat-form-field, .header{
+  padding: 10px;
+}

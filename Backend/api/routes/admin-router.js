@@ -25,7 +25,7 @@ adminRouter.post('/signuptechnics', session, authorize, adminController.createTe
 adminRouter.delete("/delete/:userId", session, authorize, adminController.deleteUser);
 
 //Logout
-adminRouter.post("/logout", session, authorize, userController.logout)
+//adminRouter.post("/logout", session, authorize, userController.logout)
 
 //Obter numero de testes por dia , por pessoa e infetados
 adminRouter.post("/tests/day", session, authorize, testController.getTestsByDay);

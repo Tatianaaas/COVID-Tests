@@ -15,7 +15,7 @@ userRouter.get("/show/:userId", userController.getUserById);
 userRouter.put("/update/:userId", session, authorize, userController.updateUser);
 
 //Logout
-userRouter.post("/logout", session, authorize, userController.logout)
+//userRouter.post("/logout", session, authorize, userController.logout)
 
 //Efeuar pedido de teste
 userRouter.put("/ordertest/:userId", /*session, authorize,*/ testController.createOrder);

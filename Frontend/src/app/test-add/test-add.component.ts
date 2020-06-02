@@ -20,9 +20,10 @@ export class TestAddComponent implements OnInit {
 
   createOrder(){
     console.log(this.testData);
-    this.rest.createOrder(this.route.snapshot.params.userId, this.testData).subscribe((result) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    this.rest.createOrder(user.userId, this.testData).subscribe((result) => {
         console.log(result);
-        //this.router.navigate(['user/show/' + result.new._id]);
+        this.router.navigate(['user/show/' + result._id]);
       }, (err) => {
         console.log(err);
       });

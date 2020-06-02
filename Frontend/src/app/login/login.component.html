@@ -2,7 +2,7 @@
   <form (submit)="login(loginForm)" #loginForm="ngForm">
     <mat-form-field>
       <mat-label>Username</mat-label>
-      <input  matInput name="username"  minlength="9" ngModel  placeholder="Username"  #username="ngModel" required>
+      <input matInput name="username"  minlength="9" ngModel  placeholder="Username"  #username="ngModel" required>
       <mat-hint>{{username.value.length}} / 9</mat-hint>
     </mat-form-field>
     <mat-form-field>

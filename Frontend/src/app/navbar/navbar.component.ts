@@ -15,27 +15,31 @@ export class NavbarComponent implements OnInit, OnDestroy {
   user: any ;
   userIsAuthenticated = false;
   private authListenerSubs: Subscription;
+  sessionService: any;
 
   constructor(private authService: AuthenticationService, private rest: RestService,
               private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    let dados = null;
-    this.userIsAuthenticated = this.authService.getIsAuth();
-    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+     this.userIsAuthenticated = this.authService.getIsAuth();
+     this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
-    dados = JSON.parse(localStorage.getItem('currentUser'));
-    this.rest.getUser(dados.userId).subscribe((data: {}) => {
-      this.user = data;
-   });
+  /*    this.authenticationService.me().subscribe((user) => {
+      this.user = user;
+      console.log(this.user);
+      if (!this.user) {
+        const options = this.authenticationService.expired ? { queryParams: { expired: 'true' } } : undefined;
+        this.router.navigate(['/login'], options);
+      }
+    }); */
   }
 
 
   onLogout() {
     this.user = null;
     this.authService.logout();
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
   }
 
   ngOnDestroy() {

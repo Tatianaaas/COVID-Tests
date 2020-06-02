@@ -1,3 +1,4 @@
+<mat-card>
 <form>
   <mat-form-field class="example-full-width">
     <mat-label>ID</mat-label>
@@ -6,15 +7,14 @@
   <button mat-raised-button color="primary" (click)="getUser()">Procurar</button>
   <button mat-raised-button color="primary" (click)="deleteUser()">Eliminar</button>
 </form>
-
-
 <div *ngIf="user" class="users">
   <h2><span>Nome: </span>{{user.name | uppercase}}</h2>
   <h2>Detalhes</h2>
   <div><span>Username: </span>{{user.username}}</div>
   <div><span>Role: </span>{{user.role}}</div>
   <br>
-  <div>
+</div>
+</mat-card>
 <!--     <app-user-detail [user._Id]="id"></app-user-detail>
  -->    <!-- <app-user-edit></app-user-edit>
  -->
