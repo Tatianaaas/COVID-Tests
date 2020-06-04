@@ -1,17 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {NgModule } from '@angular/core';
+import {FormsModule } from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatInputModule} from '@angular/material/input';
 import { MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptorService } from './service/jwt-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuardService } from './service/auth-guard.service';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -28,6 +28,7 @@ import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { TestDateComponent } from './test-date/test-date.component';
 import { TestResultComponent } from './test-result/test-result.component';
 import { TestListComponent } from './test-list/test-list.component';
+import { TechnicComponent } from './technic/technic.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { TestListComponent } from './test-list/test-list.component';
     AdminUsersComponent,
     TestDateComponent,
     TestResultComponent,
-    TestListComponent
+    TestListComponent,
+    TechnicComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,7 @@ import { TestListComponent } from './test-list/test-list.component';
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
+    MatExpansionModule
   ],
   exports: [
     RouterModule

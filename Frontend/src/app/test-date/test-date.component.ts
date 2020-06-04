@@ -22,7 +22,7 @@ export class TestDateComponent implements OnInit {
   scheduleFirstTest(){
     this.rest.scheduleFirstTest(this.route.snapshot.params.userId, this.testData).subscribe((result) => {
       console.log(result);
-      //this.router.navigate(['user/show/' + result._id]);
+      this.router.navigate(['technic']);
     }, (err) => {
       console.log(err);
     });

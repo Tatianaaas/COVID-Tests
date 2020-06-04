@@ -52,19 +52,19 @@ const createUser = (req, res, next) => {
         });
 }
 
-const loginUser = async (req, res, next) => {
+const loginUser =  (req, res, next) => {
     let fetchedUser;
 
-   await User.findOne({ username: req.body.username })
+    User.findOne({ username: req.body.username })
         .then(user => {
             if (!user) {
                 return res.status(401).json({
                     message: 'Authentication failed'
                 });
             }
-
-            fetchedUser = user;
-            return bcrypt.compare(req.body.password, user.password);
+            if(user){
+                fetchedUser = user;
+                return bcrypt.compare(req.body.password, user.password);}
         })
 
     .then(result => {

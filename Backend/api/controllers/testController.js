@@ -38,6 +38,12 @@ const getOrders = async(req, res) => {
     res.send(testsList)
 }
 
+const getOrdersTech = async(req, res) => {
+    const testsList = await Test.find().sort({ prioridade: -1});
+
+    res.send(testsList)
+}
+
 const getTestsByDay = async(req, res) => {
     let total = 0;
 
@@ -219,6 +225,7 @@ module.exports = {
     createOrder,
     getOrderById,
     getOrders,
+    getOrdersTech,
     getResultById,
     getTestsByDay,
     getTestsByPerson,

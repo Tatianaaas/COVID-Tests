@@ -72,7 +72,15 @@ export class RestService {
     return this.http.put<Test>(endpoint + 'technic/results/secondTest/' + id, JSON.stringify(segundoResultado), httpOptions);
   }
 
-  getOrders(test: Test): Observable<Test> {
+  getOrders(/* test: Test */): Observable<Test> {
     return this.http.get<Test>(endpoint + 'admin/tests');
+  }
+  getOrdersTech(/* test: Test */): Observable<Test> {
+    return this.http.get<Test>(endpoint + 'technic/tests');
+  }
+
+  getOrderById(id: string): Observable<Test> {
+    return this.http.get<Test>(endpoint + 'technic/results/' + id);
+
   }
 }

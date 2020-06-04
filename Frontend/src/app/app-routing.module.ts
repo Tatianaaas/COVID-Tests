@@ -13,6 +13,8 @@ import { AdminComponent } from './admin/admin.component';
 import { TestDateComponent } from './test-date/test-date.component';
 import { TestResultComponent } from './test-result/test-result.component';
 import { TestListComponent } from './test-list/test-list.component';
+import { TechnicComponent } from './technic/technic.component';
+import { AuthGuardService } from './service/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -23,21 +25,15 @@ const routes: Routes = [
   {
     path: 'user/show/:userId',
     component: UserDetailComponent,
-    data: { title: 'User Details' }/* ,
-    canActivate: [AuthGuardService] */
+    data: { title: 'User Details' } ,
+    canActivate: [AuthGuardService]
    },
    {
       path: 'signup',
       component: UserAddComponent,
       data: { title: 'Add User' }
    },
-   {
-       path: 'technic/update/:userId',
-       component: UserEditComponent,
-       data: { title: 'Edit User' }/* ,
-       canActivate: [AuthGuardService] */
-       },
-       {
+    {
          path: 'user/ordertest/:userId',
          component: TestAddComponent,
          data: { title: 'Create Test'}
@@ -45,7 +41,8 @@ const routes: Routes = [
        {
          path: 'admin/updatepass/:userId',
          component: AdminEditComponent,
-         data: { title: 'Edit Password'}
+         data: { title: 'Edit Password'},
+         canActivate: [AuthGuardService]
        },
       /*  {
         path: 'admin/update/:userId',
@@ -70,28 +67,55 @@ const routes: Routes = [
     {
       path: 'technic/update/:userId',
       component: UserEditComponent,
-      data: { title: 'Edit User' }/* ,
-      canActivate: [AuthGuardService] */
+      data: { title: 'Edit User' } ,
+      canActivate: [AuthGuardService]
+    },
+    {
+      path: 'technic/tests',
+      component: TechnicComponent,
+      data: { title: 'Tests' } ,
+      canActivate: [AuthGuardService]
     },
     {
       path: 'user/ordertest/:userId',
       component: TestAddComponent,
-      data: { title: 'Create Test'}
+      data: { title: 'Create Test'},
+      canActivate: [AuthGuardService]
+    },
+    {
+      path: 'technic/scheduleTest/:userId',
+      component: TestDateComponent,
+      data: { title: 'Update Test Results' },
+      canActivate: [AuthGuardService]
+    },
+    {
+      path: 'technic/results/:userId',
+      component: TestResultComponent,
+      data: { title: 'Update Test Results' },
+      canActivate: [AuthGuardService]
     },
     {
       path: 'technic/results/firstTest/:userId',
       component: TestResultComponent,
-      data: { title: 'Update Test Results' }
+      data: { title: 'Update Test Results' },
+      canActivate: [AuthGuardService]
     },
     {
       path: 'technic/results/secondTest/:userId',
       component: TestResultComponent,
-      data: { title: 'Update Test Results' }
+      data: { title: 'Update Test Results' },
+      canActivate: [AuthGuardService]
     },
     {
       path: 'admin/tests',
       component: TestListComponent,
-      data: { title: 'List of Tests' }
+      data: { title: 'List of Tests' },
+      canActivate: [AuthGuardService]
+    },
+    {
+      path: 'technic',
+      component: TechnicComponent,
+      data: { title: 'Tecnico' }
     },
     {
         path: 'login', component: LoginComponent

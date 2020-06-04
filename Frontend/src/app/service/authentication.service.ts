@@ -27,10 +27,26 @@ const httpOptions = {
         constructor(private http: HttpClient) { }
 
        login(username: number, password: string): Observable<any> {
-          this.isAuthenticated = true;
-          this.expired = false;
-          return this.http.post<any>('http://localhost:3000/login', JSON.stringify({ username, password }), httpOptions);
+         this.expired = false;
+         const request: any = this.http.post(
+          'http://localhost:3000/login',
+          {
+            username,
+            password,
+          },
+          httpOptions
+        )
+        .pipe(share());
+         request
+          .subscribe((response) => {
+            const { token, expiresIn, ...user } = response;
+            console.log(user);
+            this.session.next(user);
+            localStorage.setItem('user', JSON.stringify(user) );
+            localStorage.setItem('auth-token', token);
+          });
 
+         return request;
          }
 
         logout() {
