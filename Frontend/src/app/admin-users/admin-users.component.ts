@@ -16,10 +16,9 @@ export class AdminUsersComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.rest.user.subscribe((selectedUser) => {
+   /*  this.rest.user.subscribe((selectedUser) => {
       this.selectedUser = selectedUser;
-      console.log(JSON.stringify(selectedUser));
-    }, (err) => {console.log(err); });
+    }, (err) => {console.log(err); }); */
   }
 
   getUser(){

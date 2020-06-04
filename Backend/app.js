@@ -51,10 +51,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/', apiRouter)
-app.use('/user/', userRouter);
-app.use('/admin/', adminRouter);
-app.use('/technic/', tecnicRouter)
+app.use('/api', apiRouter)
+app.use('/api/user/', userRouter);
+app.use('/api/admin/', adminRouter);
+app.use('/api/technic/', tecnicRouter)
 
 app.listen(PORT, () => {
     console.log(`Server started on http://localhost:${PORT}`)

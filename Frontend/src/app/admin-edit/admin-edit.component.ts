@@ -14,15 +14,15 @@ export class AdminEditComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.rest.getUser(this.route.snapshot.params.userId).subscribe((data: {}) => {
-      console.log(data);
-      this.user = data;
-   });
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user);
   }
 
   updateUser() {
-    this.rest.updateAdminPassword(this.route.snapshot.params.userId, this.password).subscribe((result) => {
-      console.log(result._id);
+    console.log(this.user.userId , this.password);
+    this.rest.updateAdminPassword(this.user.userId, this.password).subscribe((result) => {
+      console.log(result);
+      localStorage.setItem('user', JSON.stringify(result));
       this.router.navigate(['admin/show/' + result._id]);
       }, (err) => {
          console.log(err);

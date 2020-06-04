@@ -9,7 +9,6 @@ import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 
-
 import { TestDateComponent } from './test-date/test-date.component';
 import { TestResultComponent } from './test-result/test-result.component';
 import { TestListComponent } from './test-list/test-list.component';
@@ -49,11 +48,6 @@ const routes: Routes = [
         component: AdminComponent,
         data: { title: 'Edit User By Admin'}
       }, */
-      {
-        path: 'admin/show',
-        component: AdminComponent,
-        data: { title: 'Show User By Admin'}
-      },
       {
         path: 'admin/show/:userId',
         component: AdminComponent,
