@@ -10,14 +10,11 @@ const technicRouter = express.Router()
 //Editar
 technicRouter.put("/update/:userId", /* session, authorize, */ userController.updateUser);
 
-//Logout
-//technicRouter.post("/logout", session, authorize, userController.logout)
-
 //Registo resultado do primeiro teste
-technicRouter.put("/results/firstTest/:userId", session, authorize,testController.updateFirstResult);
+technicRouter.put("/results/firstTest/:userId", session, authorize, testController.updateFirstResult);
 
 //Registo resultado do segundo teste
-technicRouter.put("/results/secondTest/:userId", session, authorize,testController.updateSecondResult);
+technicRouter.put("/results/secondTest/:userId", session, authorize, testController.updateSecondResult);
 //testes 
 technicRouter.get("/tests", testController.getOrdersTech);
 //testes por id

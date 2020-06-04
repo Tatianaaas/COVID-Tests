@@ -39,9 +39,21 @@ const getOrders = async(req, res) => {
 }
 
 const getOrdersTech = async(req, res) => {
-    const testsList = await Test.find().sort({ prioridade: -1});
-
+    const testsList = await Test.find().sort({ prioridade: -1 });
     res.send(testsList)
+}
+
+const totalOrders = (req, res) => {
+    let total = 0;
+
+    Test.count({ Test }, function(err, result) {
+        if (err) {
+            res.send(err)
+        } else {
+            total += result
+            res.json(total)
+        }
+    })
 }
 
 const getTestsByDay = async(req, res) => {
@@ -63,7 +75,6 @@ const getTestsByDay = async(req, res) => {
             res.json(total)
         }
     })
-
 }
 
 const getTestsByPerson = async(req, res) => {
@@ -92,6 +103,19 @@ const getinfetados = (req, res) => {
     let total = 0;
 
     Test.countDocuments({ infetado: true }, function(err, result) {
+        if (err) {
+            res.send(err)
+        } else {
+            total += result
+            res.json(total)
+        }
+    })
+}
+
+const getNaoInfetados = (req, res) => {
+    let total = 0;
+
+    Test.countDocuments({ infetado: false }, function(err, result) {
         if (err) {
             res.send(err)
         } else {
@@ -232,5 +256,7 @@ module.exports = {
     getinfetados,
     scheduleFirstTest,
     updateFirstResult,
-    updateSecondResult
+    updateSecondResult,
+    totalOrders,
+    getNaoInfetados
 }

@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserComponent } from './user/user.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { UserAddComponent } from './user-add/user-add.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
-import { TestAddComponent } from './test-add/test-add.component';
-import { AdminEditComponent } from './admin-edit/admin-edit.component';
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './Components/user/user.component';
+import { UserDetailComponent } from './Components/user-detail/user-detail.component';
+import { UserAddComponent } from './Components/user-add/user-add.component';
+import { UserEditComponent } from './Components/user-edit/user-edit.component';
+import { TestAddComponent } from './Components/test-add/test-add.component';
+import { AdminEditComponent } from './Components/admin-edit/admin-edit.component';
+import { LoginComponent } from './Components/login/login.component';
+import { AdminComponent } from './Components/admin/admin.component';
 
-import { TestDateComponent } from './test-date/test-date.component';
-import { TestResultComponent } from './test-result/test-result.component';
-import { TestListComponent } from './test-list/test-list.component';
-import { TechnicComponent } from './technic/technic.component';
+import { TestDateComponent } from './Components/test-date/test-date.component';
+import { TestResultComponent } from './Components/test-result/test-result.component';
+import { TestListComponent } from './Components/test-list/test-list.component';
+import { TechnicComponent } from './Components/technic/technic.component';
 import { AuthGuardService } from './service/auth-guard.service';
+import { TestUserDetailsComponent } from './Components/test-user-details/test-user-details.component';
 
 const routes: Routes = [
   {
@@ -110,6 +111,11 @@ const routes: Routes = [
       path: 'technic',
       component: TechnicComponent,
       data: { title: 'Tecnico' }
+    },
+    {
+      path: 'user/test/:userId',
+      component: TestUserDetailsComponent,
+      data: { title: 'Test Info' }
     },
     {
         path: 'login', component: LoginComponent

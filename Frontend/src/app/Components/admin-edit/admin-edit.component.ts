@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RestService } from '../service/rest.service';
+import { RestService } from '../../service/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './admin-edit.component.html',
   styleUrls: ['./admin-edit.component.css']
 })
+
 export class AdminEditComponent implements OnInit {
   user: any;
   @Input() password: string;

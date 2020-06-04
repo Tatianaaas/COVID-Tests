@@ -14,21 +14,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { UserAddComponent } from './user-add/user-add.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { LoginComponent } from './login/login.component';
-import { TestComponent } from './test/test.component';
-import { TestAddComponent } from './test-add/test-add.component';
-import { AdminEditComponent } from './admin-edit/admin-edit.component';
-import { AdminComponent } from './admin/admin.component';
-import { AdminUsersComponent } from './admin-users/admin-users.component';
-import { TestDateComponent } from './test-date/test-date.component';
-import { TestResultComponent } from './test-result/test-result.component';
-import { TestListComponent } from './test-list/test-list.component';
-import { TechnicComponent } from './technic/technic.component';
+import { UserComponent } from './Components/user/user.component';
+import { UserAddComponent } from './Components/user-add/user-add.component';
+import { UserDetailComponent } from './Components/user-detail/user-detail.component';
+import { UserEditComponent } from './Components/user-edit/user-edit.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { LoginComponent } from './Components/login/login.component';
+import { TestComponent } from './Components/test/test.component';
+import { TestAddComponent } from './Components/test-add/test-add.component';
+import { AdminEditComponent } from './Components/admin-edit/admin-edit.component';
+import { AdminComponent } from './Components/admin/admin.component';
+import { AdminUsersComponent } from './Components/admin-users/admin-users.component';
+import { TestDateComponent } from './Components/test-date/test-date.component';
+import { TestResultComponent } from './Components/test-result/test-result.component';
+import { TestListComponent } from './Components/test-list/test-list.component';
+import { TechnicComponent } from './Components/technic/technic.component';
+import { TestUserDetailsComponent } from './Components/test-user-details/test-user-details.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { TechnicComponent } from './technic/technic.component';
     TestDateComponent,
     TestResultComponent,
     TestListComponent,
-    TechnicComponent
+    TechnicComponent,
+    TestUserDetailsComponent
   ],
   imports: [
     BrowserModule,

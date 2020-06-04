@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { RestService } from '../service/rest.service';
+import { RestService } from '../../service/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Test } from '../Models/Test';
+import { Test } from '../../Models/Test';
 
 @Component({
   selector: 'app-test-add',
