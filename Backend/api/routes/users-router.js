@@ -12,7 +12,7 @@ const userRouter = express.Router()
 userRouter.get("/show/:userId", userController.getUserById);
 
 //Editar utilizador
-userRouter.put("/update/:userId", session, authorize, userController.updateUser);
+userRouter.put("/update/:userId", /*session, authorize,*/ userController.updateUser);
 
 //Efeuar pedido de teste
 userRouter.put("/ordertest/:userId", /*session, authorize,*/ testController.createOrder);

@@ -1,0 +1,20 @@
+<mat-accordion multi="true" *ngIf="users.length > 0">
+    <mat-expansion-panel *ngFor="let users of users">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{users._id}}
+            </mat-panel-title>
+
+            <mat-panel-description>
+                {{users.name}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <p>{{users.role}}</p>
+
+        <mat-action-row>
+            <button *ngIf="selectedUser.userId !== users._id" mat-button color="primary" (click)="selectedUser(users._id)">Editar</button>
+            <button *ngIf="selectedUser.userId !== users._id" mat-button color="warn" (click)="deleteUser(users._id)">Eliminar</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+</mat-accordion>

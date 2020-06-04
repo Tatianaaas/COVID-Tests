@@ -32,7 +32,7 @@ export class TestResultComponent implements OnInit {
   }
 
   updateSecondResult() {
-    this.rest.updateSecondResult(this.testData._id, this.testData).subscribe((result) => {
+    this.rest.updateSecondResult(this.route.snapshot.params.userId, this.testData).subscribe((result) => {
       console.log(result);
       this.router.navigate(['technic/tests']);
     }, (err) => {

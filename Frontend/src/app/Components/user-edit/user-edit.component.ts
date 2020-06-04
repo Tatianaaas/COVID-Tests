@@ -22,7 +22,7 @@ export class UserEditComponent implements OnInit {
   updateUser() {
       const user = JSON.parse(localStorage.getItem('user'));
       this.rest.updateUser(user.userId, this.userData).subscribe((result) => {
-       console.log(result._id);
+       console.log(result);
        this.router.navigate(['user/show/' + result._id]);
        }, (err) => {
           console.log(err);
