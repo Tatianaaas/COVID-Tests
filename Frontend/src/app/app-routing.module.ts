@@ -109,7 +109,7 @@ const routes: Routes = [
     },
     {
       path: 'technic',
-      component: TechnicComponent,
+      component: UserDetailComponent,
       data: { title: 'Tecnico' }
     },
     {
