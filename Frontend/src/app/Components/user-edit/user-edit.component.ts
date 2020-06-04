@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class UserEditComponent implements OnInit {
-  @Input() userData: any = { name: '', username: 0, password: ''};
+  @Input() userData: any;
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
