@@ -1,15 +1,15 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { AuthenticationService } from '../service/authentication.service';
+import { AuthenticationService } from '../../service/authentication.service';
 import { Subscription } from 'rxjs';
-import { RestService } from '../service/rest.service';
+import { RestService } from '../../service/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit, OnDestroy {
   @Input()
   user: any ;
@@ -23,7 +23,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     //this.me();
   }
-
 
   onLogout() {
     this.user = null;
@@ -45,8 +44,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       }
     });
   } */
+
   ngOnDestroy() {
     this.authListenerSubs.unsubscribe();
   }
-
 }

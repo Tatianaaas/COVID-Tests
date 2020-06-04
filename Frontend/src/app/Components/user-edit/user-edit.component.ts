@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { RestService } from '../service/rest.service';
+import { RestService } from '../../service/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css']
 })
+
 export class UserEditComponent implements OnInit {
   @Input() userData: any = { name: '', username: 0, password: ''};
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
@@ -25,7 +26,6 @@ export class UserEditComponent implements OnInit {
        this.router.navigate(['user/show/' + result._id]);
        }, (err) => {
           console.log(err);
-         });
-         }
-
+      });
+    }
 }

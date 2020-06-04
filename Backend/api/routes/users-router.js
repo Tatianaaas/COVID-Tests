@@ -14,10 +14,10 @@ userRouter.get("/show/:userId", userController.getUserById);
 //Editar utilizador
 userRouter.put("/update/:userId", session, authorize, userController.updateUser);
 
-//Logout
-//userRouter.post("/logout", session, authorize, userController.logout)
-
 //Efeuar pedido de teste
 userRouter.put("/ordertest/:userId", /*session, authorize,*/ testController.createOrder);
+
+//Consultar informações sobre o próprio teste
+userRouter.get("/test/:userId", testController.getOrderById);
 
 module.exports = userRouter

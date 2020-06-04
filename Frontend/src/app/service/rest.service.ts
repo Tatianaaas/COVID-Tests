@@ -48,13 +48,14 @@ export class RestService {
     return this.http.put<User>(endpoint + 'technic/update/' + id, JSON.stringify(user), httpOptions);
   }
 
-    deleteUser(id: string): Observable<User> {
-      return this.http.delete<User>(endpoint + 'admin/delete/' + id, httpOptions);
-      }
-    createOrder(id: string, test: Test): Observable<Test> {
-      console.log(id);
-      return this.http.put<Test>(endpoint + 'user/ordertest/' + id, JSON.stringify(test), httpOptions);
-    }
+  deleteUser(id: string): Observable<User> {
+    return this.http.delete<User>(endpoint + 'admin/delete/' + id, httpOptions);
+  }
+
+  createOrder(id: string, test: Test): Observable<Test> {
+    console.log(id);
+    return this.http.put<Test>(endpoint + 'user/ordertest/' + id, JSON.stringify(test), httpOptions);
+  }
 
   updateAdminPassword(id: string, password: string): Observable<User> {
     return this.http.put<User>(endpoint + 'admin/updatepass/' + id, JSON.stringify(password), httpOptions);
@@ -75,12 +76,16 @@ export class RestService {
   getOrders(/* test: Test */): Observable<Test> {
     return this.http.get<Test>(endpoint + 'admin/tests');
   }
+
   getOrdersTech(/* test: Test */): Observable<Test> {
     return this.http.get<Test>(endpoint + 'technic/tests');
   }
 
   getOrderById(id: string): Observable<Test> {
     return this.http.get<Test>(endpoint + 'technic/results/' + id);
+  }
 
+  getTest(id: string): Observable<Test> {
+    return this.http.get<Test>(endpoint + 'user/test/' + id);
   }
 }

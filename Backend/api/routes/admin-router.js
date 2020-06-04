@@ -24,9 +24,6 @@ adminRouter.post('/signuptechnics', session, authorize, adminController.createTe
 //Eliminar utilizadores
 adminRouter.delete("/delete/:userId", session, authorize, adminController.deleteUser);
 
-//Logout
-//adminRouter.post("/logout", session, authorize, userController.logout)
-
 //Obter numero de testes por dia , por pessoa e infetados
 adminRouter.post("/tests/day", session, authorize, testController.getTestsByDay);
 
@@ -36,7 +33,13 @@ adminRouter.get("/tests/:username", testController.getTestsByPerson);
 //Obter numero total de infetados
 adminRouter.post("/tests/infected", session, authorize, testController.getinfetados);
 
+//Obter numero total de nao infetados
+adminRouter.post("/tests/nonInfected", session, authorize, testController.getNaoInfetados);
+
 //Obter todos os testes realizados
 adminRouter.get("/tests", testController.getOrders);
+
+//Obter numero total de testes
+adminRouter.post("/tests/total", session, authorize, testController.totalOrders);
 
 module.exports = adminRouter

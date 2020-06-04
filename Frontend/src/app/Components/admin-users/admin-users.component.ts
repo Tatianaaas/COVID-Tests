@@ -1,15 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RestService } from '../service/rest.service';
+import { RestService } from '../../service/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../Models/User';
+
+import { User } from '../../Models/User';
 
 @Component({
   selector: 'app-admin-users',
   templateUrl: './admin-users.component.html',
   styleUrls: ['./admin-users.component.css']
 })
-export class AdminUsersComponent implements OnInit {
 
+export class AdminUsersComponent implements OnInit {
   @Input() id: string;
   user: any;
   selectedUser: User;
@@ -29,7 +30,6 @@ export class AdminUsersComponent implements OnInit {
       this.user = data;
       });
   }
-
 
   selectUser(user: User){
     this.selectedUser = user;

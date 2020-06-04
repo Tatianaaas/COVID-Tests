@@ -1,0 +1,17 @@
+<div *ngIf="test" class="tests">
+    <h2><span>Nome: </span>{{test.nomeUtente | uppercase}}</h2>
+    <h2>Detalhes</h2>
+    <div>
+        <span><b>Data do Primeiro Teste: </b></span>{{test.dataPrimeiroTeste}}
+        <br>
+        <span><b>Resultado do Primeiro Teste: </b></span>{{test.primeiroResultado}}
+        <br>
+        <span><b>Data do Segundo Teste: </b></span>{{test.dataSegundoTeste}}
+        <br>
+        <span><b>Resultado do Segundo Teste: </b></span>{{test.segundoResultado}}
+        <br>
+        <span><b>Infetado: </b></span>{{test.infetado}}
+        <br>
+    </div>
+    <br>
+</div>
