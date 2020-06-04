@@ -42,7 +42,7 @@ export class AdminUsersComponent implements OnInit {
 
     this.rest.getListUsers().subscribe((data: {}) => {
       this.users = data;
-    })
+    });
   }
 
   /*

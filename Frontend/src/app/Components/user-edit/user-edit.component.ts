@@ -14,9 +14,9 @@ export class UserEditComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.rest.getUser(this.route.snapshot.params.userId).subscribe((data: {}) => {
+    /* this.rest.getUser(this.route.snapshot.params.userId).subscribe((data: {}) => {
        console.log(data);
-       });
+       }); */
   }
 
   updateUser() {

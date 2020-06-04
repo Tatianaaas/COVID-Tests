@@ -13,7 +13,7 @@
         <p>{{users.role}}</p>
 
         <mat-action-row>
-            <button *ngIf="selectedUser.userId !== users._id" mat-button color="primary" (click)="selectedUser(users._id)">Editar</button>
+            <button *ngIf="selectedUser.userId !== users._id" mat-button color="primary" (click)="selectUser(users._id)">Editar</button>
             <button *ngIf="selectedUser.userId !== users._id" mat-button color="warn" (click)="deleteUser(users._id)">Eliminar</button>
         </mat-action-row>
     </mat-expansion-panel>

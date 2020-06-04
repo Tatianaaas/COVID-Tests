@@ -4,10 +4,4 @@
     <div><span>Username: </span>{{user.username}}</div>
     <div><span>Role: </span>{{user.role}}</div>
     <br>
-
-    <div>
-        <button mat-raised-button color="primary" *ngIf="user && user.role==='TECH'" routerLink="/technic/update/{{user._id}}" routerLinkActive="mat-accent">Editar</button>
-        <button mat-raised-button color="primary" *ngIf="user && user.role==='UTENTE'" routerLink="/technic/update/{{user._id}}" routerLinkActive="mat-accent">Editar</button>
-        <button mat-raised-button color="primary" *ngIf="user && user.role==='ADMIN'" routerLink="/technic/update/{{user._id}}" routerLinkActive="mat-accent">Editar</button>
-    </div>
 </div>

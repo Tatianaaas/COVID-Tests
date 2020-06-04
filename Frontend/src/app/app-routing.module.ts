@@ -18,6 +18,7 @@ import { TestUserDetailsComponent } from './Components/test-user-details/test-us
 import { AdminTestsComponent } from './Components/admin-tests/admin-tests.component';
 import { AdminUsersComponent } from './Components/admin-users/admin-users.component';
 import { UserListComponent } from './Components/user-list/user-list.component';
+import { TestsStatisticsComponent } from './tests-statistics/tests-statistics.component';
 
 const routes: Routes = [
   {
@@ -59,12 +60,12 @@ const routes: Routes = [
   },
   {
     path: 'admin/show/:userId',
-    component: AdminComponent,
+    component: UserDetailComponent,
     data: { title: 'Show User By Admin'}
   },
   {
     path: 'admin/delete/:userId',
-    component: AdminComponent,
+    component: UserListComponent,
     data: { title: 'Show User By Admin'}
   },
   {
@@ -77,6 +78,12 @@ const routes: Routes = [
     path: 'technic/tests',
     component: TechnicComponent,
     data: { title: 'Tests' } ,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'user/update/:userId',
+    component: UserEditComponent,
+    data: { title: 'Create Test'},
     canActivate: [AuthGuardService]
   },
   {
@@ -112,6 +119,35 @@ const routes: Routes = [
   {
     path: 'admin/tests',
     component: AdminTestsComponent,
+    data: { title: 'List of Tests' },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin/statistics',
+    component: TestsStatisticsComponent,
+    data: { title: 'List of Tests' },
+    canActivate: [AuthGuardService]
+  },{
+    path: 'admin/tests/day',
+    component: TestsStatisticsComponent,
+    data: { title: 'List of Tests' },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin/tests/infected',
+    component: TestsStatisticsComponent,
+    data: { title: 'List of Tests' },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin/tests/nonInfected',
+    component: TestsStatisticsComponent,
+    data: { title: 'List of Tests' },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin/tests/total',
+    component: TestsStatisticsComponent,
     data: { title: 'List of Tests' },
     canActivate: [AuthGuardService]
   },

@@ -94,4 +94,22 @@ export class RestService {
   updateUserList(id: string, user: User): Observable<User> {
     return this.http.put<User>(endpoint + 'admin/update/' + id, JSON.stringify(user), httpOptions);
   }
+
+  getTestsDay(data: Date): Observable<Test>{
+    console.log(data);
+    return this.http.post<Test>(endpoint + 'admin/tests/day', JSON.stringify(data), httpOptions);
+  }
+
+  getTestsInfected(): Observable<Test>{
+    return this.http.post<Test>(endpoint + 'admin/tests/infected', httpOptions);
+  }
+  getnonInfected(): Observable<Test>{
+    return this.http.post<Test>(endpoint + 'admin/tests/nonInfected', httpOptions);
+  }
+  getTotalTests(): Observable<Test>{
+    return this.http.post<Test>(endpoint + 'admin/tests/total', httpOptions);
+  }
+  getTotalPerson(username: string): Observable<Test> {
+    return this.http.get<Test>(endpoint + 'admin/tests/' + username, httpOptions);
+  }
 }

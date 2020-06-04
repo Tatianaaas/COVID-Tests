@@ -23,12 +23,11 @@ export class UserListComponent implements OnInit {
     this.rest.getListUsers().subscribe((data: {}) => {
        this.users = data;
     });
-
-    this.selectedUser = localStorage.getItem('user');
     this.getUser();
   }
 
   getUser(){
+    this.selectedUser = localStorage.getItem('user');
     console.log(this.selectedUser.userId);
     this.rest.getUser(this.selectedUser.userId).subscribe((data: {}) => {
       console.log(data);
@@ -43,7 +42,7 @@ export class UserListComponent implements OnInit {
 
   deleteUser(id){
     this.rest.deleteUser(id).subscribe((data: {}) => {
-      console.log(data);
+      this.router.navigate(['/admin/users']);
     });
   }
 }

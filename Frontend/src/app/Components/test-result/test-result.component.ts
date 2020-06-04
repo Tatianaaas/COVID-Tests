@@ -12,13 +12,13 @@ import { Test } from '../../Models/Test';
 })
 
 export class TestResultComponent implements OnInit {
-   @Input() testData: any = { primeiroResultado: null , segundoResultado: null};
+   @Input() testData: any ;
 
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.getOrder();
-    console.log(this.testData);
+    //console.log(this.testData);
   }
 
   updateFirstResult() {

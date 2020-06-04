@@ -4,13 +4,15 @@
         <div>
             <a *ngIf="!user" mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
             <a *ngIf="!user" mat-button routerLink="/signup" routerLinkActive="mat-accent">Sign Up</a>
-            <a *ngIf="user && user.role==='ADMIN'" mat-button routerLink="/admin/show" routerLinkActive="mat-accent">Detalhes Utilizador</a>
+            <a *ngIf="user && user.role==='ADMIN'" mat-button routerLink="/admin/show/{{user.userId}}" routerLinkActive="mat-accent">Detalhes Utilizador</a>
             <a *ngIf="user && user.role==='UTENTE'" mat-button routerLink="/user" routerLinkActive="mat-accent">Utilizador</a>
             <a *ngIf="user && user.role==='TECH'" mat-button routerLink="/technic" routerLinkActive="mat-accent">Tecnico</a>
             <a *ngIf="user && user.role==='TECH'" mat-button routerLink="/technic/tests" routerLinkActive="mat-accent">Lista de Testes</a>
             <a *ngIf="user && user.role==='ADMIN'" mat-button routerLink="/admin/updatepass/{{user.userId}}" routerLinkActive="mat-accent">Editar Admin</a>
             <a *ngIf="user && user.role==='ADMIN'" mat-button routerLink="/admin/tests" routerLinkActive="mat-accent">Lista de Testes</a>
             <a *ngIf="user && user.role==='ADMIN'" mat-button routerLink="/admin/users" routerLinkActive="mat-accent">Lista de Utilizadores</a>
+            <a *ngIf="user && user.role==='ADMIN'" mat-button routerLink="/admin/statistics" routerLinkActive="mat-accent">Estatistica de Dados</a>
+
             <!-- <a mat-button routerLink="/user/show/{{user.userId}}" routerLinkActive="mat-accent">Detalhes</a>
       <a mat-button routerLink="/technic/update/{{user.userId}}" routerLinkActive="mat-accent">Editar</a> -->
             <a *ngIf="user && user.role=='UTENTE'" routerLink="/user/ordertest/{{user.userId}}" routerLinkActive="is-selected">Pedir Teste</a>

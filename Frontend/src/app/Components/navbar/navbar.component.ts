@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 
+
 export class NavbarComponent implements OnInit, OnDestroy {
   @Input()
   user: any ;

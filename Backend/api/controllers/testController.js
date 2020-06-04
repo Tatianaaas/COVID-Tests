@@ -46,7 +46,7 @@ const getOrdersTech = async(req, res) => {
 const totalOrders = (req, res) => {
     let total = 0;
 
-    Test.count({ Test }, function(err, result) {
+    Test.count(function(err, result) {
         if (err) {
             res.send(err)
         } else {

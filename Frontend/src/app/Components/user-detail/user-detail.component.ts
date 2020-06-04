@@ -13,12 +13,16 @@ export class UserDetailComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user.userId);
-    this.rest.getUser(user.userId).subscribe((data: {}) => {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user.userId);
+   /*  this.rest.getUser(user.userId).subscribe((data: {}) => {
        console.log(data);
        this.user = data;
-    });
+    }); */
   }
+
+
+
+
 }
 
