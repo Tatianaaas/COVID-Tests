@@ -36,12 +36,11 @@ export class RestService {
   }
 
   getUser(id: string): Observable<User> {
-    return this.http.get<User>(endpoint + 'user/show/' + id);
+    return this.http.get<User>(endpoint + 'user/show/' + id, httpOptions);
   }
 
   createUser(user: User): Observable<User> {
-    console.log(user);
-    return this.http.post<User>(endpoint + 'signup', JSON.stringify(user), httpOptions );
+    return this.http.post<User>(endpoint + 'signup', JSON.stringify(user), httpOptions);
   }
 
   updateUser(id: string, user: User): Observable<User> {
@@ -53,7 +52,6 @@ export class RestService {
   }
 
   createOrder(id: string, test: Test): Observable<Test> {
-    console.log(id);
     return this.http.put<Test>(endpoint + 'user/ordertest/' + id, JSON.stringify(test), httpOptions);
   }
 
@@ -74,18 +72,26 @@ export class RestService {
   }
 
   getOrders(/* test: Test */): Observable<Test> {
-    return this.http.get<Test>(endpoint + 'admin/tests');
+    return this.http.get<Test>(endpoint + 'admin/tests', httpOptions);
   }
 
   getOrdersTech(/* test: Test */): Observable<Test> {
-    return this.http.get<Test>(endpoint + 'technic/tests');
+    return this.http.get<Test>(endpoint + 'technic/tests', httpOptions);
   }
 
   getOrderById(id: string): Observable<Test> {
-    return this.http.get<Test>(endpoint + 'technic/results/' + id);
+    return this.http.get<Test>(endpoint + 'technic/results/' + id, httpOptions);
   }
 
   getTest(id: string): Observable<Test> {
-    return this.http.get<Test>(endpoint + 'user/test/' + id);
+    return this.http.get<Test>(endpoint + 'user/test/' + id, httpOptions);
+  }
+
+  getListUsers(): Observable<User> {
+    return this.http.get<User>(endpoint + 'admin/users', httpOptions);
+  }
+
+  updateUserList(id: string, user: User): Observable<User> {
+    return this.http.put<User>(endpoint + 'admin/update/' + id, JSON.stringify(user), httpOptions);
   }
 }

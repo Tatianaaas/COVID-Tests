@@ -8,20 +8,21 @@ const testController = require("../controllers/testController")
 const technicRouter = express.Router()
 
 //Editar
-technicRouter.put("/update/:userId", /* session, authorize, */ userController.updateUser);
+technicRouter.put("/update/:userId", /*session, authorize,*/ userController.updateUser);
 
 //Registo resultado do primeiro teste
-technicRouter.put("/results/firstTest/:userId", session, authorize, testController.updateFirstResult);
+technicRouter.put("/results/firstTest/:userId", /*session, authorize,*/ testController.updateFirstResult);
 
 //Registo resultado do segundo teste
-technicRouter.put("/results/secondTest/:userId", session, authorize, testController.updateSecondResult);
+technicRouter.put("/results/secondTest/:userId", /*session, authorize,*/ testController.updateSecondResult);
+
 //testes 
 technicRouter.get("/tests", testController.getOrdersTech);
+
 //testes por id
 technicRouter.get("/results/:userId", testController.getOrderById);
 
-
 //Agendar primeiro teste
-technicRouter.put("/scheduleTest/:userId", session, authorize, testController.scheduleFirstTest);
+technicRouter.put("/scheduleTest/:userId", /*session, authorize,*/ testController.scheduleFirstTest);
 
 module.exports = technicRouter

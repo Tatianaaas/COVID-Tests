@@ -30,6 +30,8 @@ import { TestResultComponent } from './Components/test-result/test-result.compon
 import { TestListComponent } from './Components/test-list/test-list.component';
 import { TechnicComponent } from './Components/technic/technic.component';
 import { TestUserDetailsComponent } from './Components/test-user-details/test-user-details.component';
+import { AdminTestsComponent } from './Components/admin-tests/admin-tests.component';
+import { UserListComponent } from './Components/user-list/user-list.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { TestUserDetailsComponent } from './Components/test-user-details/test-us
     TestResultComponent,
     TestListComponent,
     TechnicComponent,
-    TestUserDetailsComponent
+    TestUserDetailsComponent,
+    AdminTestsComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

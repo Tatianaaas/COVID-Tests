@@ -3,6 +3,7 @@ import { RestService } from '../../service/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from '../../Models/User';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-admin-users',
@@ -11,17 +12,22 @@ import { User } from '../../Models/User';
 })
 
 export class AdminUsersComponent implements OnInit {
-  @Input() id: string;
-  user: any;
-  selectedUser: User;
+  @Input() users: any;
+
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-   /*  this.rest.user.subscribe((selectedUser) => {
+  /*
+    this.rest.user.subscribe((selectedUser) => {
       this.selectedUser = selectedUser;
-    }, (err) => {console.log(err); }); */
+      console.log(JSON.stringify(selectedUser));
+    }, (err) => {console.log(err); });
+    */
+
+    this.getUserList();
   }
 
+  /*
   getUser(){
     console.log(this.id);
     this.rest.getUser(this.id).subscribe((data: {}) => {
@@ -29,7 +35,17 @@ export class AdminUsersComponent implements OnInit {
       this.user = data;
       });
   }
+  */
 
+  getUserList(){
+    this.users = [];
+
+    this.rest.getListUsers().subscribe((data: {}) => {
+      this.users = data;
+    })
+  }
+
+  /*
   selectUser(user: User){
     this.selectedUser = user;
   }
@@ -39,4 +55,5 @@ export class AdminUsersComponent implements OnInit {
       console.log(data);
     });
   }
+  */
 }

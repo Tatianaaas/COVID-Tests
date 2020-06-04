@@ -1,7 +1,7 @@
 <div>
     <h2>Publicação de Resultados</h2>
 
-    <div >
+    <div *ngIf="!testData.primeiroResultado">
         <label>Resultado do Primeiro Teste:
             <br>
             <input type="radio" name="primeiroResultado" [value]="true"  [(ngModel)]="testData.primeiroResultado" /> Positivo
@@ -11,7 +11,7 @@
         <button mat-raised-button color="primary" (click)="updateFirstResult()">Save</button>
     </div>
 
-    <div *ngIf="testData.primeiroResultado && testData.segundoResultado===null" >
+    <div *ngIf="testData.primeiroResultado">
         <label>Resultado do Segundo Teste:
             <br>
             <input type="radio" name="segundoResultado" [value]="true" [(ngModel)]="testData.segundoResultado"  /> Positivo

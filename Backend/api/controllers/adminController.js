@@ -53,8 +53,14 @@ const deleteUser = async(req, res) => {
     res.send("Removal successful!")
 }
 
+const getUsers = async(req, res) => {
+    const userList = await User.find().sort({ role: 1 });
+    res.send(userList)
+}
+
 module.exports = {
     updateAdminPassword,
     createTechnics,
-    deleteUser
+    deleteUser,
+    getUsers
 }

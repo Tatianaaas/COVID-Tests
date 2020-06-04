@@ -14,11 +14,15 @@ import { Test } from '../../Models/Test';
 export class TestListComponent implements OnInit {
   @Input()
   tests: any;
+  user: any;
   // private postsSub: Subscription;
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-
+    const user = JSON.parse(localStorage.getItem('user'));
+    this.rest.getUser(user.userId).subscribe((data: {}) => {
+       this.user = data;
+    });
   }
 
   scheduleTest(id) {
