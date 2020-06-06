@@ -103,12 +103,15 @@ export class RestService {
   getTestsInfected(): Observable<Test>{
     return this.http.post<Test>(endpoint + 'admin/tests/infected', httpOptions);
   }
+
   getnonInfected(): Observable<Test>{
     return this.http.post<Test>(endpoint + 'admin/tests/nonInfected', httpOptions);
   }
+
   getTotalTests(): Observable<Test>{
     return this.http.post<Test>(endpoint + 'admin/tests/total', httpOptions);
   }
+  
   getTotalPerson(username: string): Observable<Test> {
     return this.http.get<Test>(endpoint + 'admin/tests/' + username, httpOptions);
   }

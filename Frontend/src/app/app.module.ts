@@ -32,7 +32,7 @@ import { TechnicComponent } from './Components/technic/technic.component';
 import { TestUserDetailsComponent } from './Components/test-user-details/test-user-details.component';
 import { AdminTestsComponent } from './Components/admin-tests/admin-tests.component';
 import { UserListComponent } from './Components/user-list/user-list.component';
-import { TestsStatisticsComponent } from './tests-statistics/tests-statistics.component';
+import { TestsStatisticsComponent } from './Components/tests-statistics/tests-statistics.component';
 
 
 @NgModule({

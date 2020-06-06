@@ -18,7 +18,7 @@ import { TestUserDetailsComponent } from './Components/test-user-details/test-us
 import { AdminTestsComponent } from './Components/admin-tests/admin-tests.component';
 import { AdminUsersComponent } from './Components/admin-users/admin-users.component';
 import { UserListComponent } from './Components/user-list/user-list.component';
-import { TestsStatisticsComponent } from './tests-statistics/tests-statistics.component';
+import { TestsStatisticsComponent } from './Components/tests-statistics/tests-statistics.component';
 
 const routes: Routes = [
   {
