@@ -6,7 +6,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import {User} from '../Models/User';
 import { Test } from '../Models/Test';
 
-const endpoint = 'http://localhost:3000/api/';
+const endpoint = 'http://localhost:3000/';
 const httpOptions = {
      headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -43,8 +43,16 @@ export class RestService {
     return this.http.post<User>(endpoint + 'signup', JSON.stringify(user), httpOptions);
   }
 
-  updateUser(id: string, user: User): Observable<User> {
-    return this.http.put<User>(endpoint + 'technic/update/' + id, JSON.stringify(user), httpOptions);
+  updateUser(id: string, user: User , currentUser: User): Observable<User> {
+    console.log(user);
+    console.log(currentUser);
+    if (currentUser.role === 'UTENTE'){
+      return this.http.put<User>(endpoint + 'user/update/' + id, JSON.stringify(user), httpOptions);
+    } else if (currentUser.role === 'TECH'){
+      return this.http.put<User>(endpoint + 'technic/update/' + id, JSON.stringify(user), httpOptions);
+    } else if (currentUser.role === 'ADMIN') {
+      return this.http.put<User>(endpoint + 'admin/update/' + id, JSON.stringify(user), httpOptions);
+    }
   }
 
   deleteUser(id: string): Observable<User> {
@@ -111,8 +119,42 @@ export class RestService {
   getTotalTests(): Observable<Test>{
     return this.http.post<Test>(endpoint + 'admin/tests/total', httpOptions);
   }
-  
+
   getTotalPerson(username: string): Observable<Test> {
     return this.http.get<Test>(endpoint + 'admin/tests/' + username, httpOptions);
+  }
+
+  download(id: string){
+    return this.http.get(endpoint + 'user/test/file/' + id, { responseType: 'blob' as 'json'});
+
+  }
+  handleFile(res: any, fileName: string) {
+    const file = new Blob([res], {
+      type: res.type
+    });
+
+    // IE
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(file);
+      return;
+    }
+
+    const blob = window.URL.createObjectURL(file);
+
+    const link = document.createElement('a');
+    link.href = blob;
+    link.download = fileName;
+
+    // link.click();
+    link.dispatchEvent(new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    }));
+
+    setTimeout(() => { // firefox
+      window.URL.revokeObjectURL(blob);
+      link.remove();
+    }, 100);
   }
 }

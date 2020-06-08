@@ -8,7 +8,7 @@ const testController = require("../controllers/testController")
 const technicRouter = express.Router()
 
 //Editar
-technicRouter.put("/update/:userId", /*session, authorize,*/ userController.updateUser);
+technicRouter.put("/update/:userId", session, authorize, userController.updateUser);
 
 //Registo resultado do primeiro teste
 technicRouter.put("/results/firstTest/:userId", /*session, authorize,*/ testController.updateFirstResult);

@@ -33,8 +33,14 @@ export class LoginComponent implements OnInit {
       (user) => {
         this.user = user;
         console.log(this.user);
-        this.router.navigate([`user`]);
-      },
+        if (this.user.role === 'UTENTE'){
+          this.router.navigate(['user']);
+        } else if (this.user.role === 'TECH'){
+          this.router.navigate(['technic']);
+        } else if (this.user.role === 'ADMIN') {
+          this.router.navigate(['admin']);
+        }
+    },
       (error) => {
         if (error.status === 401) {
           this.errors = 'Invalid credentials.';

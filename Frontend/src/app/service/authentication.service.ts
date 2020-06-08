@@ -29,7 +29,7 @@ const httpOptions = {
        login(username: number, password: string): Observable<any> {
          this.expired = false;
          const request: any = this.http.post(
-          'http://localhost:3000/api/login',
+          'http://localhost:3000/login',
           {
             username,
             password,
@@ -60,7 +60,7 @@ const httpOptions = {
             }
 
         register(username: number, password: string): Observable<any>{
-            return this.http.post<any>('http://localhost:3000/api/signup', { username, password });
+            return this.http.post<any>('http://localhost:3000/signup', { username, password });
           }
 
           getIsAuth() {

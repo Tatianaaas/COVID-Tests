@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../service/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
+declare var require: any ;
+const FileSaver = require('file-saver');
 
 @Component({
   selector: 'app-test-user-details',
@@ -21,5 +23,21 @@ export class TestUserDetailsComponent implements OnInit {
        console.log(data);
        this.test = data;
     });
+
   }
+
+  openDoc(id: string){
+
+    //const path = 'C:/Users/tatip/Desktop/Pastas Desktop/materia/PAW/2019-2020/TrabalhoPAW/TrabalhoPAW-master/TrabalhoPAW/Backend/api/docs/';
+    const path = `file:///C:Users/tatip/Desktop/Pastas Desktop/materia/PAW/2019-2020/TrabalhoPAW/TrabalhoPAW-master/TrabalhoPAW/Backend/api/docs/${id}.pdf`;
+    const pdfUrl = path + id + '.pdf';
+    const startPage = 1;
+    console.log(id, path);
+   // window.open(pdfUrl + '#page=' + startPage, '_blank', '', true);
+    //FileSaver.saveAs(path, id);
+    this.rest.download(id).subscribe((res: any) => {
+      this.rest.handleFile(res, 'report.pdf');
+    });
+  }
+
 }

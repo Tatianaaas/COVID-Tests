@@ -20,4 +20,6 @@ userRouter.put("/ordertest/:userId", /*session, authorize,*/ testController.crea
 //Consultar informações sobre o próprio teste
 userRouter.get("/test/:userId", testController.getOrderById);
 
+userRouter.get("/test/file/:userId", testController.download);
+
 module.exports = userRouter

@@ -50,7 +50,7 @@ const createTechnics = (req, res, next) => {
 
 const deleteUser = async(req, res) => {
     const deleteUser = await User.findByIdAndDelete(req.params.userId)
-    res.send("Removal successful!")
+    res.send(deleteUser);
 }
 
 const getUsers = async(req, res) => {

@@ -16,6 +16,10 @@ export class AdminEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
+    this.rest.getUser(this.user.userId).subscribe((result) => {
+      this.user = result;
+      });
+
     console.log(this.user);
   }
 

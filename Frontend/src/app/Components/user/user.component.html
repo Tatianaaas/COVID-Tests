@@ -1,7 +1,10 @@
+
+<mat-card>
 <app-user-detail></app-user-detail>
 <!-- <app-user-edit></app-user-edit> -->
 <div>
   <button mat-raised-button color="primary" *ngIf="userData && userData.role==='TECH'" routerLink="/technic/update/{{userData._id}}" routerLinkActive="mat-accent">Editar</button>
   <button mat-raised-button color="primary" *ngIf="userData && userData.role==='UTENTE'" routerLink="/user/update/{{userData._id}}" routerLinkActive="mat-accent">Editar</button>
-  <button mat-raised-button color="primary" *ngIf="userData && userData.role==='ADMIN'" routerLink="/technic/update/{{userData._id}}" routerLinkActive="mat-accent">Editar</button>
+  <button mat-raised-button color="primary" *ngIf="userData && userData.role==='ADMIN'" routerLink="/admin/update/{{userData._id}}" routerLinkActive="mat-accent">Editar</button>
 </div>
+</mat-card>

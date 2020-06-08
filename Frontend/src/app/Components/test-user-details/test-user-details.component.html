@@ -1,4 +1,4 @@
-<div *ngIf="test" class="tests">
+<mat-card *ngIf="test" class="tests">
     <h2><span>Nome: </span>{{test.nomeUtente | uppercase}}</h2>
     <h2>Detalhes</h2>
     <div>
@@ -12,6 +12,8 @@
         <br>
         <span><b>Infetado: </b></span>{{test.infetado}}
         <br>
+        <br>
+        <button mat-raised-button color="primary" (click)="openDoc(test._id)"> Download do Documento </button>
     </div>
     <br>
-</div>
+</mat-card>

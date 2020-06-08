@@ -1,4 +1,4 @@
-<div *ngIf="user" class="users">
+<mat-card *ngIf="user" class="users">
   <h2><span>Nome: </span>{{user.name | uppercase}}</h2>
   <h2>Detalhes</h2>
   <div><span>Username: </span>{{user.username}}</div>
@@ -10,4 +10,4 @@
   </mat-form-field>
   <br>
     <button mat-raised-button color="primary" (click)="updateUser()"> Guardar </button>
-</div>
+</mat-card>

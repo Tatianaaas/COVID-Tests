@@ -245,6 +245,10 @@ const scheduleFirstTest = async(req, res) => {
     })
 }
 
+const download= (req, res) => {
+    res.download(`./api/docs/${req.params.userId}.pdf`);
+}
+
 module.exports = {
     createOrder,
     getOrderById,
@@ -258,5 +262,6 @@ module.exports = {
     updateFirstResult,
     updateSecondResult,
     totalOrders,
-    getNaoInfetados
+    getNaoInfetados,
+    download
 }

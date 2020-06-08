@@ -60,12 +60,12 @@ const routes: Routes = [
   },
   {
     path: 'admin/show/:userId',
-    component: UserDetailComponent,
+    component: UserComponent,
     data: { title: 'Show User By Admin'}
   },
   {
     path: 'admin/delete/:userId',
-    component: UserListComponent,
+    component: AdminUsersComponent,
     data: { title: 'Show User By Admin'}
   },
   {
@@ -127,7 +127,8 @@ const routes: Routes = [
     component: TestsStatisticsComponent,
     data: { title: 'List of Tests' },
     canActivate: [AuthGuardService]
-  },{
+  },
+  {
     path: 'admin/tests/day',
     component: TestsStatisticsComponent,
     data: { title: 'List of Tests' },
@@ -153,8 +154,13 @@ const routes: Routes = [
   },
   {
     path: 'technic',
-    component: UserDetailComponent,
+    component: UserComponent,
     data: { title: 'Tecnico' }
+  },
+  {
+    path: 'admin',
+    component: UserComponent,
+    data: { title: 'Administrador' }
   },
   {
     path: 'user/test/:userId',

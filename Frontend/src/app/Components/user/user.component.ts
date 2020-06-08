@@ -13,7 +13,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user.userId);
+    //console.log(user.userId);
     this.rest.getUser(user.userId).subscribe((data: {}) => {
        console.log(data);
        this.userData = data;

@@ -10,21 +10,31 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class UserEditComponent implements OnInit {
-  @Input() userData: any;
+  @Input() userData: any = {name: null , password: null};
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    /* this.rest.getUser(this.route.snapshot.params.userId).subscribe((data: {}) => {
+ this.rest.getUser(this.route.snapshot.params.userId).subscribe((data: {}) => {
        console.log(data);
-       }); */
+       this.userData = data;
+       });
+
   }
 
+
+
+
   updateUser() {
-      const user = JSON.parse(localStorage.getItem('user'));
-      this.rest.updateUser(user.userId, this.userData).subscribe((result) => {
-       console.log(result);
-       this.router.navigate(['user/show/' + result._id]);
-       }, (err) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    this.rest.updateUser(this.userData._id, this.userData , user).subscribe((result) => {
+       if (user.role === 'UTENTE'){
+        this.router.navigate(['user']);
+      } else if (user.role === 'TECH'){
+        this.router.navigate(['technic']);
+      } else if (user.role === 'ADMIN') {
+        this.router.navigate(['/admin/users']);
+      }
+           }, (err) => {
           console.log(err);
       });
     }

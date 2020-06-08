@@ -45,16 +45,16 @@ app.use(cors())
 
 app.set('views', path.join(__dirname, './api/views'));
 app.set('view engine', 'ejs');
-
+app.use(express.static(path.join(__dirname, './api/docs')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/api', apiRouter)
-app.use('/api/user/', userRouter);
-app.use('/api/admin/', adminRouter);
-app.use('/api/technic/', tecnicRouter)
+app.use('/', apiRouter)
+app.use('/user/', userRouter);
+app.use('/admin/', adminRouter);
+app.use('/technic/', tecnicRouter)
 
 app.listen(PORT, () => {
     console.log(`Server started on http://localhost:${PORT}`)

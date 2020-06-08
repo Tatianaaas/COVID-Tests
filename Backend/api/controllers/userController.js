@@ -115,8 +115,8 @@ const updateUser = async(req, res) => {
     if (req.body.password) {
         req.body.password = bcrypt.hashSync(req.body.password, 10)
     }
-
-    if (user.role == "UTENTE" || user.role == "TECH") {
+    console.log(user);
+    if (user.role == "UTENTE" || user.role == "TECH" || user.role == "ADMIN" ) {
         const oldUser = await User.findByIdAndUpdate(
             req.params.userId,
             req.body

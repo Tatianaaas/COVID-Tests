@@ -1,37 +1,38 @@
-<div>
+<mat-card>
   <h2>Testes Por Dia</h2>
 
-  <mat-card>
+
       <label>Data:
           <input type="date" name="data" [(ngModel)]="data" placeholder="FirstDate"/>
       </label><br><br>
 
       <button mat-raised-button color="primary" (click)="testsData()">Save</button>
-  </mat-card>
+
+      <br><br>
   <div *ngIf="result">
-    <mat-card>Testes: {{result}}</mat-card>
+    <p>Testes: {{result}}</p>
   </div>
   <div *ngIf="infected">
-    <mat-card>Infetados: {{infected}}</mat-card>
+    <p>Infetados: {{infected}}</p>
   </div>
   <div *ngIf="nonInfected">
-    <mat-card>Não infetados: {{nonInfected}}</mat-card>
+    <p>Não infetados: {{nonInfected}}</p>
   </div>
   <div *ngIf="total">
-    <mat-card>Testes realizados: {{total}}</mat-card>
+    <p>Testes realizados: {{total}}</p>
   </div>
 
-  <mat-card>
+
     <form>
         <mat-form-field class="example-full-width">
-            <mat-label>ID</mat-label>
+            <mat-label>Nome Utente</mat-label>
             <input matInput type="text" [(ngModel)]="id" name="id">
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="getTotalUser()">Procurar</button>
     </form>
-</mat-card>
+
 <div *ngIf="totalUser">
-  <mat-card>Testes realizados por {{id}} : {{totalUser}}</mat-card>
+  <p>Testes realizados por {{id}} : {{totalUser}}</p>
 </div>
 
-</div>
+</mat-card>

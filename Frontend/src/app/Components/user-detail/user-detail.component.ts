@@ -15,10 +15,10 @@ export class UserDetailComponent implements OnInit {
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
     console.log(this.user.userId);
-   /*  this.rest.getUser(user.userId).subscribe((data: {}) => {
+    this.rest.getUser(this.user.userId).subscribe((data: {}) => {
        console.log(data);
        this.user = data;
-    }); */
+    });
   }
 
 

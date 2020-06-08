@@ -37,11 +37,15 @@ export class UserListComponent implements OnInit {
 
   selectUser(id){
     console.log(id);
-    this.router.navigate([`/user/update/${id}`]);
+    this.router.navigate([`/admin/update/${id}`]);
   }
 
   deleteUser(id){
+    console.log(id);
     this.rest.deleteUser(id).subscribe((data: {}) => {
+      this.rest.getListUsers().subscribe((newData: {}) => {
+        this.users = newData;
+     });
       this.router.navigate(['/admin/users']);
     });
   }
