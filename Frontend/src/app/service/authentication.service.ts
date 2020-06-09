@@ -40,7 +40,7 @@ const httpOptions = {
          request
           .subscribe((response) => {
             const { token, expiresIn, ...user } = response;
-            console.log(user);
+            //console.log(user);
             this.session.next(user);
             localStorage.setItem('user', JSON.stringify(user) );
             localStorage.setItem('auth-token', token);

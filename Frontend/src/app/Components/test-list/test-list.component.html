@@ -22,8 +22,8 @@
 
         <mat-action-row>
             <button *ngIf="!test.dataPrimeiroTeste && user.role==='TECH'" mat-button color="warn" (click)="scheduleTest(test._id)">Agendar Teste</button>
-            <button *ngIf="test.dataPrimeiroTeste && user.role==='TECH'" mat-button color="primary" (click)="resultFirst(test._id)">Resultados</button>
-            <!--<button *ngIf="test.dataSegundoTeste || test.dataSegundoTeste" mat-button color="primary" (click)="resultSecond(test._id)">Segundo Resultado</button>-->
+            <button *ngIf="test.dataPrimeiroTeste && (!test.realizadoPrimeiroTeste ||  !test.realizadoSegundoTeste) && user.role==='TECH'" mat-button color="primary" (click)="resultFirst(test._id)">Resultados</button>
+            <!-- <button *ngIf="test.dataSegundoTeste && user.role === 'TECH'" mat-button color="primary" (click)="resultFirst(test._id)">Segundo Resultado</button> -->
         </mat-action-row>
 
     </mat-expansion-panel>

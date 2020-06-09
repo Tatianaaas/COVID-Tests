@@ -22,22 +22,22 @@ adminRouter.get('/show/:userId', userController.getUserById);
 adminRouter.get('/users', adminController.getUsers);
 
 //Criar novos técnicos
-adminRouter.post('/signuptechnics', /*session, authorize,*/ adminController.createTechnics);
+adminRouter.post('/signuptechnics', session, authorize, adminController.createTechnics);
 
 //Eliminar utilizadores
-adminRouter.delete("/delete/:userId", /*session, authorize,*/ adminController.deleteUser);
+adminRouter.delete("/delete/:userId", session, authorize, adminController.deleteUser);
 
 //Obter numero de testes por dia , por pessoa e infetados
-adminRouter.post("/tests/day", /*session, authorize,*/ testController.getTestsByDay);
+adminRouter.post("/tests/day", session, authorize, testController.getTestsByDay);
 
 //Obter numero de testes por pessoa
 adminRouter.get("/tests/:username", testController.getTestsByPerson);
 
 //Obter numero total de infetados
-adminRouter.post("/tests/infected", /*session, authorize,*/ testController.getinfetados);
+adminRouter.post("/tests/infected", session, authorize, testController.getinfetados);
 
 //Obter numero total de nao infetados
-adminRouter.post("/tests/nonInfected", /*session, authorize,*/ testController.getNaoInfetados);
+adminRouter.post("/tests/nonInfected", session, authorize, testController.getNaoInfetados);
 
 //Obter todos os testes realizados
 adminRouter.get("/tests", testController.getOrders);

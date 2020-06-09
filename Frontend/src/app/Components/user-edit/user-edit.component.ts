@@ -14,10 +14,10 @@ export class UserEditComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
- this.rest.getUser(this.route.snapshot.params.userId).subscribe((data: {}) => {
+ /* this.rest.getUser(this.route.snapshot.params.userId).subscribe((data: {}) => {
        console.log(data);
        this.userData = data;
-       });
+       }); */
 
   }
 
@@ -26,7 +26,7 @@ export class UserEditComponent implements OnInit {
 
   updateUser() {
     const user = JSON.parse(localStorage.getItem('user'));
-    this.rest.updateUser(this.userData._id, this.userData , user).subscribe((result) => {
+    this.rest.updateUser(this.route.snapshot.params.userId, this.userData , user).subscribe((result) => {
        if (user.role === 'UTENTE'){
         this.router.navigate(['user']);
       } else if (user.role === 'TECH'){

@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./tests-statistics.component.css']
 })
 export class TestsStatisticsComponent implements OnInit {
-  @Input() data: any;
+  @Input() testData: any = {data: null};
   result: any;
   infected: any;
   nonInfected: any;
@@ -18,16 +18,17 @@ export class TestsStatisticsComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(){
+    this.result = null;
     this.testsInfected();
     this.testsnonInfected();
     this.testsTotal();
   }
 
   testsData(){
-    this.rest.getTestsDay(this.data).subscribe((result) => {
-      console.log(result);
+    this.rest.getTestsDay(this.testData).subscribe((result) => {
+      // console.log(result);
       this.result = result;
-     // this.router.navigate(['admin/statistics']);
+      this.router.navigate(['admin/statistics']);
     }, (err) => {
       console.log(err);
     });
@@ -65,7 +66,7 @@ export class TestsStatisticsComponent implements OnInit {
     this.rest.getTotalPerson(this.id).subscribe((result) => {
       console.log(result);
       this.totalUser = result;
-     // this.router.navigate(['admin/statistics']);
+      //this.router.navigate(['admin/statistics']);
     }, (err) => {
       console.log(err);
     });

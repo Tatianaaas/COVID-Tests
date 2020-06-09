@@ -20,7 +20,7 @@
         </div>
     </div>
     <div>
-        <span *ngIf="user">{{user.userId}}</span>
+        <span *ngIf="user">Bem-vindo/a {{user.name}}</span>
         <button  mat-button color="warn" *ngIf="user" (click)="onLogout()">Logout</button>
     </div>
 </header>

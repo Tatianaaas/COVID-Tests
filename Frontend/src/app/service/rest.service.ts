@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError, tap, share } from 'rxjs/operators';
 
 import {User} from '../Models/User';
 import { Test } from '../Models/Test';
@@ -103,9 +103,9 @@ export class RestService {
     return this.http.put<User>(endpoint + 'admin/update/' + id, JSON.stringify(user), httpOptions);
   }
 
-  getTestsDay(data: Date): Observable<Test>{
-    console.log(data);
-    return this.http.post<Test>(endpoint + 'admin/tests/day', JSON.stringify(data), httpOptions);
+  getTestsDay(test: Test): Observable<Test>{
+    console.log(JSON.stringify(test));
+    return this.http.post<Test>(endpoint + 'admin/tests/day', JSON.stringify(test) , httpOptions);
   }
 
   getTestsInfected(): Observable<Test>{

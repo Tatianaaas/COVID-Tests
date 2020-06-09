@@ -46,7 +46,7 @@ const getOrdersTech = async(req, res) => {
 const totalOrders = (req, res) => {
     let total = 0;
 
-    Test.count(function(err, result) {
+    Test.countDocuments(function(err, result) {
         if (err) {
             res.send(err)
         } else {
@@ -56,10 +56,10 @@ const totalOrders = (req, res) => {
     })
 }
 
-const getTestsByDay = async(req, res) => {
+const getTestsByDay = async (req, res) => {
     let total = 0;
-
-    Test.countDocuments({ dataPrimeiroTeste: req.body.data }, function(err, result) {
+    console.log(req.body.data);
+     Test.countDocuments({ dataPrimeiroTeste: req.body.data}, function(err, result) {
         if (err) {
             res.send(err)
         } else {
@@ -67,14 +67,14 @@ const getTestsByDay = async(req, res) => {
         }
     })
 
-    Test.countDocuments({ dataSegundoTeste: req.body.data }, function(err, result) {
+    Test.countDocuments({ dataSegundoTeste:req.body.data}, function(err, result) {
         if (err) {
             res.send(err)
         } else {
             total += result
-            res.json(total)
         }
-    })
+        res.json(total)
+    })  
 }
 
 const getTestsByPerson = async(req, res) => {
@@ -86,16 +86,19 @@ const getTestsByPerson = async(req, res) => {
         } else {
             total += result
         }
-    })
+        console.log(total);
+       // res.json(total)
 
-    Test.countDocuments({ nomeUtente: req.params.username, realizadoSegundoTest: true }, function(err, result) {
+    })
+    Test.countDocuments({ nomeUtente: req.params.username, realizadoSegundoTeste: true }, function(err, result) {
         if (err) {
             res.send(err)
         } else {
             total += result
 
-            res.json(total)
         }
+        console.log(total);
+        res.json(total)
     })
 }
 
@@ -182,7 +185,7 @@ const updateSecondResult = async(req, res) => {
         }
 
         const oldTest = await Test.findByIdAndUpdate(
-            req.params.userId, { segundoResultado: req.body.segundoResultado, infetado: result, realizadoSegundoTest: true }
+            req.params.userId, { segundoResultado: req.body.segundoResultado, infetado: result, realizadoSegundoTeste: true }
         )
 
         const newTest = await Test.findById(

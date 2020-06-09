@@ -3,14 +3,14 @@
 
 
       <label>Data:
-          <input type="date" name="data" [(ngModel)]="data" placeholder="FirstDate"/>
+          <input format="long" type="date" name="data" [(ngModel)]="testData.data" placeholder="FirstDate"/>
       </label><br><br>
 
       <button mat-raised-button color="primary" (click)="testsData()">Save</button>
 
       <br><br>
-  <div *ngIf="result">
-    <p>Testes: {{result}}</p>
+  <div >
+    <p>Testes no dia {{testData.data}} : {{result}}</p>
   </div>
   <div *ngIf="infected">
     <p>Infetados: {{infected}}</p>
