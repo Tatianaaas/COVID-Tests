@@ -223,6 +223,11 @@ const routes: Routes = [
     data: { title: 'Utentes List' }
   },
   {
+    path: 'admin/signuptechnics',
+    component: AdminComponent,
+    data: { title: 'Sign Up Technics' }
+  },
+  {
     path: 'login',
     component: LoginComponent
   }, // default redirect to home

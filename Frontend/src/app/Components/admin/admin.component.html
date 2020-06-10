@@ -1,1 +1,21 @@
-<app-admin-users ></app-admin-users>
+<mat-card>
+    <h2>Registar Técnicos</h2>
+    <div>
+        <mat-form-field>
+            <mat-label>Name:</mat-label>
+            <input matInput type="text" [(ngModel)]="userData.name" placeholder="User Name" required/>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Username:</mat-label>
+            <input matInput name="username" minlength="9" [(ngModel)]="userData.username" placeholder="Username" required/>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Password:</mat-label>
+            <input matInput type="password" [(ngModel)]="userData.password" placeholder="Password" required/>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" (click)="createTech()">Guardar</button>
+    </div>
+</mat-card>

@@ -152,6 +152,10 @@ export class RestService {
     return this.http.get<Test>(endpoint + 'admin/tests/' + username, httpOptions);
   }
 
+  createTech(user: User): Observable<User> {
+    return this.http.post<User>(endpoint + 'admin/signuptechnics', JSON.stringify(user), httpOptions);
+  }
+
   download(id: string){
     return this.http.get(endpoint + 'user/test/file/' + id, { responseType: 'blob' as 'json'});
   }
