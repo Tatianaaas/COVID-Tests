@@ -19,7 +19,7 @@ adminRouter.put('/updatepass/:userId', session, authorize, adminController.updat
 adminRouter.get('/show/:userId', userController.getUserById);
 
 //Listagem de utilizadores
-adminRouter.get('/users', adminController.getUsers);
+adminRouter.get('/users/all', adminController.getUsers);
 
 //Listagem de todos os administradores
 adminRouter.get('/users/admin', adminController.getAdmin);

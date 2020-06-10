@@ -17,43 +17,42 @@ export class AdminUsersComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-  /*
-    this.rest.user.subscribe((selectedUser) => {
-      this.selectedUser = selectedUser;
-      console.log(JSON.stringify(selectedUser));
-    }, (err) => {console.log(err); });
-    */
-
-    this.getUserList();
+    //this.getUserList();
   }
-
-  /*
-  getUser(){
-    console.log(this.id);
-    this.rest.getUser(this.id).subscribe((data: {}) => {
-      console.log(data);
-      this.user = data;
-      });
-  }
-  */
 
   getUserList(){
     this.users = [];
 
     this.rest.getListUsers().subscribe((data: {}) => {
       this.users = data;
+      this.router.navigate(['/admin/users'])
     });
   }
 
-  /*
-  selectUser(user: User){
-    this.selectedUser = user;
+  getAdminList(){
+    this.users = [];
+
+    this.rest.getListAdmin().subscribe((data: {}) => {
+      this.users = data;
+      this.router.navigate(['/admin/users'])
+    })
   }
 
-  deleteUser(){
-    this.rest.deleteUser(this.id).subscribe((data: {}) => {
-      console.log(data);
-    });
+  getTechnicList(){
+    this.users = [];
+
+    this.rest.getListTechnic().subscribe((data: {}) => {
+      this.users = data;
+      this.router.navigate(['/admin/users'])
+    })
   }
-  */
+
+  getUtenteList(){
+    this.users = [];
+
+    this.rest.getListUtente().subscribe((data: {}) => {
+      this.users = data;
+      this.router.navigate(['/admin/users'])
+    })
+  }
 }

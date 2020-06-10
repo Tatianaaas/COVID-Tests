@@ -194,10 +194,31 @@ const routes: Routes = [
   {
     path: 'admin/users',
     component: AdminUsersComponent,
+    data: { title: 'Users' }
+  },
+  {
+    path: 'admin/users/all',
+    component: AdminUsersComponent,
     data: { title: 'Users List' }
   },
   {
-    path: 'login', component: LoginComponent
+    path: 'admin/users/admin',
+    component: AdminUsersComponent,
+    data: { title: 'Admin List' }
+  },
+  {
+    path: 'admin/users/technic',
+    component: AdminUsersComponent,
+    data: { title: 'Technics List' }
+  },
+  {
+    path: 'admin/users/utente',
+    component: AdminUsersComponent,
+    data: { title: 'Utentes List' }
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }, // default redirect to home
   {
     path: '**', redirectTo: '/login'

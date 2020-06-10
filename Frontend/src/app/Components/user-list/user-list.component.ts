@@ -20,15 +20,18 @@ export class UserListComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    /*
     this.rest.getListUsers().subscribe((data: {}) => {
        this.users = data;
-    });
+    });*/
+
     this.getUser();
   }
 
   getUser(){
     this.selectedUser = localStorage.getItem('user');
     console.log(this.selectedUser.userId);
+
     this.rest.getUser(this.selectedUser.userId).subscribe((data: {}) => {
       console.log(data);
       this.selectedUser = data;
@@ -46,7 +49,8 @@ export class UserListComponent implements OnInit {
       this.rest.getListUsers().subscribe((newData: {}) => {
         this.users = newData;
      });
-      this.router.navigate(['/admin/users']);
+
+      this.router.navigate(['/admin/users/all']);
     });
   }
 }

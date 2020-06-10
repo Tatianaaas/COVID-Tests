@@ -1,5 +1,10 @@
-
 <h2>Utilizadores</h2>
+
+<button mat-button color="primary" (click)="getUserList()">Todos</button>
+<button mat-button color="primary" (click)="getAdminList()">Administradores</button>
+<button mat-button color="primary" (click)="getTechnicList()">Técnicos</button>
+<button mat-button color="primary" (click)="getUtenteList()">Utentes</button>
+
 <app-user-list [users]="users"></app-user-list>
 
 <!--

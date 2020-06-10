@@ -98,7 +98,7 @@ export class RestService {
   getOrdersTechDates(): Observable<Test> {
     return this.http.get<Test>(endpoint + 'technic/tests/dates', httpOptions);
   }
-  
+
   getOrderById(id: string): Observable<Test> {
     return this.http.get<Test>(endpoint + 'technic/results/' + id, httpOptions);
   }
@@ -108,7 +108,19 @@ export class RestService {
   }
 
   getListUsers(): Observable<User> {
-    return this.http.get<User>(endpoint + 'admin/users', httpOptions);
+    return this.http.get<User>(endpoint + 'admin/users/all', httpOptions);
+  }
+
+  getListAdmin(): Observable<User> {
+    return this.http.get<User>(endpoint + 'admin/users/admin', httpOptions);
+  }
+
+  getListTechnic(): Observable<User> {
+    return this.http.get<User>(endpoint + 'admin/users/technic', httpOptions);
+  }
+
+  getListUtente(): Observable<User> {
+    return this.http.get<User>(endpoint + 'admin/users/utente', httpOptions);
   }
 
   updateUserList(id: string, user: User): Observable<User> {
@@ -138,8 +150,8 @@ export class RestService {
 
   download(id: string){
     return this.http.get(endpoint + 'user/test/file/' + id, { responseType: 'blob' as 'json'});
-
   }
+
   handleFile(res: any, fileName: string) {
     const file = new Blob([res], {
       type: res.type

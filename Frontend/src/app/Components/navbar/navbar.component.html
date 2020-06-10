@@ -1,6 +1,6 @@
 <header class="header">
     <div class="aside">
- <div><img src="../../images/logo.png"></div>
+        <div><img src="../../images/logo.png"></div>
         <div>
             <a *ngIf="!user" mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
             <a *ngIf="!user" mat-button routerLink="/signup" routerLinkActive="mat-accent">Sign Up</a>
@@ -21,6 +21,6 @@
     </div>
     <div>
         <span *ngIf="user">Bem-vindo/a {{user.name}}</span>
-        <button  mat-button color="warn" *ngIf="user" (click)="onLogout()">Logout</button>
+        <button mat-button color="warn" *ngIf="user" (click)="onLogout()">Logout</button>
     </div>
 </header>
