@@ -1,19 +1,17 @@
 <mat-card>
     <h2>Testes Por Dia</h2>
 
-    <mat-label><b>Data:</b>
+    <mat-label><b>Data: </b>
         <input format="long" type="date" name="data" [(ngModel)]="testData.data" placeholder="FirstDate" />
     </mat-label>
 
     <br><br>
 
-    <button mat-raised-button color="primary" (click)="testsData()">Save</button>
+    <button mat-raised-button color="primary" (click)="testsData()">Pesquisar</button>
 
     <br><br>
 
-    <div>
-        <p><b>Testes no dia {{testData.data}} :</b> {{result}}</p>
-    </div>
+    <p><b>Testes no dia {{testData.data}} :</b> {{result}}</p>
 
     <div *ngIf="infected">
         <p><b>Infetados:</b> {{infected}}</p>
@@ -32,7 +30,7 @@
             <mat-label>Nome Utente</mat-label>
             <input matInput type="text" [(ngModel)]="id" name="id">
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="getTotalUser()">Procurar</button>
+        <button mat-raised-button color="primary" (click)="getTotalUser()">Pesquisar</button>
     </form>
 
     <div *ngIf="totalUser">
