@@ -6,7 +6,6 @@ const fs = require('fs');
 const createOrder = async(req, res, next) => {
     let localDate;
     let dataPrimeiroTeste;
-    console.log(req.body.trabalhoLocalRisco)
 
     if (req.body.trabalhoLocalRisco == true) {
         localDate = moment();
@@ -61,6 +60,7 @@ const getOrdersTechSecondResult = async(req, res) => {
 const getOrdersTechDates = async(req, res) => {
     const testsListFirstDate = await Test.find({ "dataPrimeiroTeste": "" }).sort({ prioridade: -1 });
     const testsListSecondDate = await Test.find({ "dataSegundoTeste": "" }).sort({ prioridade: -1 });
+
     testsListFirstDate.push(testsListSecondDate);
     res.send(testsListFirstDate)
 }
@@ -80,7 +80,6 @@ const totalOrders = (req, res) => {
 
 const getTestsByDay = async(req, res) => {
     let total = 0;
-    console.log(req.body.data);
     Test.countDocuments({ dataPrimeiroTeste: req.body.data }, function(err, result) {
         if (err) {
             res.send(err)
@@ -108,18 +107,15 @@ const getTestsByPerson = async(req, res) => {
         } else {
             total += result
         }
-        console.log(total);
-        // res.json(total)
-
     })
+
     Test.countDocuments({ nomeUtente: req.params.username, realizadoSegundoTeste: true }, function(err, result) {
         if (err) {
             res.send(err)
         } else {
             total += result
-
         }
-        console.log(total);
+
         res.json(total)
     })
 }
@@ -152,12 +148,9 @@ const getNaoInfetados = (req, res) => {
 
 const getOrderById = async(req, res) => {
     try {
-        console.log('ID', req.params.userId)
         const orderResult = await Test.findById(req.params.userId);
-        console.log(orderResult)
         res.send(orderResult)
     } catch (e) {
-        console.error(e)
         res.status(404)
         res.send(null)
     }
@@ -165,12 +158,9 @@ const getOrderById = async(req, res) => {
 
 const getResultById = async(req, res) => {
     try {
-        console.log('ID', req.params.userId)
         const testResult = await Test.findById(req.params.userId);
-        console.log(testResult.resultado)
         res.send(testResult.resultado)
     } catch (e) {
-        console.error(e)
         res.status(404)
         res.send(null)
     }

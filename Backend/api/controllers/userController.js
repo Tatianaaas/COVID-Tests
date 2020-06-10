@@ -52,7 +52,7 @@ const createUser = (req, res, next) => {
         });
 }
 
-const loginUser =  (req, res, next) => {
+const loginUser = (req, res, next) => {
     let fetchedUser;
 
     User.findOne({ username: req.body.username })
@@ -62,9 +62,10 @@ const loginUser =  (req, res, next) => {
                     message: 'Authentication failed'
                 });
             }
-            if(user){
+            if (user) {
                 fetchedUser = user;
-                return bcrypt.compare(req.body.password, user.password);}
+                return bcrypt.compare(req.body.password, user.password);
+            }
         })
 
     .then(result => {
@@ -99,11 +100,9 @@ const loginUser =  (req, res, next) => {
 
 const getUserById = async(req, res) => {
     try {
-        console.log('ID', req.params.userId)
         const userResult = await User.findById(req.params.userId);
         res.send(userResult)
     } catch (e) {
-        console.error(e)
         res.status(404)
         res.send(null)
     }
@@ -115,8 +114,8 @@ const updateUser = async(req, res) => {
     if (req.body.password) {
         req.body.password = bcrypt.hashSync(req.body.password, 10)
     }
-    console.log(user);
-    if (user.role == "UTENTE" || user.role == "TECH" || user.role == "ADMIN" ) {
+
+    if (user.role == "UTENTE" || user.role == "TECH" || user.role == "ADMIN") {
         const oldUser = await User.findByIdAndUpdate(
             req.params.userId,
             req.body
@@ -125,9 +124,11 @@ const updateUser = async(req, res) => {
         const newUser = await User.findById(
             req.params.userId,
         )
+
         const oldTest = await Test.findByIdAndUpdate(req.params.userId, {
             nomeUtente: req.body.name
         })
+
         const newTest = await Test.findById(
             req.params.userId,
         )
@@ -144,7 +145,6 @@ const updateUser = async(req, res) => {
 }
 
 const logout = (req, res) => {
-
     res.status(200).send({ auth: false, token: null });
 }
 
