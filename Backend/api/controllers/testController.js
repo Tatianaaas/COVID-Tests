@@ -44,21 +44,26 @@ const getOrdersTech = async(req, res) => {
 }
 
 const getOrdersTechInfected = async(req, res) => {
-    const testsList = await Test.find({"infetado": true}).sort({ prioridade: -1 });
+    const testsList = await Test.find({ "infetado": true }).sort({ prioridade: -1 });
     res.send(testsList)
 }
 
-const getOrdersTechDone = async(req, res) => {
-    const testsList = await Test.find({"realizadoSegundoTeste": true, "realizadoPrimeiroTeste": true}).sort({ prioridade: -1 });
+const getOrdersTechFirstResult = async(req, res) => {
+    const testsList = await Test.find({ "primeiroResultado": null }).sort({ prioridade: -1 });
+    res.send(testsList);
+}
+
+const getOrdersTechSecondResult = async(req, res) => {
+    const testsList = await Test.find({ "segundoResultado": null, "realizadoPrimeiroTeste": true }).sort({ prioridade: -1 });
     res.send(testsList)
-} 
+}
 
 const getOrdersTechDates = async(req, res) => {
-    const testsListFirstDate = await Test.find({"dataPrimeiroTeste": ""}).sort({ prioridade: -1 });
-    const testsListSecondDate = await Test.find({"dataSegundoTeste": ""}).sort({ prioridade: -1 });
+    const testsListFirstDate = await Test.find({ "dataPrimeiroTeste": "" }).sort({ prioridade: -1 });
+    const testsListSecondDate = await Test.find({ "dataSegundoTeste": "" }).sort({ prioridade: -1 });
     testsListFirstDate.push(testsListSecondDate);
     res.send(testsListFirstDate)
-} 
+}
 
 const totalOrders = (req, res) => {
     let total = 0;
@@ -73,10 +78,10 @@ const totalOrders = (req, res) => {
     })
 }
 
-const getTestsByDay = async (req, res) => {
+const getTestsByDay = async(req, res) => {
     let total = 0;
     console.log(req.body.data);
-     Test.countDocuments({ dataPrimeiroTeste: req.body.data}, function(err, result) {
+    Test.countDocuments({ dataPrimeiroTeste: req.body.data }, function(err, result) {
         if (err) {
             res.send(err)
         } else {
@@ -84,14 +89,14 @@ const getTestsByDay = async (req, res) => {
         }
     })
 
-    Test.countDocuments({ dataSegundoTeste:req.body.data}, function(err, result) {
+    Test.countDocuments({ dataSegundoTeste: req.body.data }, function(err, result) {
         if (err) {
             res.send(err)
         } else {
             total += result
         }
         res.json(total)
-    })  
+    })
 }
 
 const getTestsByPerson = async(req, res) => {
@@ -104,7 +109,7 @@ const getTestsByPerson = async(req, res) => {
             total += result
         }
         console.log(total);
-       // res.json(total)
+        // res.json(total)
 
     })
     Test.countDocuments({ nomeUtente: req.params.username, realizadoSegundoTeste: true }, function(err, result) {
@@ -265,7 +270,7 @@ const scheduleFirstTest = async(req, res) => {
     })
 }
 
-const download= (req, res) => {
+const download = (req, res) => {
     res.download(`./api/docs/${req.params.userId}.pdf`);
 }
 
@@ -285,6 +290,7 @@ module.exports = {
     getNaoInfetados,
     download,
     getOrdersTechInfected,
-    getOrdersTechDone,
+    getOrdersTechFirstResult,
+    getOrdersTechSecondResult,
     getOrdersTechDates
 }

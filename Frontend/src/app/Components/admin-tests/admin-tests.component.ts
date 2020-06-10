@@ -20,9 +20,10 @@ export class AdminTestsComponent implements OnInit {
 
   getTests() {
     this.tests = [];
-    this.rest.getOrdersTech().subscribe((data: {}) => {
-       console.log(data);
+
+    this.rest.getOrders().subscribe((data: {}) => {
        this.tests = data;
-        });
-        }
+       this.router.navigate(['/admin/tests'])
+    });
+  }
 }

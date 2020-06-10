@@ -99,7 +99,13 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'technic/tests/done',
+    path: 'technic/tests/first',
+    component: TechnicComponent,
+    data: { title: 'Tests' } ,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'technic/tests/second',
     component: TechnicComponent,
     data: { title: 'Tests' } ,
     canActivate: [AuthGuardService]

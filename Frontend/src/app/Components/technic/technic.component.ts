@@ -15,7 +15,8 @@ import { User } from '../../Models/User';
 export class TechnicComponent implements OnInit {
   @Input() id: number;
   tests: any ;
-  opcao: string ;
+  opcao: string;
+  
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -24,44 +25,51 @@ export class TechnicComponent implements OnInit {
 
   getTestsInfected() {
     this.tests = [];
+
     this.rest.getOrdersTechInfected().subscribe((data: {}) => {
         console.log(data);
         this.tests = data;
         this.router.navigate(['/technic/tests']);
-
-         });
-         }
-
+    });
+  }
 
   getTests() {
     this.tests = [];
+
     this.rest.getOrdersTech().subscribe((data: {}) => {
         console.log(data);
         this.tests = data;
         this.router.navigate(['/technic/tests']);
-
-         });
-         }
-
+    });
+  }
 
   getTestsNoDate() {
-  this.tests = [];
-  this.rest.getOrdersTechDates().subscribe((data: {}) => {
+    this.tests = [];
+
+    this.rest.getOrdersTechDates().subscribe((data: {}) => {
       console.log(data);
       this.tests = data;
       this.router.navigate(['/technic/tests']);
-
-        });
-        }
+    });
+  }
       
+  getTestsFirst() {
+    this.tests = [];
 
-  getTestsDone() {
-  this.tests = [];
-  this.rest.getOrdersTechDone().subscribe((data: {}) => {
+    this.rest.getOrdersTechFirst().subscribe((data: {}) => {
       console.log(data);
       this.tests = data;
       this.router.navigate(['/technic/tests']);
+    });
+  }
 
-        });
-        }
+  getTestsSecond() {
+    this.tests = [];
+
+    this.rest.getOrdersTechSecond().subscribe((data: {}) => {
+      console.log(data);
+      this.tests = data;
+      this.router.navigate(['/technic/tests']);
+    });
+  }
 }

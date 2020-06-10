@@ -91,8 +91,12 @@ export class RestService {
     return this.http.get<Test>(endpoint + 'technic/tests/infected', httpOptions);
   }
 
-  getOrdersTechDone(): Observable<Test> {
-    return this.http.get<Test>(endpoint + 'technic/tests/done', httpOptions);
+  getOrdersTechFirst(): Observable<Test> {
+    return this.http.get<Test>(endpoint + 'technic/tests/first', httpOptions);
+  }
+
+  getOrdersTechSecond(): Observable<Test> {
+    return this.http.get<Test>(endpoint + 'technic/tests/second', httpOptions);
   }
 
   getOrdersTechDates(): Observable<Test> {
