@@ -1,7 +1,7 @@
 <header class="header">
     <div class="aside">
-        <div><img src="../../images/logo.png"></div>
-        <div>
+        <div class="image"><img src="../../../assets/images/logo.png" width="90" height="51"></div>
+        <div class="options">
             <a *ngIf="!user" mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
             <a *ngIf="!user" mat-button routerLink="/signup" routerLinkActive="mat-accent">Sign Up</a>
             <a *ngIf="user && user.role==='ADMIN'" mat-button routerLink="/admin/show/{{user.userId}}" routerLinkActive="mat-accent">Detalhes Utilizador</a>
