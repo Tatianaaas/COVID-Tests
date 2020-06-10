@@ -1,2 +1,9 @@
 <h2> Testes</h2>
+
+<button mat-button color="primary" (click)="getTestsInfected()">Infetados</button>
+<button mat-button color="primary" (click)="getTests()">Todos</button>
+<button mat-button color="primary" (click)="getTestsDone()">Resultados</button>
+<button mat-button color="primary" (click)="getTestsNoDate()">Sem Datas Definidas</button>
+
+
 <app-test-list [tests]="tests"></app-test-list>

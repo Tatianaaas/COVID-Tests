@@ -83,10 +83,18 @@ export class RestService {
     return this.http.get<Test>(endpoint + 'admin/tests', httpOptions);
   }
 
-  getOrdersTech(/* test: Test */): Observable<Test> {
-    return this.http.get<Test>(endpoint + 'technic/tests', httpOptions);
+  getOrdersTech(): Observable<Test> {
+    return this.http.get<Test>(endpoint + 'technic/tests/all', httpOptions);
   }
-
+  getOrdersTechInfected(): Observable<Test> {
+    return this.http.get<Test>(endpoint + 'technic/tests/infected', httpOptions);
+  }
+  getOrdersTechDone(): Observable<Test> {
+    return this.http.get<Test>(endpoint + 'technic/tests/done', httpOptions);
+  }
+  getOrdersTechDates(): Observable<Test> {
+    return this.http.get<Test>(endpoint + 'technic/tests/dates', httpOptions);
+  }
   getOrderById(id: string): Observable<Test> {
     return this.http.get<Test>(endpoint + 'technic/results/' + id, httpOptions);
   }

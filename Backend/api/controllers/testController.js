@@ -43,6 +43,23 @@ const getOrdersTech = async(req, res) => {
     res.send(testsList)
 }
 
+const getOrdersTechInfected = async(req, res) => {
+    const testsList = await Test.find({"infetado": true}).sort({ prioridade: -1 });
+    res.send(testsList)
+}
+
+const getOrdersTechDone = async(req, res) => {
+    const testsList = await Test.find({"realizadoSegundoTeste": true, "realizadoPrimeiroTeste": true}).sort({ prioridade: -1 });
+    res.send(testsList)
+} 
+
+const getOrdersTechDates = async(req, res) => {
+    const testsListFirstDate = await Test.find({"dataPrimeiroTeste": ""}).sort({ prioridade: -1 });
+    const testsListSecondDate = await Test.find({"dataSegundoTeste": ""}).sort({ prioridade: -1 });
+    testsListFirstDate.push(testsListSecondDate);
+    res.send(testsListFirstDate)
+} 
+
 const totalOrders = (req, res) => {
     let total = 0;
 
@@ -266,5 +283,8 @@ module.exports = {
     updateSecondResult,
     totalOrders,
     getNaoInfetados,
-    download
+    download,
+    getOrdersTechInfected,
+    getOrdersTechDone,
+    getOrdersTechDates
 }

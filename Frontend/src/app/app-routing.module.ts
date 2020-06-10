@@ -81,6 +81,30 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
+    path: 'technic/tests/infected',
+    component: TechnicComponent,
+    data: { title: 'Tests' } ,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'technic/tests/all',
+    component: TechnicComponent,
+    data: { title: 'Tests' } ,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'technic/tests/dates',
+    component: TechnicComponent,
+    data: { title: 'Tests' } ,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'technic/tests/done',
+    component: TechnicComponent,
+    data: { title: 'Tests' } ,
+    canActivate: [AuthGuardService]
+  },
+  {
     path: 'user/update/:userId',
     component: UserEditComponent,
     data: { title: 'Create Test'},

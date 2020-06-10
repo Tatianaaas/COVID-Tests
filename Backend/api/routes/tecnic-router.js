@@ -17,7 +17,10 @@ technicRouter.put("/results/firstTest/:userId", session, authorize, testControll
 technicRouter.put("/results/secondTest/:userId", session, authorize,testController.updateSecondResult);
 
 //testes 
-technicRouter.get("/tests", testController.getOrdersTech);
+technicRouter.get("/tests/all", session, authorize, testController.getOrdersTech);
+technicRouter.get("/tests/infected", session, authorize, testController.getOrdersTechInfected);
+technicRouter.get("/tests/done", session, authorize, testController.getOrdersTechDone);
+technicRouter.get("/tests/dates", session, authorize, testController.getOrdersTechDates);
 
 //testes por id
 technicRouter.get("/results/:userId", testController.getOrderById);

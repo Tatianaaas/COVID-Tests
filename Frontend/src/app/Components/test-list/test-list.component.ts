@@ -32,4 +32,11 @@ export class TestListComponent implements OnInit {
   resultFirst(id) {
   this.router.navigate([`/technic/results/${id}`]);
   }
+
+  openDoc(id){
+    console.log(id);
+    this.rest.download(id).subscribe((res: any) => {
+      this.rest.handleFile(res, `${id}.pdf`);
+    });
+  }
 }

@@ -15,17 +15,53 @@ import { User } from '../../Models/User';
 export class TechnicComponent implements OnInit {
   @Input() id: number;
   tests: any ;
+  opcao: string ;
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.getTests();
+    //this.getTests();
   }
 
-  getTests() {
-     this.tests = [];
-     this.rest.getOrdersTech().subscribe((data: {}) => {
+  getTestsInfected() {
+    this.tests = [];
+    this.rest.getOrdersTechInfected().subscribe((data: {}) => {
         console.log(data);
         this.tests = data;
+        this.router.navigate(['/technic/tests']);
+
          });
          }
+
+
+  getTests() {
+    this.tests = [];
+    this.rest.getOrdersTech().subscribe((data: {}) => {
+        console.log(data);
+        this.tests = data;
+        this.router.navigate(['/technic/tests']);
+
+         });
+         }
+
+
+  getTestsNoDate() {
+  this.tests = [];
+  this.rest.getOrdersTechDates().subscribe((data: {}) => {
+      console.log(data);
+      this.tests = data;
+      this.router.navigate(['/technic/tests']);
+
+        });
+        }
+      
+
+  getTestsDone() {
+  this.tests = [];
+  this.rest.getOrdersTechDone().subscribe((data: {}) => {
+      console.log(data);
+      this.tests = data;
+      this.router.navigate(['/technic/tests']);
+
+        });
+        }
 }
