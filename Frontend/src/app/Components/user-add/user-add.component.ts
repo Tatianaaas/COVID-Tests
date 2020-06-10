@@ -19,9 +19,7 @@ export class UserAddComponent implements OnInit {
       }
 
   createUser(){
-    console.log(this.userData);
     this.rest.createUser(this.userData).subscribe((result: User) => {
-        console.log(result);
         this.router.navigate(['/login']);
       }, (err) => {
         console.log(err);

@@ -18,21 +18,12 @@ export class LoginComponent implements OnInit {
 
   }
   login(form: NgForm): void {
-   /*  this.authServive.login(form.value.username, form.value.password).subscribe((user: any) => {
-        if (user && user.token) {
-           // store user details and jwt token in local storage to keep user logged in between page refreshes
-           console.log(user);
-           this.router.navigate([`user/show/${user.userId}`]);
-             }
-        });
- */
     this.errors = '';
 
     this.authServive.login(form.value.username, form.value.password)
     .subscribe(
       (user) => {
         this.user = user;
-        console.log(this.user);
         if (this.user.role === 'UTENTE'){
           this.router.navigate(['user']);
         } else if (this.user.role === 'TECH'){

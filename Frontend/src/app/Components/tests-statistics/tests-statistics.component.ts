@@ -26,7 +26,6 @@ export class TestsStatisticsComponent implements OnInit {
 
   testsData(){
     this.rest.getTestsDay(this.testData).subscribe((result) => {
-      // console.log(result);
       this.result = result;
       this.router.navigate(['admin/statistics']);
     }, (err) => {
@@ -36,27 +35,21 @@ export class TestsStatisticsComponent implements OnInit {
 
   testsInfected(){
     this.rest.getTestsInfected().subscribe((result) => {
-      console.log(result);
       this.infected = result;
-     // this.router.navigate(['admin/statistics']);
     }, (err) => {
       console.log(err);
     });
   }
   testsnonInfected(){
     this.rest.getnonInfected().subscribe((result) => {
-      console.log(result);
       this.nonInfected = result;
-     // this.router.navigate(['admin/statistics']);
     }, (err) => {
       console.log(err);
     });
   }
   testsTotal(){
     this.rest.getTotalTests().subscribe((result) => {
-      console.log(result);
       this.total = result;
-     // this.router.navigate(['admin/statistics']);
     }, (err) => {
       console.log(err);
     });
@@ -64,9 +57,7 @@ export class TestsStatisticsComponent implements OnInit {
 
   getTotalUser(){
     this.rest.getTotalPerson(this.id).subscribe((result) => {
-      console.log(result);
       this.totalUser = result;
-      //this.router.navigate(['admin/statistics']);
     }, (err) => {
       console.log(err);
     });

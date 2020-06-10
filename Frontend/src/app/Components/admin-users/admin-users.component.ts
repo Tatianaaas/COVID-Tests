@@ -17,7 +17,6 @@ export class AdminUsersComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    //this.getUserList();
   }
 
   getUserList(){

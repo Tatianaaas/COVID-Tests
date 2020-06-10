@@ -27,7 +27,6 @@ export class TechnicComponent implements OnInit {
     this.tests = [];
 
     this.rest.getOrdersTechInfected().subscribe((data: {}) => {
-        console.log(data);
         this.tests = data;
         this.router.navigate(['/technic/tests']);
     });
@@ -37,7 +36,6 @@ export class TechnicComponent implements OnInit {
     this.tests = [];
 
     this.rest.getOrdersTech().subscribe((data: {}) => {
-        console.log(data);
         this.tests = data;
         this.router.navigate(['/technic/tests']);
     });
@@ -47,7 +45,6 @@ export class TechnicComponent implements OnInit {
     this.tests = [];
 
     this.rest.getOrdersTechDates().subscribe((data: {}) => {
-      console.log(data);
       this.tests = data;
       this.router.navigate(['/technic/tests']);
     });
@@ -57,7 +54,6 @@ export class TechnicComponent implements OnInit {
     this.tests = [];
 
     this.rest.getOrdersTechFirst().subscribe((data: {}) => {
-      console.log(data);
       this.tests = data;
       this.router.navigate(['/technic/tests']);
     });
@@ -67,7 +63,6 @@ export class TechnicComponent implements OnInit {
     this.tests = [];
 
     this.rest.getOrdersTechSecond().subscribe((data: {}) => {
-      console.log(data);
       this.tests = data;
       this.router.navigate(['/technic/tests']);
     });

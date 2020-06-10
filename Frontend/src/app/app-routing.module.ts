@@ -40,7 +40,8 @@ const routes: Routes = [
   {
     path: 'user/ordertest/:userId',
     component: TestAddComponent,
-    data: { title: 'Create Test'}
+    data: { title: 'Create Test'},
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin/updatepass/:userId',
@@ -51,22 +52,26 @@ const routes: Routes = [
   {
     path: 'admin/update/:userId',
     component: UserEditComponent,
-    data: { title: 'Edit User By Admin'}
+    data: { title: 'Edit User By Admin'},
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin/show',
     component: AdminComponent,
-    data: { title: 'Show User By Admin'}
+    data: { title: 'Show User By Admin'},
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin/show/:userId',
     component: UserComponent,
-    data: { title: 'Show User By Admin'}
+    data: { title: 'Show User By Admin'},
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin/delete/:userId',
     component: AdminUsersComponent,
-    data: { title: 'Show User By Admin'}
+    data: { title: 'Show User By Admin'},
+    canActivate: [AuthGuardService]
   },
   {
     path: 'technic/update/:userId',
@@ -195,37 +200,44 @@ const routes: Routes = [
   {
     path: 'user/test/:userId',
     component: TestUserDetailsComponent,
-    data: { title: 'Test Info' }
+    data: { title: 'Test Info' },
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin/users',
     component: AdminUsersComponent,
-    data: { title: 'Users' }
+    data: { title: 'Users' },
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin/users/all',
     component: AdminUsersComponent,
-    data: { title: 'Users List' }
+    data: { title: 'Users List' },
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin/users/admin',
     component: AdminUsersComponent,
-    data: { title: 'Admin List' }
+    data: { title: 'Admin List' },
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin/users/technic',
     component: AdminUsersComponent,
-    data: { title: 'Technics List' }
+    data: { title: 'Technics List' },
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin/users/utente',
     component: AdminUsersComponent,
-    data: { title: 'Utentes List' }
+    data: { title: 'Utentes List' },
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin/signuptechnics',
     component: AdminComponent,
-    data: { title: 'Sign Up Technics' }
+    data: { title: 'Sign Up Technics' }, 
+    canActivate: [AuthGuardService]
   },
   {
     path: 'login',

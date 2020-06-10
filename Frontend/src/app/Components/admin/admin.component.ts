@@ -20,9 +20,7 @@ export class AdminComponent implements OnInit {
   }
 
   createTech(){
-    console.log(this.userData);
     this.rest.createTech(this.userData).subscribe((result: User) => {
-        console.log(result);
         this.router.navigate(['/admin/users']);
       }, (err) => {
         console.log(err);

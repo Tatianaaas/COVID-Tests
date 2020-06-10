@@ -19,18 +19,14 @@ export class AdminEditComponent implements OnInit {
     this.rest.getUser(this.user.userId).subscribe((result) => {
       this.user = result;
       });
-
-    console.log(this.user);
   }
 
   updateUser() {
-    console.log(this.user.userId , this.password);
     this.rest.updateAdminPassword(this.user.userId, this.password).subscribe((result) => {
-      console.log(result);
       localStorage.setItem('user', JSON.stringify(result));
       this.router.navigate(['admin/show/' + result._id]);
-      }, (err) => {
-         console.log(err);
-        });
-        }
+    }, (err) => {
+      console.log(err);
+    });
+  }
 }
