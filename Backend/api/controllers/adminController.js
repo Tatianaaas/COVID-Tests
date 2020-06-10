@@ -58,9 +58,27 @@ const getUsers = async(req, res) => {
     res.send(userList)
 }
 
+const getAdmin = async(req, res) => {
+    const adminList = await User.find({ "role": "ADMIN" });
+    res.send(adminList);
+}
+
+const getTechnic = async(req, res) => {
+    const technicList = await User.find({ "role": "TECH" });
+    res.send(technicList);
+}
+
+const getUtente = async(req, res) => {
+    const utenteList = await User.find({ "role": "UTENTE" });
+    res.send(utenteList);
+}
+
 module.exports = {
     updateAdminPassword,
     createTechnics,
     deleteUser,
-    getUsers
+    getUsers,
+    getAdmin,
+    getTechnic,
+    getUtente
 }

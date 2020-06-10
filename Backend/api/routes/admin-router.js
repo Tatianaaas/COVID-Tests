@@ -10,16 +10,25 @@ const adminController = require('../controllers/adminController')
 const adminRouter = express.Router()
 
 //Editar utilizador
-adminRouter.put("/update/:userId", /*session, authorize,*/ userController.updateUser);
+adminRouter.put("/update/:userId", session, authorize, userController.updateUser);
 
 //Editar password do administrador
-adminRouter.put('/updatepass/:userId', /*session, authorize,*/ adminController.updateAdminPassword);
+adminRouter.put('/updatepass/:userId', session, authorize, adminController.updateAdminPassword);
 
 //Ver um determinado utilizador pelo ID
 adminRouter.get('/show/:userId', userController.getUserById);
 
 //Listagem de utilizadores
 adminRouter.get('/users', adminController.getUsers);
+
+//Listagem de todos os administradores
+adminRouter.get('/users/admin', adminController.getAdmin);
+
+//Listagem de todos os técnicos
+adminRouter.get('/users/technic', adminController.getTechnic);
+
+//Listagem de todos os utentes
+adminRouter.get('/users/utente', adminController.getUtente);
 
 //Criar novos técnicos
 adminRouter.post('/signuptechnics', session, authorize, adminController.createTechnics);
