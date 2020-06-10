@@ -30,3 +30,33 @@ a.is-selected {
 .options {
     margin-top: 10px;
 }
+
+.options .icon {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .options a:not(:first-child) {
+        display: none;
+    }
+    .options a.icon {
+        float: right;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    div .options.responsive {
+        position: relative;
+    }
+    .options.responsive.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .options.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}

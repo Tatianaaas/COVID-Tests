@@ -1,12 +1,21 @@
 <mat-card>
-    <h2>Editar</h2>
+    <h2>Editar Detalhes</h2>
+
     <form>
-        <label>Name:
-        <input type="text" [(ngModel)]="userData.name" name="name" placeholder="User Name"/>
-        </label><br>
-        <label>Password:
-        <input type="password" [(ngModel)]="userData.password" name="password"  placeholder="User Password"/>
-        </label><br>
-        <button mat-raised-button color="primary" (click)="updateUser()">Save</button>
+        <mat-form-field>
+            <mat-label>Nome:</mat-label>
+            <input matInput type="text" [(ngModel)]="userData.name" name="name" placeholder="User Name" #name="ngModel" />
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field>
+            <mat-label>Password:</mat-label>
+            <input matInput type="password" [(ngModel)]="userData.password" name="password" placeholder="User Password" #password="ngModel" />
+        </mat-form-field>
+
+        <br><br>
+
+        <button matInput mat-raised-button color="primary" (click)="updateUser()">Guardar</button>
     </form>
 </mat-card>

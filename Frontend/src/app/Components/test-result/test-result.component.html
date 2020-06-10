@@ -1,24 +1,32 @@
-<div>
-    <h2>Publicação de Resultados</h2>
+<mat-card>
+    <div>
+        <h2>Publicação de Resultados</h2>
 
-    <div *ngIf="!testData.realizadoPrimeiroTeste">
-        <label>Resultado do Primeiro Teste:
-            <br>
+        <div *ngIf="!testData.realizadoPrimeiroTeste">
+
+            <label><b>Resultado do Primeiro Teste:</b>
+            <br><br>
             <input type="radio" name="primeiroResultado" [value]="true"  [(ngModel)]="testData.primeiroResultado" /> Positivo
             <br>
             <input type="radio" name="primeiroResultado" [value]="false" [(ngModel)]="testData.primeiroResultado"  /> Negativo
-        </label><br><br>
-        <button mat-raised-button color="primary" (click)="updateFirstResult()">Save</button>
-    </div>
+        </label>
 
-    <div *ngIf="testData.dataSegundoTeste && testData.realizadoPrimeiroTeste && !testData.realizadoSegundoTeste">
-        <label>Resultado do Segundo Teste:
-            <br>
+            <br><br>
+
+            <button mat-raised-button color="primary" (click)="updateFirstResult()">Save</button>
+        </div>
+
+        <div *ngIf="testData.dataSegundoTeste && testData.realizadoPrimeiroTeste && !testData.realizadoSegundoTeste">
+            <label><b>Resultado do Segundo Teste:</b>
+            <br><br>
             <input type="radio" name="segundoResultado" [value]="true" [(ngModel)]="testData.segundoResultado"  /> Positivo
             <br>
             <input type="radio" name="segundoResultado" [value]="false" [(ngModel)]="testData.segundoResultado"  /> Negativo
-        </label><br><br>
+        </label>
 
-        <button mat-raised-button color="primary" (click)="updateSecondResult()">Save</button>
+            <br><br>
+
+            <button mat-raised-button color="primary" (click)="updateSecondResult()">Save</button>
+        </div>
     </div>
-</div>
+</mat-card>

@@ -1,7 +1,7 @@
 <header class="header">
     <div class="aside">
         <div class="image"><img src="../../../assets/images/logo.png" width="90" height="51"></div>
-        <div class="options">
+        <div class="options" id="myOptions">
             <a *ngIf="!user" mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
             <a *ngIf="!user" mat-button routerLink="/signup" routerLinkActive="mat-accent">Sign Up</a>
             <a *ngIf="user && user.role==='ADMIN'" mat-button routerLink="/admin/show/{{user.userId}}" routerLinkActive="mat-accent">Detalhes Utilizador</a>
@@ -14,11 +14,26 @@
             <a *ngIf="user && user.role==='ADMIN'" mat-button routerLink="/admin/statistics" routerLinkActive="mat-accent">Estatistica de Dados</a>
             <a *ngIf="user && user.role=='UTENTE'" routerLink="/user/ordertest/{{user.userId}}" routerLinkActive="is-selected">Pedir Teste</a>
             <a *ngIf="user && user.role=='UTENTE'" routerLink="/user/test/{{user.userId}}" routerLinkActive="is-selected">Detalhes do Teste</a>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
     </div>
 
     <div>
-        <span *ngIf="user">Bem-vindo/a {{user.name}}</span>
+        <span *ngIf="user">Bem-vindo/a {{user.name}}!</span>
         <button mat-button color="warn" *ngIf="user" (click)="onLogout()">Logout</button>
     </div>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myOptions");
+            if (x.className === "options") {
+                x.className += " responsive";
+            } else {
+                x.className = "options";
+            }
+        }
+    </script>
 </header>
