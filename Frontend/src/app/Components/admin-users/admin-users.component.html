@@ -1,8 +1,10 @@
 <h2>Utilizadores</h2>
-
+<div>
 <button mat-button color="primary" (click)="getUserList()">Todos</button>
 <button mat-button color="primary" (click)="getAdminList()">Administradores</button>
 <button mat-button color="primary" (click)="getTechnicList()">Técnicos</button>
 <button mat-button color="primary" (click)="getUtenteList()">Utentes</button>
-
+<button mat-button color="primary" (click)="getStats()">Estatíticas de Utilizadores</button>
+</div>
 <app-user-list [users]="users"></app-user-list>
+<app-pie-chart-users class="pie" *ngIf="stats"></app-pie-chart-users>

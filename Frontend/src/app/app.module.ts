@@ -6,6 +6,7 @@ import { MatInputModule} from '@angular/material/input';
 import { MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -33,6 +34,8 @@ import { TestUserDetailsComponent } from './Components/test-user-details/test-us
 import { AdminTestsComponent } from './Components/admin-tests/admin-tests.component';
 import { UserListComponent } from './Components/user-list/user-list.component';
 import { TestsStatisticsComponent } from './Components/tests-statistics/tests-statistics.component';
+import { PieChartComponent } from './Components/pie-chart/pie-chart.component';
+import { PieChartUsersComponent } from './Components/pie-chart-users/pie-chart-users.component';
 
 
 @NgModule({
@@ -56,7 +59,9 @@ import { TestsStatisticsComponent } from './Components/tests-statistics/tests-st
     TestUserDetailsComponent,
     AdminTestsComponent,
     UserListComponent,
-    TestsStatisticsComponent
+    TestsStatisticsComponent,
+    PieChartComponent,
+    PieChartUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,8 @@ import { TestsStatisticsComponent } from './Components/tests-statistics/tests-st
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ChartsModule
   ],
   exports: [
     RouterModule

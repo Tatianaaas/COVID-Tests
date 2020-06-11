@@ -43,6 +43,7 @@ export class TestsStatisticsComponent implements OnInit {
   testsnonInfected(){
     this.rest.getnonInfected().subscribe((result) => {
       this.nonInfected = result;
+
     }, (err) => {
       console.log(err);
     });
