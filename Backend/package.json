@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon app.js",
+        "start": "cd Frontend && ng build && cd .. && node ./bin/www",
         "dev": "node_modules/.bin/nodemon app.js"
     },
     "author": "Jessica Coelho 8170180, Tatiana Silva 8160264",

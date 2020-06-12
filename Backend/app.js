@@ -27,12 +27,7 @@ const {
 
 mongoose
     .connect(
-        `mongodb://${ MONGO_DB_HOST }:${ MONGO_BD_PORT }/${ MONGO_DB_NAME }`, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true,
-            useFindAndModify: false
-        }
+        "mongodb+srv://paw2020:<password>@clusterpaw-xuue7.mongodb.net/<dbname>?retryWrites=true&w=majority"
     )
     .then((mongoose) => {
         console.log('connected to mongo')
@@ -45,6 +40,7 @@ app.use(cors())
 
 app.set('views', path.join(__dirname, './api/views'));
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'Frontend','dist','covid')))
 app.use(express.static(path.join(__dirname, './api/docs')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -55,6 +51,16 @@ app.use('/', apiRouter)
 app.use('/user/', userRouter);
 app.use('/admin/', adminRouter);
 app.use('/technic/', tecnicRouter)
+
+app.use('/*', function(req,res){
+    console.log("sent");
+    try{
+        res.sendFile(path.join(__dirname, 'Frontend','dist','covid','index.html'));
+    }catch(err){
+        console.log(err);
+    }
+})
+
 
 app.listen(PORT, () => {
     console.log(`Server started on http://localhost:${PORT}`)
