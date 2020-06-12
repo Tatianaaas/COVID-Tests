@@ -1,0 +1,19 @@
+image: node
+
+packages:
+  chache:
+    paths:
+      -node_modules/
+  stage: deploy
+  script:
+  - npm install -g @angular/cli
+  - npm install
+  - ng build --base-href=/Deploy_PAW_Project/
+  - mkdir public
+  - mv dist/covid/* public/
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+  - pages
