@@ -27,7 +27,7 @@ const {
 
 mongoose
     .connect(
-        "mongodb+srv://paw2020:<password>@clusterpaw-xuue7.mongodb.net/<dbname>?retryWrites=true&w=majority"
+        "mongodb+srv://paw2020:paw2020@clusterpaw-xuue7.mongodb.net/demo2?retryWrites=true&w=majority"
     )
     .then((mongoose) => {
         console.log('connected to mongo')
@@ -40,7 +40,7 @@ app.use(cors())
 
 app.set('views', path.join(__dirname, './api/views'));
 app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'Frontend','dist','covid')))
+app.use(express.static(path.join(__dirname, 'Frontend/dist/covid')))
 app.use(express.static(path.join(__dirname, './api/docs')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -55,7 +55,7 @@ app.use('/technic/', tecnicRouter)
 app.use('/*', function(req,res){
     console.log("sent");
     try{
-        res.sendFile(path.join(__dirname, 'Frontend','dist','covid','index.html'));
+        res.sendFile(path.join(__dirname,'Frontend/dist/covid/index.html'));
     }catch(err){
         console.log(err);
     }
