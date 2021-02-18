@@ -1,5 +1,5 @@
 # Deploy_PAW_Project
-
+Aplicação Web sobre Covid-19
 
 ## Descrição
 Este projeto foi elaborado no âmbito da unidade curricular de Programação em Ambiente Web (PAW).
