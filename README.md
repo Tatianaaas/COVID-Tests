@@ -1,4 +1,4 @@
-# Deploy_PAW_Project
+# COVID Tests
 Aplicação Web sobre Covid-19
 
 ## Descrição
